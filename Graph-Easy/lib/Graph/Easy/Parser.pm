@@ -638,7 +638,7 @@ sub from_text
       next if $curline =~ $qr_comment;
 
       # convert tabs to spaces (the regexps don't expect tabs)
-      $curline =~ tr/\t/ /d;
+      $curline =~ tr/\t/ /;
 
       # combine backbuffer, what to insert between two lines and next line:
       $line = $backbuffer . $self->_line_insert() . $self->_clean_line($curline);

@@ -3,6 +3,8 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Fix "GraphML: end tag of nodes before definition of their attributes"
     - https://rt.cpan.org/Public/Bug/Display.html?id=46992
     - Thanks to a patch by ironcamel ( https://github.com/ironcamel )
+  * Got rid of a warning in recent Perls for doing tr/\t/ /d due to /d
+  being usless in that case.
 
 2010-07-01 v0.69 Shlomi Fish 2938 tests
   * Add support for GraphViz subgraphs.
