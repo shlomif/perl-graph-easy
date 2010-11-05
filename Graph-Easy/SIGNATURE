@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.63.
+signed via the Module::Signature module, version 0.66.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 07e554160debe7bdfc158eebfec31f7211e84a44 CHANGES
+SHA1 e717399415186a952acb3ab746a2991039fae793 CHANGES
 SHA1 675c8474714bc9255f090cbe07828886ff5342cb INSTALL
 SHA1 902547f45944e2121ef06ce5823e3630b1e69bb2 LICENSE
 SHA1 1a20cc16a8bea67bc8e95e97cff7f8c470e7ea3d MANIFEST
 SHA1 eb5f20ef92a7fb8aec3923ed8f2ed85a53e07d42 MANIFEST.SKIP
-SHA1 989d4789be2a1344ebddb8ff3edf2ac648354a07 META.yml
+SHA1 7739f1b248452990fdc8f4ca65590b1c49d3c8cc META.yml
 SHA1 46dca5afe7f35983023dcba4656e18c04115f574 Makefile.PL
 SHA1 f993a1d6fde985af11e163b8086c88676cec5ceb README
 SHA1 b2b013b024f71b5af066fb3cf5b5abf1bd83cda4 TODO
@@ -28,7 +28,7 @@ SHA1 224ba89e9e5176124e32697aad3144e30c9e2636 bench/serie.pl
 SHA1 9ca3806d6826c7a6c9aded04729b905d39eccd6a bench/stress.pl
 SHA1 9c917874aca7d49735342998122b1377bfbfb7e9 bench/test.dot
 SHA1 9d140226539c1fb7766be007fe250579c262f10d bench/test.txt
-SHA1 7f19744a77adea0530b6a616998631175b229dd2 bin/graph-easy
+SHA1 f2ad22cc3ab54e741758a5d5eeaa91fe3bb7898c bin/graph-easy
 SHA1 ec6fa86f2704507da564370e33f2a007addec049 examples/as_ascii
 SHA1 757622e4264d850e0da4cf0ef41dd5085d778177 examples/as_boxart
 SHA1 71e739f181f9f53fcf3ff6bf3be8844f69bb503a examples/as_boxart_html
@@ -47,19 +47,19 @@ SHA1 cf33f2cbf84cb4d8f99e6fa76fe0c87952a9375c examples/parse
 SHA1 814623859c8aead785f18965cb889298ff553bcb examples/syntax.pl
 SHA1 dccca8feea0f15becd2d6fb2a42ac6005b89e4c9 examples/syntax.tpl
 SHA1 6003b0fbba84a9a9c3396d0e1e425816ba8c1a43 examples/wikicrawl.pl
-SHA1 1ebec4119486a032a5612a403e8d7b7be973e938 inc/Module/Install.pm
-SHA1 24038af925a69df41972971356ccce885b0fe2ad inc/Module/Install/Base.pm
-SHA1 8f96eddfef548c9328457fbb17a121631cda356b inc/Module/Install/Can.pm
-SHA1 ec29048e48edd9c9c55f9de7b773bd7c904335ad inc/Module/Install/Fetch.pm
-SHA1 0384525d85d51e99532e3ad8729d870113646d14 inc/Module/Install/Makefile.pm
-SHA1 38c657de4d91f5a60ff8e6c6f6a5547daf7c4ab2 inc/Module/Install/Metadata.pm
-SHA1 f74fc88b2820caf7c3e50a1108b377aa4abdb275 inc/Module/Install/Scripts.pm
-SHA1 5c25f1104c0038041e3b93e0660c39171e4caf2b inc/Module/Install/Win32.pm
-SHA1 94d47349c803c4bd2a9230d25e4db0b6aaf1acd8 inc/Module/Install/WriteAll.pm
-SHA1 153539911325ff7250e68c44ba03bc6d051a8595 lib/Graph/Easy.pm
+SHA1 7305dbe2904416e28decb05396988a5d51d578be inc/Module/Install.pm
+SHA1 129960509127732258570c122042bc48615222e1 inc/Module/Install/Base.pm
+SHA1 cf3356ed9a5bd2f732527ef9e7bc5ef4458c8a93 inc/Module/Install/Can.pm
+SHA1 bf0a3e1977effc2832d7a813a76dce3f31b437b6 inc/Module/Install/Fetch.pm
+SHA1 b721c93ca5bc9a6aa863b49af15f1b1de6125935 inc/Module/Install/Makefile.pm
+SHA1 026cc0551a0ad399d195e395b46bdf842e115192 inc/Module/Install/Metadata.pm
+SHA1 d3a4c720c6ec7f8fce7df37002fbc9177fb77050 inc/Module/Install/Scripts.pm
+SHA1 5457015ea5a50e93465bf2dafa29feebd547f85b inc/Module/Install/Win32.pm
+SHA1 051e7fa8063908befa3440508d0584a2497b97db inc/Module/Install/WriteAll.pm
+SHA1 fc678f81997b3eca680f4178b3212dc1347f333d lib/Graph/Easy.pm
 SHA1 9eee7aec78486e812031b5573e8f319a448a3015 lib/Graph/Easy/As_ascii.pm
-SHA1 4d58a63060fca8fbf00acd56c0489f3779a83e72 lib/Graph/Easy/As_graphml.pm
-SHA1 f699c3bc7da381b6f4c486f3027483878ef193d6 lib/Graph/Easy/As_graphviz.pm
+SHA1 92f08eebddcc8a9cf0b091699bcb3057988800ae lib/Graph/Easy/As_graphml.pm
+SHA1 ccc154daa6f1527fa7ca62deba57fc90ab4dc911 lib/Graph/Easy/As_graphviz.pm
 SHA1 7e565f2ae14c8e32b847fa551f17e01da166393b lib/Graph/Easy/As_txt.pm
 SHA1 117249a66ad61815e0d48d0fa945a8aa1541d320 lib/Graph/Easy/As_vcg.pm
 SHA1 33ce7b79510d730dd7362e8bdcbe4bb89e382ae5 lib/Graph/Easy/Attributes.pm
@@ -80,7 +80,7 @@ SHA1 cf58e545e4494b5d7c84a5b1a8468ccd6c0b0749 lib/Graph/Easy/Node.pm
 SHA1 869cb1085cdd1579add14a2acbb836c6903c788c lib/Graph/Easy/Node/Anon.pm
 SHA1 d248d86a995c1531fc15607ffe73195345051d6f lib/Graph/Easy/Node/Cell.pm
 SHA1 f26faead65dba1b5556493246509679282f6e907 lib/Graph/Easy/Node/Empty.pm
-SHA1 c91c7f02ef3d53031dd6ac0e4961641a280e7ece lib/Graph/Easy/Parser.pm
+SHA1 363b1a75180eb8256e888d5ba7a5ea660597904c lib/Graph/Easy/Parser.pm
 SHA1 7773e99bf344e970073e7aa2c8a9f03370726b7b lib/Graph/Easy/Parser/Graphviz.pm
 SHA1 3a4e91d2d7c2318aa866e21ed6832090bb678955 lib/Graph/Easy/Parser/VCG.pm
 SHA1 2b1de8411c97919f9a0576c41c2af7eb20685901 t/anon.t
@@ -118,9 +118,9 @@ SHA1 bec67bcae8251fe1a4c2a8055166a7b115a49d7e t/fun/overview.txt
 SHA1 9754218961a6db2010e7ec02c3b9385e1eb39f15 t/gdl.t
 SHA1 f5e2ed42f08d21940d6653db0e1e0cf2c524eb5c t/graph-maker.t
 SHA1 25a0082d578c875e967e3c4653c8d61e38ec7e28 t/graph.t
-SHA1 fab0e5801facc36efa05cb506e9201cc7f879dba t/graphml.t
-SHA1 c2a285e581119dd7b2a7b243fc8c090f6508fc8b t/graphml_yed.t
-SHA1 8b7da8a4df60bc1140306c3914a2cec017690233 t/graphviz.t
+SHA1 042c8a73ac94f0ef1034effe61e5a7a9ef654f58 t/graphml.t
+SHA1 fc98941970d64616c0dccbd7ba23e49191d0a62d t/graphml_yed.t
+SHA1 ddcb0b968d3561654b880b8e0885e106982aba89 t/graphviz.t
 SHA1 71dcbb49197e77ab6ce8dbf2d1288fd342c40c9f t/group.t
 SHA1 b77c80d15fb5a39e7abe8af5b2a79a5c395a3dd2 t/group/0010.txt
 SHA1 54d098b4f588ff0fcfaeb7cd10878deb1051a9fb t/group/0131.txt
@@ -770,9 +770,9 @@ SHA1 63b3683fd14d81023232dd9a60123e0a1aa249b3 t/txt/gdl/2_top_to_bottom.txt
 SHA1 4798ab0eefd0ffb38a7ceec6c1cb50c25e1caf80 t/use_class.t
 SHA1 7ce7d29772b819c79a247ba7f4bdd03c1d9c33c5 t/vcg.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAkwoTF4ACgkQz3l/NN3wsUmZmQCcCWSCava+ByBe2o3BMSpXtfgP
-9acAn1qSdurKxQRbowu1gy7ufOxo3HEZ
-=qZkR
+iEUEARECAAYFAkzT2QEACgkQz3l/NN3wsUnIfgCYkXL+ZHHOl1o6tYZWyCg//Hsn
+4QCfWReZOEJDJ4/DTgaK7S2nFXHVwf8=
+=n3m8
 -----END PGP SIGNATURE-----
