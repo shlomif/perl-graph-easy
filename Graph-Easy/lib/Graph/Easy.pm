@@ -17,7 +17,7 @@ use Graph::Easy::Node::Anon;
 use Graph::Easy::Node::Empty;
 use Scalar::Util qw/weaken/;
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 @ISA = qw/Graph::Easy::Base/;
 
 use strict;

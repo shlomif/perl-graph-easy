@@ -1,5 +1,11 @@
 Revision history for Graph::Easy (formerly known as Graph::Simple):
 
+2011-12-23 v0.71 Shlomi Fish 2938 tests
+  * Fix the SIGNATURE file.
+    - https://rt.cpan.org/Ticket/Display.html?id=58892
+    - Thanks to ANDK for reporting it.
+
+2010-11-05 v0.70 Shlomi Fish
   * Fix "GraphML: end tag of nodes before definition of their attributes"
     - https://rt.cpan.org/Public/Bug/Display.html?id=46992
     - Thanks to a patch by ironcamel ( https://github.com/ironcamel )
