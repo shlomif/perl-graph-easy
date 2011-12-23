@@ -5,3 +5,5 @@ syntax: regexp
 ^Graph-Easy/MYMETA.json
 ^Graph-Easy/Makefile
 ^Graph-Easy/inc/.*
+^Graph-Easy/blib/.*
+^Graph-Easy/pm_to_blib$
