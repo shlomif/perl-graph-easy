@@ -1,0 +1,7 @@
+syntax: regexp
+^Graph-Easy/MANIFEST
+^Graph-Easy/META.yml
+^Graph-Easy/MYMETA.yml
+^Graph-Easy/MYMETA.json
+^Graph-Easy/Makefile
+^Graph-Easy/inc/.*

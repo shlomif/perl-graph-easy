@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.66.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -17,9 +17,11 @@ Hash: SHA1
 SHA1 e717399415186a952acb3ab746a2991039fae793 CHANGES
 SHA1 675c8474714bc9255f090cbe07828886ff5342cb INSTALL
 SHA1 902547f45944e2121ef06ce5823e3630b1e69bb2 LICENSE
-SHA1 1a20cc16a8bea67bc8e95e97cff7f8c470e7ea3d MANIFEST
+SHA1 577643ad6e43e11b6a6d47f1aeb90cad507e13b8 MANIFEST
 SHA1 eb5f20ef92a7fb8aec3923ed8f2ed85a53e07d42 MANIFEST.SKIP
-SHA1 7739f1b248452990fdc8f4ca65590b1c49d3c8cc META.yml
+SHA1 90bc77fc9d9d7899b5c1a43e10fa1684419d5e0e META.yml
+SHA1 2e861e9311da5f1ee010b77663f53b770f9ad0b7 MYMETA.json
+SHA1 eb1a6f330d91abd74c1505619622f8d24bfb8fbd MYMETA.yml
 SHA1 46dca5afe7f35983023dcba4656e18c04115f574 Makefile.PL
 SHA1 f993a1d6fde985af11e163b8086c88676cec5ceb README
 SHA1 b2b013b024f71b5af066fb3cf5b5abf1bd83cda4 TODO
@@ -47,15 +49,15 @@ SHA1 cf33f2cbf84cb4d8f99e6fa76fe0c87952a9375c examples/parse
 SHA1 814623859c8aead785f18965cb889298ff553bcb examples/syntax.pl
 SHA1 dccca8feea0f15becd2d6fb2a42ac6005b89e4c9 examples/syntax.tpl
 SHA1 6003b0fbba84a9a9c3396d0e1e425816ba8c1a43 examples/wikicrawl.pl
-SHA1 7305dbe2904416e28decb05396988a5d51d578be inc/Module/Install.pm
-SHA1 129960509127732258570c122042bc48615222e1 inc/Module/Install/Base.pm
-SHA1 cf3356ed9a5bd2f732527ef9e7bc5ef4458c8a93 inc/Module/Install/Can.pm
-SHA1 bf0a3e1977effc2832d7a813a76dce3f31b437b6 inc/Module/Install/Fetch.pm
-SHA1 b721c93ca5bc9a6aa863b49af15f1b1de6125935 inc/Module/Install/Makefile.pm
-SHA1 026cc0551a0ad399d195e395b46bdf842e115192 inc/Module/Install/Metadata.pm
-SHA1 d3a4c720c6ec7f8fce7df37002fbc9177fb77050 inc/Module/Install/Scripts.pm
-SHA1 5457015ea5a50e93465bf2dafa29feebd547f85b inc/Module/Install/Win32.pm
-SHA1 051e7fa8063908befa3440508d0584a2497b97db inc/Module/Install/WriteAll.pm
+SHA1 7ba8556ded0e1b8465b2ebe703e073b416d454d7 inc/Module/Install.pm
+SHA1 69a3a256888658cbbe0164171744838e53dc06e3 inc/Module/Install/Base.pm
+SHA1 17be8c56d695ed14cf77e37542438a5eebf1c9e1 inc/Module/Install/Can.pm
+SHA1 b842371af51441beb020ce37349f96123841f684 inc/Module/Install/Fetch.pm
+SHA1 474ff5d11d1dd3327487f13d44d3c7b3945050a8 inc/Module/Install/Makefile.pm
+SHA1 fdf68f7c27a463011640b0739299834a65268056 inc/Module/Install/Metadata.pm
+SHA1 e54dc9b8673cdae894834a1aa780580631fb80e9 inc/Module/Install/Scripts.pm
+SHA1 fe19e1641d3642424ba4088909e0f2e05747c76f inc/Module/Install/Win32.pm
+SHA1 b71a7355e7c74219f0d24aedf057121981ff0f95 inc/Module/Install/WriteAll.pm
 SHA1 fc678f81997b3eca680f4178b3212dc1347f333d lib/Graph/Easy.pm
 SHA1 9eee7aec78486e812031b5573e8f319a448a3015 lib/Graph/Easy/As_ascii.pm
 SHA1 92f08eebddcc8a9cf0b091699bcb3057988800ae lib/Graph/Easy/As_graphml.pm
@@ -319,7 +321,7 @@ SHA1 84b6525d46dd175fbd95d7cfc8d62fbf3356f65c t/in/dot/9_back.dot
 SHA1 9bbcacf6d9561b5f47f62d43e5efa29fc3cd8eaf t/in/dot/9_edge_styles.dot
 SHA1 13c4823165f86fea4d665f81f8a0655d1f32af5a t/in/dot/9_stacking.dot
 SHA1 969a9eeaddc19789e2fc7d11332beaa0c26b78bb t/in/dot/9_tree.dot
-SHA1 cc40692094068ce4578eb3f59ea867d8edb539fd t/in/gdl/1_color_code.gdl
+SHA1 887831e6c51e9b2fb434858cc04997138dad5103 t/in/gdl/1_color_code.gdl
 SHA1 a52aac436f75ca07aa8a325db35cd10828c47264 t/in/gdl/2_bottom_to_top.gdl
 SHA1 6ef32486cc907914ce9326b69b2bb5bf7161fd4c t/in/gdl/2_left_to_right.gdl
 SHA1 cba5a7a780b057693dd7587b19a6bc155ebb630f t/in/gdl/2_right_to_left.gdl
@@ -772,7 +774,7 @@ SHA1 7ce7d29772b819c79a247ba7f4bdd03c1d9c33c5 t/vcg.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEUEARECAAYFAkzT2QEACgkQz3l/NN3wsUnIfgCYkXL+ZHHOl1o6tYZWyCg//Hsn
-4QCfWReZOEJDJ4/DTgaK7S2nFXHVwf8=
-=n3m8
+iEYEARECAAYFAk70knoACgkQz3l/NN3wsUnqOgCeNBnHZkaTwt8cyQw2AjTx9jLG
+qp0An2Pgb1Jv+JjDQGyYWRLPmAWOyfOX
+=ehyD
 -----END PGP SIGNATURE-----
