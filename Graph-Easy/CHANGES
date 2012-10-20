@@ -1,5 +1,10 @@
 Revision history for Graph::Easy (formerly known as Graph::Simple):
 
+2012-10-20 v0.72 Shlomi Fish 2938 tests
+  * Update Module-Install from version 1.04 (which is broken on perl-5.16.x).
+    - http://weblog.bulknews.net/post/33907905561/do-not-ship-modules-with-module-install-1-04
+    - Thanks to MIYAGAWA for the report.
+
 2011-12-23 v0.71 Shlomi Fish 2938 tests
   * Fix the SIGNATURE file.
     - https://rt.cpan.org/Ticket/Display.html?id=58892
