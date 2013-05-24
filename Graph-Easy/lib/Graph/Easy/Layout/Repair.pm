@@ -421,7 +421,7 @@ sub _fill_group_cells
   # is O(N) where N is the number of actually existing cells. Otherwise we
   # would have to create the full table-layout, and then insert rows/columns.
   my $cells = {};
-  for my $key (keys %$cells_layout)
+  for my $key (sort keys %$cells_layout)
     {
     my ($x,$y) = split /,/, $key;
     my $cell = $cells_layout->{$key};

@@ -657,12 +657,12 @@ sub _new_scope
     my $old_scope = $self->{scope_stack}->[-1];
 
     # make a copy of the old scope's attributes
-    for my $t (keys %$old_scope)
+    for my $t (sort keys %$old_scope)
       {
       next if $t =~ /^_/;
       my $s = $old_scope->{$t};
       $scope->{$t} = {} unless ref $scope->{$t}; my $sc = $scope->{$t};
-      for my $k (keys %$s)
+      for my $k (sort keys %$s)
         {
 	# skip things like "_is_group"
         $sc->{$k} = $s->{$k} unless $k =~ /^_/;
@@ -859,7 +859,7 @@ sub _build_match_stack
 	my $scope = $self->{scope_stack}->[-1];
         $scope->{$type} = {} unless ref $scope->{$type};
 	my $s = $scope->{$type};
-	for my $k (keys %$att)
+	for my $k (sort keys %$att)
 	  {
           $s->{$k} = $att->{$k}; 
 	  }

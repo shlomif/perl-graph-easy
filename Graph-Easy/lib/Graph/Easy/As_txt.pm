@@ -212,13 +212,13 @@ sub attributes_as_txt
     my $names = {};
     for my $child ($self, @$parts)
       {
-      for my $k (keys %{$child->{att}})
+      for my $k (sort keys %{$child->{att}})
         {
         $names->{$k} = undef;
         }
       }
 
-    for my $k (keys %$names)
+    for my $k (sort keys %$names)
       {
       next if $k eq 'basename';
       my $val = $self->{att}->{$k};

@@ -28,7 +28,7 @@ sub _init
   $self->{att} = { };
   $self->{class} = 'node';		# default class
 
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     if ($k !~ /^(label|name)\z/)
       {
@@ -2097,7 +2097,7 @@ sub set_attributes
   {
   my ($self, $atr, $index) = @_;
 
-  foreach my $n (keys %$atr)
+  foreach my $n (sort keys %$atr)
     {
     my $val = $atr->{$n};
     $val = $val->[$index] if ref($val) eq 'ARRAY' && defined $index;

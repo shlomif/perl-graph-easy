@@ -482,7 +482,7 @@ sub _att_as_graphviz
   my ($self, $out) = @_;
 
   my $att = '';
-  for my $atr (keys %$out)
+  for my $atr (sort keys %$out)
     {
     my $v = $out->{$atr};
     $v =~ s/\n/\\n/g;
@@ -512,6 +512,8 @@ sub _att_as_graphviz
   $att;
   }
 
+use Graph::Easy::Util qw(first_kv);
+
 sub _generate_group_edge
   {
   # Given an edge (from/to at least one group), generate the graphviz code
@@ -527,8 +529,8 @@ sub _generate_group_edge
   if ($from->isa('Graph::Easy::Group'))
     {
     # find an arbitray node inside the group
-    my ($n, $v) = each %{$from->{nodes}};
-    
+        my ($n, $v) = first_kv($from->{nodes});
+
     $a = 'ltail="cluster' . $from->{id}.'"';	# ltail=cluster0
     $from = $v;
     }
@@ -538,8 +540,8 @@ sub _generate_group_edge
   if ($to->isa('Graph::Easy::Group'))
     {
     # find an arbitray node inside the group
-    my ($n, $v) = each %{$to->{nodes}};
-    
+    my ($n, $v) = first_kv($to->{nodes});
+
     $b = 'lhead="cluster' . $to->{id}.'"';	# lhead=cluster0
     $to = $v;
     }
@@ -755,9 +757,9 @@ sub _as_graphviz_group
     my $copy = {};
     my $attribs = $group->get_attributes();
 
-    for my $a (keys %$attribs)
+    for my $key (sort keys %$attribs)
       {
-      $copy->{$a} = $attribs->{$a};
+      $copy->{$key} = $attribs->{$key};
       }
     # set some defaults
     $copy->{'borderstyle'} = 'solid' unless defined $copy->{'borderstyle'};

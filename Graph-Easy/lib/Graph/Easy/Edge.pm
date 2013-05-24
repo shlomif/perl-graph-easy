@@ -25,7 +25,7 @@ sub _init
   # leave this unitialized until we need it
   # $self->{cells} = [ ];
 
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     if ($k !~ /^(label|name|style)\z/)
       {

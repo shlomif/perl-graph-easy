@@ -243,7 +243,8 @@ sub _follow_chain
 
     if (scalar keys %suc == 1)		# have only one unique successor?
       {
-      my $s = $suc{ each %suc };
+          my ($key) = keys(%suc);
+      my $s = $suc{ $key };
 
       if (!defined $s->{_chain})	# chain already done?
         {

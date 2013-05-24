@@ -388,6 +388,8 @@ sub _placed_shared
   $placed;
   }
 
+use Graph::Easy::Util qw(first_kv);
+
 sub _find_node_place
   {
   # Try to place a node (or node cluster). Return score (usually 0).
@@ -434,7 +436,7 @@ sub _find_node_place
   # if the node has outgoing edges (which might be shared)
   if (!ref($edge))
     {
-    (undef,$edge) = each %{$node->{edges}} if keys %{$node->{edges}} > 0;
+    (undef,$edge) = first_kv($node->{edges}) if keys %{$node->{edges}} > 0;
     }
 
   my $dir = undef; $dir = $edge->flow() if ref($edge);

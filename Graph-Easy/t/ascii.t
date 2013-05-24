@@ -70,6 +70,11 @@ foreach my $f (sort @files)
   if (!
     is ($ascii, $out, "from $f"))
     {
+        if ($ENV{__SHLOMIF__UPDATE_ME})
+        {
+            require IO::All;
+            IO::All->new->file("out/$f")->print($ascii);
+        }
     push @failures, $f;
     if (defined $Test::Differences::VERSION)
       {
@@ -95,6 +100,11 @@ foreach my $f (sort @files)
   if (!
     is ($graph->as_txt(), $txt, "$f as_txt"))
     {
+        if ($ENV{__SHLOMIF__UPDATE_ME})
+        {
+            require IO::All;
+            IO::All->new->file("txt/$f")->print($graph->as_txt());
+        }
     push @failures, $f;
     if (defined $Test::Differences::VERSION)
       {

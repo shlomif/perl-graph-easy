@@ -246,7 +246,7 @@ sub _init
   $self->{w} = undef;
   $self->{h} = 3;
 
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     # don't store "after" and "before"
     next unless $k =~ /^(graph|edge|x|y|type)\z/;

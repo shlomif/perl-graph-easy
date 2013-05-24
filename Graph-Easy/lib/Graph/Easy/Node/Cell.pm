@@ -22,13 +22,13 @@ sub _init
   $self->{class} = '';
   $self->{name} = '';
   
-  $self->{x} = 0;
-  $self->{y} = 0;
+  $self->{'x'} = 0;
+  $self->{'y'} = 0;
 
   # default: belongs to no node
   $self->{node} = undef;
 
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     if ($k !~ /^(node|graph|x|y)\z/)
       {

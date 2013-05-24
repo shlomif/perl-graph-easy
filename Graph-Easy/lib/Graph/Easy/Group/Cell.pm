@@ -102,11 +102,11 @@ sub _init
   $self->{cell_class} = ' gi';
   $self->{name} = '';
   
-  $self->{x} = 0;
-  $self->{y} = 0;
+  $self->{'x'} = 0;
+  $self->{'y'} = 0;
 
   # XXX TODO check arguments
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     $self->{$k} = $args->{$k};
     }

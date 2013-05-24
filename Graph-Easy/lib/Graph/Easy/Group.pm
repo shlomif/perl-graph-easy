@@ -27,7 +27,7 @@ sub _init
 #  $self->{cx} = 1;
 #  $self->{cy} = 1;
 
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     if ($k !~ /^(graph|name)\z/)
       {

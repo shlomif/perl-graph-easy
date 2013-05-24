@@ -26,7 +26,7 @@ sub _init
   # Generic init routine, to be overriden in subclasses.
   my ($self,$args) = @_;
   
-  foreach my $k (keys %$args)
+  foreach my $k (sort keys %$args)
     {
     if ($k !~ /^(start|graph)\z/)
       {

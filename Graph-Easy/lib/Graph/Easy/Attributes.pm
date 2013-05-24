@@ -1910,7 +1910,7 @@ my $all_color_names = { };
 {
   # reverse mapping "#ff0000 => 'red'"
   # also build a list of all possible color names
-  for my $n (keys %$color_names)
+  for my $n (sort keys %$color_names)
     {
     my $s = $color_names->{$n};
     $color_values->{ $n } = {};
@@ -3948,7 +3948,7 @@ sub _remap_attributes
   # the caller must filter them out.
 
   # do these attributes
-  my @keys = keys %$att;
+  my @keys = sort keys %$att;
 
   my $color_scheme = 'w3c';
   $color_scheme = $object->attribute('colorscheme') if ref($object);
@@ -4011,7 +4011,7 @@ sub _remap_attributes
         }
       }
 
-    for my $at (keys %$temp)
+    for my $at (sort keys %$temp)
       {
       my $v = $temp->{$at};
 
@@ -4048,7 +4048,7 @@ sub raw_attributes
   my $out = {};
   if (!$g->{strict})
     {
-    for my $name (keys %$att)
+    for my $name (sort keys %$att)
       {
       my $val = $att->{$name};
       next unless defined $val;			# set to undef?
@@ -4059,7 +4059,7 @@ sub raw_attributes
     }
 
   my $base_class = $class; $base_class =~ s/\..*//;
-  for my $name (keys %$att)
+  for my $name (sort keys %$att)
     {
     my $val = $att->{$name};
     next unless defined $val;			# set to undef?
@@ -4101,7 +4101,7 @@ sub get_attributes
   # f.i. "all", "node"
   for my $type ('all', $class)
     {
-    for my $a (keys %{$attributes->{$type}})
+    for my $a (sort keys %{$attributes->{$type}})
       {
       my $val = $self->attribute($a);		# respect inheritance	
       $att->{$a} = $val if defined $val;
@@ -4128,7 +4128,7 @@ sub get_custom_attributes
 
   my $att = {};
 
-  for my $key (keys %{$self->{att}})
+  for my $key (sort keys %{$self->{att}})
     {
     $att->{$key} = $self->{att}->{$key};
     }

@@ -729,7 +729,7 @@ sub _astar_boundaries
   $max_x = -10000000;
   $max_y = -10000000;
 
-  for my $c (keys %$cells)
+  for my $c (sort keys %$cells)
     {
     my ($x,$y) = split /,/, $c;
     $min_x = $x if $x < $min_x;
