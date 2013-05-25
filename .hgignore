@@ -7,3 +7,4 @@ syntax: regexp
 ^Graph-Easy/inc/.*
 ^Graph-Easy/blib/.*
 ^Graph-Easy/pm_to_blib$
+^Graph-Easy/Graph-Easy-\d+\.\d+(/|\.tar\.gz$)
