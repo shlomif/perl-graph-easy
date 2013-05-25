@@ -1,5 +1,3 @@
-[ Berlin ] ..> [ Cottbus ]
 [ Bonn ] --> [ Berlin ]
 [ Bonn ] --> [ Frankfurt ]
-[ Cottbus ]
-[ Frankfurt ]
+[ Berlin ] ..> [ Cottbus ]

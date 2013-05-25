@@ -19,9 +19,8 @@ node.left {
   [ Right\nAligned ]
 ) { align: right; }
 
-[ A ]
 [ B ] --> [ Left\n align\n no border ]
 [ Center\n aligned text ] -- aligned\n left --> { align: left; } [ Rightmost ]
-[ Left\n align\n no border ] --> [ center\n align\n no border ]
 [ Right\nAligned ] -- label\n text --> { align: right; } [ Left\naligned ]
+[ Left\n align\n no border ] --> [ center\n align\n no border ]
 [ center\n align\n no border ] --> [ A ]

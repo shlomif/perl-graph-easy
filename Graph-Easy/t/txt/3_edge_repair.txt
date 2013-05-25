@@ -4,5 +4,4 @@
 )
 
 [ Input ] --> [ Output ]
-[ Network ]
 [ Output ] ==> { end: north; start: south; } [ Network ]

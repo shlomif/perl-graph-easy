@@ -6,5 +6,4 @@ graph {
   type: undirected;
 }
 
-[ berlin ]
 [ bonn ] -- [ berlin ]

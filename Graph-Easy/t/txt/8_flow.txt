@@ -2,9 +2,8 @@
 
 [ East ] --> [ South ]
 [ South ] --> [ West ]
-[ South Too ] --> { flow: down; } [ right (west) ]
 [ West ] --> { flow: west; } [ South Too ]
-[ east (default) ] --> [ final ]
-[ final ]
-[ left (south) ] --> { flow: left; } [ east (default) ]
+[ South Too ] --> { flow: down; } [ right (west) ]
 [ right (west) ] --> { flow: right; } [ left (south) ]
+[ left (south) ] --> { flow: left; } [ east (default) ]
+[ east (default) ] --> [ final ]

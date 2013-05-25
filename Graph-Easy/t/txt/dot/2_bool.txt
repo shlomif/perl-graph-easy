@@ -5,5 +5,4 @@ graph {
   title: G;
 }
 
-[ Berlin ]
 [ Bonn ] --> [ Berlin ]

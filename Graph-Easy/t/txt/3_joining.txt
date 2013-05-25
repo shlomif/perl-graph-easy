@@ -2,5 +2,3 @@
 [ A ] --> { start: north,0; } [ B ]
 [ A ] --> { start: south,0; } [ C ]
 [ A ] --> { start: north,0; } [ C ]
-[ B ]
-[ C ]

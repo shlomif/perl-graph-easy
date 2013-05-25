@@ -2,7 +2,6 @@
 [ You don't see me! ] { shape: invisible; }
 
 [ Bischofswerda ] --> [ You don't see me! ]
-[ Borna ] --> [ Bremen ]
-[ Bremen ]
 [ You don't see me! ] --> [ Bischofswerda ]
 [ You don't see me! ] --> [ Borna ]
+[ Borna ] --> [ Bremen ]

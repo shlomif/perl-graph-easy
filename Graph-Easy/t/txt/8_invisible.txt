@@ -13,15 +13,12 @@ graph {
 [ One ] { color: white; fill: seagreen; }
 [ Two ] { shape: triangle; }
 
-[ Eight ]
-[ Five ] --> [ Eight ]
 [ Five ] -  Test label - > { color: red; labelcolor: darkslategrey; } [ Seven ]
 [ Five ] --> [ Seven ]
 [ Five ] <==> [ Three ]
-[ Four ]
-[ One ] .. Test\n label ..> [ Four ]
+[ Five ] --> [ Eight ]
 [ One ] ==> [ Three ]
+[ One ] .. Test\n label ..> [ Four ]
 [ One ] -- label --> [ Two ]
 [ Seven ] -- [ Eight ]
-[ Six ]
 [ Three ] <.. Test label ..> [ Six ]

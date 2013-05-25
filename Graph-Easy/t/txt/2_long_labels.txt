@@ -1,2 +1,1 @@
-[ B ]
 [ My\n long\n node\n name ] -- A\n long\n label --> [ B ]

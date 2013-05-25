@@ -4,4 +4,3 @@
 [ A ] --> { end: south, 0; start: south; } [ C ]
 [ B ] --> { end: south, 0; start: south; } [ C ]
 [ B ] --> [ U ]
-[ U ]

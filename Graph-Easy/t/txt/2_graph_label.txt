@@ -3,5 +3,4 @@ graph {
   labelpos: top;
 }
 
-[ Passau ]
 [ Regensburg ] --> [ Passau ]

@@ -1,6 +1,5 @@
-[ Default Page ] ..> [ Main Page ]
 [ Default Page ] --> [ Sign Up ]
 [ Default Page ] --> [ Test Search ]
-[ Main Page ]
+[ Default Page ] ..> [ Main Page ]
 [ Sign Up ] --> [ Main Page ]
 [ Test Search ] --> [ Sign Up ]

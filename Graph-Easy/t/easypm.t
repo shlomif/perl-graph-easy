@@ -187,11 +187,9 @@ node.cities { color: #0000ff; }
 
 ( Cities )
 
+[ Bonn ] --> [ Berlin ]
 [ Berlin ] --> [ Frankfurt ]
 [ Berlin ] --> [ Potsdam ]
-[ Bonn ] --> [ Berlin ]
-[ Cottbus ]
-[ Dresden ]
 [ Frankfurt ] --> [ Dresden ]
 [ Potsdam ] --> [ Cottbus ]
 HERE
@@ -210,15 +208,13 @@ node.cities { color: #0000ff; }
   [ Bonn ]
 )
 
+[ Bonn ] --> [ Berlin ]
 [ Berlin ] --> [ Frankfurt ]
 [ Berlin ] --> [ Potsdam ]
-[ Bonn ] --> [ Berlin ]
-[ Cottbus ]
-[ Dresden ]
 [ Frankfurt ] --> [ Dresden ]
 [ Potsdam ] --> [ Cottbus ]
 HERE
-, 'with empty group Cities'); 
+, 'with empty group Cities');
 
 
 #############################################################################
@@ -412,10 +408,10 @@ is ($ge->is_undirected(), 1, 'is undirected');
 $graph = Graph::Easy->new('[A]->[B]->[C]->[D]');
 
 $graph->merge_nodes( 'A', 'B' );
-is ($graph->as_txt(), "[ A ] --> [ C ]\n[ C ] --> [ D ]\n[ D ]\n", 'merge worked');
+is ($graph->as_txt(), "[ A ] --> [ C ]\n[ C ] --> [ D ]\n", 'merge worked');
 
 $graph->merge_nodes( 'A', 'C', ' ' );
-is ($graph->as_txt(), "[ A ] { label: A C; }\n\n[ A ] --> [ D ]\n[ D ]\n", 'merge worked');
+is ($graph->as_txt(), "[ A ] { label: A C; }\n\n[ A ] --> [ D ]\n", 'merge worked');
 
 $graph->merge_nodes( 'A', 'D', ' \n ' );
 is ($graph->as_txt(), "[ A ] { label: A C \\n D; }\n\n", 'merge worked');

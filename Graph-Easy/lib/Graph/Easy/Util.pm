@@ -43,7 +43,7 @@ sub ord_values
     }
     else
     {
-        return (wantarray ? @{$href}{sort keys( %$href )} : 0);
+        return (wantarray ? @{$href}{sort keys( %$href )} : scalar(keys(%$href)));
     }
 }
 

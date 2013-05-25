@@ -5,6 +5,5 @@
   [ A ]
 )
 
-[ ]
 [ A ] -- C --> { end: north; start: east; } [ B ]
 [ B ] --> [ ]

@@ -1,3 +1,2 @@
-[ Berlin ]
 [ Bonn ] --> [ Berlin ]
 [ Ulm ] --> [ Berlin ]

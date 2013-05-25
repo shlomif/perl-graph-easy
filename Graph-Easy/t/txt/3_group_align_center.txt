@@ -17,5 +17,5 @@ node.left {
   [ Right\nAligned ]
 ) { align: center; border: none; }
 
-[ Left\naligned ] --> [ Center\n aligned ]
 [ Right\nAligned ] -- label\n text --> { align: right; } [ Left\naligned ]
+[ Left\naligned ] --> [ Center\n aligned ]

@@ -4,13 +4,11 @@ node { shape: circle; }
 [ main ] { shape: rect; }
 [ make_string ] { label: make a\n string; }
 
-[ cleanup ]
-[ execute ] --> { color: red; } [ compare ]
-[ execute ] --> [ make_string ]
-[ init ] --> [ make_string ]
-[ main ] -- Testlabel --> [ cleanup ]
 [ main ] ..> [ init ]
 [ main ] --> [ parse ]
+[ main ] -- Testlabel --> [ cleanup ]
 [ main ] -  100 times - > { color: red; } [ printf ]
+[ init ] --> [ make_string ]
 [ parse ] --> [ execute ]
-[ printf ]
+[ execute ] --> { color: red; } [ compare ]
+[ execute ] --> [ make_string ]

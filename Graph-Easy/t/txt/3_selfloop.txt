@@ -1,4 +1,3 @@
-[ End ]
-[ Main ] --> [ End ]
-[ Main ] -- Until not done --> [ Main ]
 [ Start ] --> [ Main ]
+[ Main ] -- Until not done --> [ Main ]
+[ Main ] --> [ End ]
