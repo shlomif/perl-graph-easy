@@ -89,6 +89,7 @@ graph { fill: purple; }
 
 ( Cities )
 
+[ Berlin ]
 [ Bonn ] --> { fill: blue; } [ Berlin ]
 EOF
 , 'as_txt for 2 nodes');
