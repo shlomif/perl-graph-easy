@@ -8,3 +8,4 @@ graph {
 [ a ] { label: a; }
 
 [ a ] --> [ b ]
+[ b ]

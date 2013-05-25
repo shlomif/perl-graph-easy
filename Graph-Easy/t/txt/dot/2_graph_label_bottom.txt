@@ -8,3 +8,4 @@ graph {
 }
 
 [ Köln ] --> [ Stralsund ]
+[ Stralsund ]

@@ -5,4 +5,5 @@ graph {
   title: mike;
 }
 
+[ michael ]
 [ mike ] --> [ michael ]

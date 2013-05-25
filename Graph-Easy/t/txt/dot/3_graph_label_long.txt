@@ -7,5 +7,6 @@ graph {
   title: GRAPH_0;
 }
 
-[ Köln ] --> [ Bonn ]
 [ Bonn ] --> [ Koblenz ]
+[ Koblenz ]
+[ Köln ] --> [ Bonn ]

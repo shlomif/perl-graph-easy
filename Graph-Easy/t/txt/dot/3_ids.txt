@@ -7,3 +7,4 @@ graph {
 
 [ 123 ]
 [ abc ] --> [ test ]
+[ test ]

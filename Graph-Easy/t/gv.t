@@ -98,7 +98,8 @@ foreach my $f (sort {
   my $ascii = $graph->as_ascii();
 
   my $of = $f; $of =~ s/\.dot/\.txt/;
-  my $out = readfile(File::Spec->catfile('out','dot',$of));
+  my $out_path = File::Spec->catfile('out','dot',$of);
+  my $out = readfile($out_path);
   $out =~ s/(^|\n)#[^# ]{2}.*\n//g;		# remove comments
   $out =~ s/\n\n\z/\n/mg;			# remove empty lines
 
@@ -107,17 +108,22 @@ foreach my $f (sort {
 # print "should: $out\n";
 
   if (!
-    is ($ascii, $out, "from $f"))
-    {
-    if (defined $Test::Differences::VERSION)
+      is ($ascii, $out, "from $f"))
+  {
+      if ($ENV{__SHLOMIF__UPDATE_ME})
       {
-      Test::Differences::eq_or_diff ($ascii, $out);
+          require IO::All;
+          IO::All->new->file($out_path)->utf8->print($ascii);
       }
-    else
+      if (defined $Test::Differences::VERSION)
       {
-      fail ("Test::Differences not installed");
+          Test::Differences::eq_or_diff ($ascii, $out);
       }
-    }
+      else
+      {
+          fail ("Test::Differences not installed");
+      }
+  }
 
   # if the txt output differes, read it in
   my $f_txt = File::Spec->catfile('txt','dot',$of);
@@ -128,18 +134,23 @@ foreach my $f (sort {
 
   $graph->debug(1);
 
- if (!
-   is ($graph->as_txt(), $txt, "$f as_txt"))
-   {
-   if (defined $Test::Differences::VERSION)
-     {
-     Test::Differences::eq_or_diff ($graph->as_txt(), $txt);
-     }
-   else
-     {
-     fail ("Test::Differences not installed");
-     }
-   }
+  if (!
+      is ($graph->as_txt(), $txt, "$f as_txt"))
+  {
+      if ($ENV{__SHLOMIF__UPDATE_ME})
+      {
+          require IO::All;
+          IO::All->new->file($f_txt)->utf8->print($graph->as_txt());
+      }
+      if (defined $Test::Differences::VERSION)
+      {
+          Test::Differences::eq_or_diff ($graph->as_txt(), $txt);
+      }
+      else
+      {
+          fail ("Test::Differences not installed");
+      }
+  }
 
   # print a debug output
   my $debug = $ascii;

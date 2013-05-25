@@ -6,3 +6,4 @@ graph {
 }
 
 [ north ] --> { end: west; start: east; } [ south ]
+[ south ]
