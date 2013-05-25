@@ -59,9 +59,9 @@ binmode (STDOUT, ':utf8') or die ("Cannot do binmode(':utf8') on STDOUT: $!");
 
 eval { require Test::Differences; };
 
-foreach my $f (sort { 
-  $a =~ /^(\d+)/; my $a1 = $1 || '1'; 
-  $b =~ /^(\d+)/; my $b1 = $1 || '1'; 
+foreach my $f (sort {
+  $a =~ /^(\d+)/; my $a1 = $1 || '1';
+  $b =~ /^(\d+)/; my $b1 = $1 || '1';
   $a1 <=> $b1 || $a cmp $b;
   } @files)
   {
@@ -75,7 +75,7 @@ foreach my $f (sort {
     # look like Graph::Easy text to the normal parser, which then fails
     $parser = $dot_parser;
     }
-  
+
   next unless $f =~ /\.dot/;			# ignore anything else
 
   print "# at $f\n";
