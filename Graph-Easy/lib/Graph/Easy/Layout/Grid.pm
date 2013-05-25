@@ -15,6 +15,8 @@ package Graph::Easy;
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _balance_sizes
   {
   # Given a list of column/row sizes and a minimum size that their sum must
@@ -96,7 +98,7 @@ sub _prepare_layout
   # first:
 
   # find all x and y occurances to sort them by row/columns
-  for my $cell (values %$cells)
+  for my $cell (ord_values $cells)
     {
     my ($x,$y) = ($cell->{x}, $cell->{y});
 
@@ -131,7 +133,7 @@ sub _prepare_layout
   $cols->{$mx+1} = 0;
 
   # do the last step again, but for multi-celled objects
-  for my $cell (values %$cells)
+  for my $cell (ord_values $cells)
     {
     my ($x,$y) = ($cell->{x}, $cell->{y});
 
@@ -208,7 +210,7 @@ sub _prepare_layout
   print STDERR "# Finding max. dimensions for framebuffer\n" if $self->{debug};
   my $max_y = 0; my $max_x = 0;
 
-  for my $v (values %$cells)
+  for my $v (ord_values $cells)
     {
     # Skip multi-celled nodes for later. 
     next if ($v->{cx}||1) + ($v->{cy}||1) != 2;
@@ -243,7 +245,7 @@ sub _prepare_layout
     }
 
   # repeat the previous step, now for multi-celled objects
-  foreach my $v (values %{$self->{cells}})
+  foreach my $v (ord_values ( $self->{cells} ))
     {
     next unless defined $v->{x} && (($v->{cx}||1) + ($v->{cy}||1) > 2);
 

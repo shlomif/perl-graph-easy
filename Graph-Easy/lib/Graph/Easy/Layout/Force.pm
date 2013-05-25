@@ -15,6 +15,8 @@ package Graph::Easy;
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _layout_force
   {
   # Calculate for each node the force on it, then move them accordingly.
@@ -119,7 +121,7 @@ sub _layout_force
         }
 
       # for all edges connected at this node
-      for my $e (values %{$n->{edges}})
+      for my $e (ord_values ( $n->{edges} ))
 	{
 	# exclude self-loops
 	next if $e->{from} == $n && $e->{to} == $n;

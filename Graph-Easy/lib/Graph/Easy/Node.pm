@@ -12,6 +12,8 @@ use Graph::Easy::Base;
 use Graph::Easy::Attributes;
 @ISA = qw/Graph::Easy::Base/;
 
+use Graph::Easy::Util qw(ord_values);
+
 # to map "arrow-shape" to "arrowshape"
 my $att_aliases;
 
@@ -314,7 +316,7 @@ sub _unplace
     } # end handling multi-celled node
 
   # unplace all edges leading to/from this node, too:
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     $e->_unplace($cells);
     }
@@ -332,7 +334,7 @@ sub _mark_as_placed
 
   delete $self->{_todo};
 
-  for my $child (values %{$self->{children}})
+  for my $child (ord_values ( $self->{children} ))
     {
     $child->_mark_as_placed();
     }
@@ -350,7 +352,7 @@ sub _place_children
 
   print STDERR "# placing children of $self->{name} based on $x,$y\n" if $self->{debug};
 
-  for my $child (values %{$self->{children}})
+  for my $child (ord_values ( $self->{children} ))
     {
     # compute place of children (depending on whether we are multicelled or not)
 
@@ -1102,7 +1104,7 @@ sub flow
   # for relative flows, compute the incoming flow as base flow
 
   # check all edges
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     # only count incoming edges
     next unless $e->{from} != $self && $e->{to} == $self;
@@ -1116,7 +1118,7 @@ sub flow
   if (!defined $in)
     {
     # check all predecessors
-    for my $e (values %{$self->{edges}})
+    for my $e (ord_values ( $self->{edges} ))
       {
       my $pre = $e->{from};
       $pre = $e->{to} if $e->{bidirectional};
@@ -1201,7 +1203,7 @@ sub _grow
   # count of outgoing edges
   my $outgoing = 0;
 
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     # count outgoing edges
     $outgoing++ if $e->{from} == $self;
@@ -1248,7 +1250,7 @@ sub _grow
       } # end for start/end port
     } # end for all edges
 
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     # the loop above will count all self-loops twice when they are
     # unrestricted. So subtract these again. Restricted self-loops
@@ -1626,7 +1628,7 @@ sub edges_to
   return unless ref $self->{graph};
 
   my @edges;
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     push @edges, $edge if $edge->{from} == $self && $edge->{to} == $other;
     }
@@ -1645,7 +1647,7 @@ sub edges_at_port
   $self->_croak('port not defined') unless defined $port;
 
   my @edges;
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     # skip edges ending here if we look at start
     next if $e->{to} eq $self && $attr eq 'start';
@@ -1669,7 +1671,7 @@ sub shared_edges
   my ($self) = @_;
 
   my @edges;
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     my ($s_p,@ss_p) = $e->port('start');
     push @edges, $e if defined $s_p;
@@ -1698,7 +1700,7 @@ sub nodes_sharing_start
     $nodes->{ $to->{name} } = $to;
     }
 
-  (values %$nodes);
+  return (ord_values $nodes);
   }
 
 sub nodes_sharing_end
@@ -1720,7 +1722,7 @@ sub nodes_sharing_end
     $nodes->{ $from->{name} } = $from;
     }
 
-  (values %$nodes);
+  return (ord_values $nodes);
   }
 
 sub incoming
@@ -1734,7 +1736,7 @@ sub incoming
   if (!wantarray)
     {
     my $count = 0;
-    for my $edge (values %{$self->{edges}})
+    for my $edge (ord_values ( $self->{edges} ))
       {
       $count++ if $edge->{to} == $self;
       }
@@ -1742,7 +1744,7 @@ sub incoming
     }
 
   my @edges;
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     push @edges, $edge if $edge->{to} == $self;
     }
@@ -1760,7 +1762,7 @@ sub outgoing
   if (!wantarray)
     {
     my $count = 0;
-    for my $edge (values %{$self->{edges}})
+    for my $edge (ord_values ( $self->{edges} ))
       {
       $count++ if $edge->{from} == $self;
       }
@@ -1768,7 +1770,7 @@ sub outgoing
     }
 
   my @edges;
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     push @edges, $edge if $edge->{from} == $self;
     }
@@ -1785,7 +1787,7 @@ sub connections
   # We need to count the connections, because "[A]->[A]" creates
   # two connections on "A", but only one edge! 
   my $con = 0;
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     $con ++ if $edge->{to} == $self;
     $con ++ if $edge->{from} == $self;
@@ -1801,13 +1803,16 @@ sub edges
   # no graph, no dice
   return unless ref $self->{graph};
 
-  wantarray ? values %{$self->{edges}} : scalar keys %{$self->{edges}};
+  return (wantarray
+      ? ord_values ( $self->{edges} )
+      : scalar keys %{$self->{edges}}
+  );
   }
 
 sub sorted_successors
   {
   # return successors of the node sorted by their chain value
-  # (e.g. successors with more successors first) 
+  # (e.g. successors with more successors first)
   my $self = shift;
 
   my @suc = sort {
@@ -1825,12 +1830,12 @@ sub successors
   return () unless defined $self->{graph};
 
   my %suc;
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     next unless $edge->{from} == $self;
     $suc{$edge->{to}->{id}} = $edge->{to};	# weed out doubles
     }
-  values %suc;
+    return ord_values( \%suc );
   }
 
 sub predecessors
@@ -1841,12 +1846,12 @@ sub predecessors
   return () unless defined $self->{graph};
 
   my %pre;
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     next unless $edge->{to} == $self;
     $pre{$edge->{from}->{id}} = $edge->{from};	# weed out doubles
     }
-  values %pre;
+  return ord_values(\%pre);
   }
 
 sub has_predecessors
@@ -1856,7 +1861,7 @@ sub has_predecessors
 
   return undef unless defined $self->{graph};
 
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     return 1 if $edge->{to} == $self;		# found one
     }
@@ -1870,7 +1875,7 @@ sub has_as_predecessor
 
   return () unless defined $self->{graph};
 
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     return 1 if 
 	$edge->{to} == $self && $edge->{from} == $other;	# found one
@@ -1885,7 +1890,7 @@ sub has_as_successor
 
   return () unless defined $self->{graph};
 
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     {
     return 1 if
 	$edge->{from} == $self && $edge->{to} == $other;	# found one

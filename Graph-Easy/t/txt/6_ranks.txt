@@ -2,7 +2,7 @@
 [ F ] { rank: 0; }
 
 [ A ] --> [ B ]
-[ D ] --> [ E ]
 [ B ] --> [ C ]
-[ E ] --> { end: north; } [ F ]
 [ C ] --> [ D ]
+[ D ] --> [ E ]
+[ E ] --> { end: north; } [ F ]

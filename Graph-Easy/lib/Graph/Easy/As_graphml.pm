@@ -86,6 +86,8 @@ sub _graphml_attr_keys
 #   </y:ShapeNode>
 # </data>
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _as_graphml
   {
   my $self = shift;
@@ -167,7 +169,7 @@ EOF
 
   ###########################################################################
   # now the attributes on the objects:
-  for my $o (@nodes, values %{$self->{edges}})
+  for my $o (@nodes, ord_values ( $self->{edges} ))
     {
     $txt .=
 	$self->_graphml_attr_keys( $tpl, $tpl_no_default, $o->class(),
@@ -260,6 +262,8 @@ package Graph::Easy::Group;
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 sub as_graphml
   {
   my ($self, $indent, $ids) = @_;
@@ -268,7 +272,7 @@ sub as_graphml
 	$self->{graph}->type() . "\">\n";
   $txt .= $self->{graph}->_attributes_as_graphml($self, $indent, $ids->{graph});
 
-  foreach my $n (values %{$self->{nodes}})
+  foreach my $n (ord_values ( $self->{nodes} ))
     {
     my @out = $n->sorted_successors();
 

@@ -8,7 +8,7 @@
   [ Hagen ]
 )
 
+[ Berlin ] --> [ Frankfurt ]
 [ Bonn ] --> [ Berlin ]
 [ Bonn ] --> [ Ulm ]
-[ Berlin ] --> [ Frankfurt ]
 [ Frankfurt ] --> [ Hagen ]

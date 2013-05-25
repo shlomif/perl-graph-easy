@@ -14,6 +14,8 @@ package Graph::Easy;
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 my $remap = {
   node => {
     'align' => undef,
@@ -727,7 +729,7 @@ sub _order_group
   {
   my ($self,$group) = @_;
   $group->{_order}++;
-  for my $sg (values %{$group->{groups}})
+  for my $sg (ord_values( $group->{groups}))
 	{
 		$self->_order_group($sg);
 	}
@@ -747,7 +749,7 @@ sub _as_graphviz_group
     my $indent = '  ' x ($group->{_order});
     $txt .= $indent."subgraph \"cluster$group->{id}\" {\n${indent}label=\"$name\";\n";
 
-	for my $sg (values %{$group->{groups}})
+	for my $sg (ord_values ( $group->{groups} ))
 	{
 		#print '--'.$sg->{name}."\n";
 		$txt .= $self->_as_graphviz_group($sg,$indent);
@@ -797,7 +799,7 @@ sub _as_graphviz_group
       }
 
     # output node connections in this group
-    for my $e (values %{$group->{edges}})
+    for my $e (ord_values $group->{edges})
       {
       next if exists $e->{_p};
       $txt .= $self->_generate_edge($e, $indent);
@@ -888,7 +890,7 @@ sub _as_graphviz
   $self->_edges_into_groups() if $groups > 0;
 
   # output the groups (aka subclusters)
-  for my $group (values %{$self->{groups}})
+  for my $group (ord_values $self->{groups})
   {
    $self->_order_group($group);
   }
@@ -946,7 +948,7 @@ sub _as_graphviz
 
   # insert now edges between groups (clusters/subgraphs)
 
-  foreach my $e (values %{$self->{edges}})
+  foreach my $e (ord_values $self->{edges})
     {
     $txt .= $self->_generate_group_edge($e, '  ') 
      if $e->{from}->isa('Graph::Easy::Group') ||
@@ -954,7 +956,7 @@ sub _as_graphviz
     }
 
   # clean up
-  for my $n ( values %{$self->{nodes}}, values %{$self->{edges}})
+  for my $n ( ord_values( $self->{nodes}), ord_values( $self->{edges} ))
     {
     delete $n->{_p};
     }

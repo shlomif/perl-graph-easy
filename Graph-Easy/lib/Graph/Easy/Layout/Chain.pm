@@ -12,6 +12,8 @@ $VERSION = '0.09';
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 use constant {
   _ACTION_NODE  => 0, # place node somewhere
   _ACTION_TRACE => 1, # trace path from src to dest
@@ -175,7 +177,7 @@ sub layout
     {
     # first do edges going from P to N
     #for my $e (sort { $a->{to}->{name} cmp $b->{to}->{name} } values %{$pre->{edges}})
-    for my $e (values %{$pre->{edges}})
+    for my $e (ord_values ( $pre->{edges}))
       {
       # skip selfloops and backward links, these will be done later
       next if $e->{to} != $n;
@@ -212,7 +214,7 @@ sub layout
 
     # gather all edges starting at $n, but do the ones with a flow first
 #    for my $e (sort { $a->{to}->{name} cmp $b->{to}->{name} } values %{$n->{edges}})
-    for my $e (values %{$n->{edges}})
+    for my $e (ord_values ( $n->{edges})) 
       {
       # skip selfloops, these will be done later
       next if $e->{to} == $n;
@@ -275,7 +277,7 @@ sub layout
   while (defined $n)
     {
 #    for my $e (sort { $a->{to}->{name} cmp $b->{to}->{name} } values %{$n->{edges}})
-    for my $e (values %{$n->{edges}})
+    for my $e (ord_values $n->{edges})
       {
       next unless exists $e->{_todo};
 

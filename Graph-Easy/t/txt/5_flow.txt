@@ -1,4 +1,6 @@
-[ Bonn ] --> [ Cottbus ]
+[ Berlin ]
 [ Bonn ] --> { flow: forward; } [ Berlin ]
+[ Bonn ] --> [ Cottbus ]
 [ Cottbus ] --> [ Moselkern ]
 [ Moselkern ] --> [ Ulm ]
+[ Ulm ]

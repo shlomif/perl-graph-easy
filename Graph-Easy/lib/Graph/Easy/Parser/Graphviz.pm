@@ -13,6 +13,8 @@ use strict;
 use utf8;
 use constant NO_MULTIPLES => 1;
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _init
   {
   my $self = shift;
@@ -1905,7 +1907,7 @@ sub _parser_cleanup
       # part of the autosplit node (dot seems to render them arbitrarily
       # on the autosplit node):
 
-      for my $e (values %{$n->{edges}})
+      for my $e (ord_values( $n->{edges} ))
 	{
         $e->start_at($rc[0]) if $e->{from} == $n;
         $e->end_at($rc[0]) if $e->{to} == $n;

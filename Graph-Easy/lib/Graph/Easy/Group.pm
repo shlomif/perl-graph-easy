@@ -14,6 +14,8 @@ $VERSION = '0.22';
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 #############################################################################
 
 sub _init
@@ -51,7 +53,7 @@ sub nodes
   {
   my $self = shift;
 
-  wantarray ? ( values %{$self->{nodes}} ) : scalar keys %{$self->{nodes}};
+  wantarray ? ( ord_values ( $self->{nodes} ) ) : scalar keys %{$self->{nodes}};
   }
 
 sub edges
@@ -59,7 +61,7 @@ sub edges
   # edges leading from/to this group
   my $self = shift;
 
-  wantarray ? ( values %{$self->{edges}} ) : scalar keys %{$self->{edges}};
+  wantarray ? ( ord_values ( $self->{edges} ) ) : scalar keys %{$self->{edges}};
   }
 
 sub edges_within
@@ -67,7 +69,7 @@ sub edges_within
   # edges between nodes inside this group
   my $self = shift;
 
-  wantarray ? ( values %{$self->{edges_within}} ) : 
+  wantarray ? ( ord_values ( $self->{edges_within} ) ) : 
 		scalar keys %{$self->{edges_within}};
   }
 
@@ -77,11 +79,11 @@ sub _groups_within
 
   no warnings 'recursion';
 
-  push @$cur, values %{$self->{groups}};
+  push @$cur, ord_values ( $self->{groups} );
 
   return if $level >= $max_level;
 
-  for my $g (values %{$self->{groups}})
+  for my $g (ord_values ( $self->{groups} ))
     {
     $g->_groups_within($level+1,$max_level, $cur) if scalar keys %{$g->{groups}} > 0;
     }
@@ -99,7 +101,7 @@ sub set_attribute
   if ($name eq 'nodeclass')
     {
     my $class = $self->{att}->{nodeclass};
-    for my $node (values %{ $self->{nodes} } )
+    for my $node (ord_values ( $self->{nodes} ) )
       {
       $node->sub_class($class);
       }
@@ -215,7 +217,7 @@ sub del_member
     {
     # find all edges that mention this node and drop them from the group
     my $edges = $self->{edges_within};
-    for my $e (values %$edges)
+    for my $e (ord_values ( $edges))
       {
       delete $edges->{ $e->{id} } if $e->{from} == $n || $e->{to} == $n;
       }
@@ -235,7 +237,7 @@ sub del_node
 
   # find all edges that mention this node and drop them from the group
   my $edges = $self->{edges_within};
-  for my $e (values %$edges)
+  for my $e (ord_values ( $edges))
     {
     delete $edges->{ $e->{id} } if $e->{from} == $n || $e->{to} == $n;
     }
@@ -446,7 +448,7 @@ sub _find_label_cell
 
   my $lc;						# the label cell
 
-  for my $c (values %{$self->{_cells}})
+  for my $c (ord_values ( $self->{_cells} ))
     {
     # find a cell where to put the label
     next unless $c->{cell_class} =~ $match;
@@ -477,7 +479,7 @@ sub _find_label_cell
     {
     my ($left, $right);
     # find left/right most coordinates
-    for my $c (values %{$self->{_cells}})
+    for my $c (ord_values ( $self->{_cells} ))
       {
       next if $c->{y} != $lc->{y};
       $left = $c->{x} if !defined $left || $left > $c->{x};  
@@ -486,7 +488,7 @@ sub _find_label_cell
     my $center = int(($right - $left) / 2 + $left);
     my $min_dist;
     # find the cell mostly near the center in the found top-row
-    for my $c (values %{$self->{_cells}})
+    for my $c (ord_values ( $self->{_cells} ))
       {
       next if $c->{y} != $lc->{y};
       # squared to get rid of sign
@@ -525,7 +527,7 @@ sub _set_cell_types
   my ($self, $cells) = @_;
 
   # Set the right cell class for all of our cells:
-  for my $cell (values %{$self->{_cells}})
+  for my $cell (ord_values ( $self->{_cells} ))
     {
     $cell->_set_type($cells);
     }

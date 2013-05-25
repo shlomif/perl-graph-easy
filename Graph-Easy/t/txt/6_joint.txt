@@ -1,5 +1,6 @@
+[ Bonn ] --> [ Prag ]
 [ Hagen ] --> { end: back, 0; } [ Bonn ]
 [ Hamburg ] --> { end: back, 0; } [ Bonn ]
 [ Hanau ] --> { end: back, 0; } [ Bonn ]
 [ Hannover ] --> { end: back, 0; } [ Bonn ]
-[ Bonn ] --> [ Prag ]
+[ Prag ]

@@ -2,9 +2,10 @@
 [ B|I ] { offset: 32,0; origin: A; }
 [ C | D||E ] { offset: 0,1; origin: A; }
 
+[ A ] --> [ BI.0 ]
+[ A ] --> [ BI.1 ]
+[ BI.1 ] --> [ I ]
+[ I ] --> [ Z ]
 [ U ] --> [ A ]
 [ U ] --> { start: north; } [ I ]
-[ A ] --> [ BI.1 ]
-[ A ] --> [ BI.0 ]
-[ I ] --> [ Z ]
-[ BI.1 ] --> [ I ]
+[ Z ]

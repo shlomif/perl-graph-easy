@@ -35,6 +35,8 @@ use Graph::Easy::Layout::Scout;			# pathfinding
 use Graph::Easy::Layout::Repair;		# group cells and splicing/repair
 use Graph::Easy::Layout::Path;			# path management
 
+use Graph::Easy::Util qw(ord_values);
+
 #############################################################################
 
 sub _assign_ranks
@@ -193,7 +195,7 @@ sub _follow_chain
 
     my %suc;
 
-    for my $e (values %{$node->{edges}})
+    for my $e (ord_values ( $node->{edges} ))
       {
       my $to = $e->{to};
 
@@ -272,7 +274,7 @@ sub _follow_chain
 
     # for all successors
     #for my $s (sort { $a->{name} cmp $b->{name} || $a->{id} <=> $b->{id} }  values %suc)
-    for my $s (values %suc)
+    for my $s (ord_values ( \%suc))
       {
       print STDERR "# suc $s->{name} chain ", $s->{_chain} || 'undef',"\n" if $self->{debug};
 
@@ -346,8 +348,8 @@ sub _find_chains
   # compute predecessors for all nodes: O(1)
   my $p;
   my $has_origin = 0;
-  foreach my $n (values %{$self->{nodes}}, values %{$self->{groups}})
-#  for my $n (values %{$self->{nodes}})
+  foreach my $n (ord_values ( $self->{nodes} ), ord_values ( $self->{groups} ))
+#  for my $n (ord_values ( $self->{nodes} ))
     {
     $n->{_chain} = undef;				# reset chain info
     $has_origin = 0;
@@ -508,7 +510,7 @@ sub layout
 
   # cleanup
   $self->{chains} = undef;		# drop chain info
-  foreach my $n (values %{$self->{nodes}}, values %{$self->{groups}})
+  foreach my $n (ord_values ( $self->{nodes} ), ord_values ( $self->{groups} ))
     {
     # drop old chain info
     $n->{_next} = undef;
@@ -526,7 +528,7 @@ sub _drop_caches
   # before the layout phase, we drop cached information from the last run
   my $self = shift;
 
-  for my $n (values %{$self->{nodes}})
+  for my $n (ord_values ( $self->{nodes} ))
     {
     # XXX after we laid out the individual groups:    
     # skip nodes that are not part of the current group
@@ -539,7 +541,7 @@ sub _drop_caches
     $n->{w} = undef;			# force size recalculation
     $n->{_todo} = undef;		# mark as todo
     }
-  for my $g (values %{$self->{groups}})
+  for my $g (ord_values ( $self->{groups} ))
     {
     $g->{x} = undef; $g->{y} = undef;	# mark every group as not placed yet
     $g->{_todo} = undef;		# mark as todo
@@ -580,7 +582,7 @@ sub _layout
 
   $self->_drop_caches();
 
-  local $_; $_->_grow() for values %{$self->{nodes}};
+  local $_; $_->_grow() for ord_values ( $self->{nodes} );
 
   $self->_assign_ranks();
 
@@ -605,7 +607,7 @@ sub _layout
     }
 
   # mark all edges as unprocessed, so that we do not process them twice
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values ( $self->{edges} ))
     { 
     $edge->_clear_cells();
     $edge->{_todo} = undef;		# mark as todo
@@ -616,7 +618,7 @@ sub _layout
   # take longest chain, resolve it and all "connected" chains, repeat until
   # heap is empty
 
-  for my $chain (sort { 
+  for my $chain (sort {
 
      # chain starting at root first
      (($b->{start} == $root) <=> ($a->{start} == $root)) ||
@@ -628,7 +630,7 @@ sub _layout
      (defined($a->{start}->{origin}) <=> defined ($b->{start}->{origin})) ||
 
      # last resort, sort on name of the first node in chain
-     ($a->{start}->{name} cmp $b->{start}->{name}) 
+     ($a->{start}->{name} cmp $b->{start}->{name})
 
      } values %{$self->{chains}})
     {
@@ -647,14 +649,14 @@ sub _layout
   # left-over edges and links. We do this for each node, and then for each of
   # its edges, but do the edges shortest-first.
  
-  for my $n (values %{$self->{nodes}})
+  for my $n (ord_values ( $self->{nodes} ))
     {
     push @todo, $self->_action( ACTION_NODE, $n, 0 ); # if exists $n->{_todo};
 
     # gather to-do edges
     my @edges = ();
     for my $e (sort { $a->{to}->{name} cmp $b->{to}->{name} } values %{$n->{edges}})
-#    for my $e (values %{$n->{edges}})
+#    for my $e (ord_values ( $n->{edges} ))
       {
       # edge already done?
       next unless exists $e->{_todo};
@@ -688,7 +690,7 @@ sub _layout
     push @todo, [ ACTION_SPLICE ] if scalar $self->groups();
 
     # now do all group-to-group and node-to-group and group-to-node links:
-    for my $n (values %{$self->{groups}})
+    for my $n (ord_values ( $self->{groups} ))
       {
       }
     }
@@ -861,14 +863,14 @@ sub _count_done_things
   # count placed nodes
   my $nodes = 0;
   my $i = 1;
-  for my $n (values %{$self->{nodes}})
+  for my $n (ord_values ( $self->{nodes} ))
     {
     $nodes++ if defined $n->{x};
     }
   my $edges = 0;
   $i = 1;
   # count fully routed edges
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     $edges++ if scalar @{$e->{cells}} > 0 && !exists $e->{_todo};
     }
@@ -892,7 +894,7 @@ sub _optimize_layout
 
   ###########################################################################
   # for each edge, compact HOR and VER stretches of cells
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     my $cells = $e->{cells};
 

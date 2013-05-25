@@ -23,6 +23,8 @@ $VERSION = '0.72';
 use strict;
 my $att_aliases;
 
+use Graph::Easy::Util qw(ord_values);
+
 BEGIN 
   {
   # a few aliases for backwards compatibility
@@ -95,7 +97,7 @@ sub DESTROY
 
   delete $self->{chains};
   # clean out pointers in child-objects so that they can safely be reused
-  for my $n (values %{$self->{nodes}})
+  for my $n (ord_values ( $self->{nodes} ))
     {
     if (ref($n))
       {
@@ -103,7 +105,7 @@ sub DESTROY
       delete $n->{group};
       }
     }
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     if (ref($e))
       {
@@ -112,7 +114,7 @@ sub DESTROY
       delete $e->{from};
       }
     }
-  for my $g (values %{$self->{groups}})
+  for my $g (ord_values ( $self->{groups} ))
     {
     if (ref($g))
       {
@@ -276,7 +278,7 @@ sub is_simple
   my $self = shift;
 
   my %count;
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     my $id = "$e->{to}->{id},$e->{from}->{id}";
     return 0 if exists $count{$id};
@@ -344,7 +346,7 @@ sub source_nodes
   my $self = shift;
 
   my @roots;
-  for my $node (values %{$self->{nodes}})
+  for my $node (ord_values ( $self->{nodes} ))
     {
     push @roots, $node 
       if (keys %{$node->{edges}} != 0) && !$node->has_predecessors();
@@ -358,7 +360,7 @@ sub predecessorless_nodes
   my $self = shift;
 
   my @roots;
-  for my $node (values %{$self->{nodes}})
+  for my $node (ord_values ( $self->{nodes} ))
     {
     push @roots, $node 
       if (keys %{$node->{edges}} == 0) || !$node->has_predecessors();
@@ -426,7 +428,7 @@ sub nodes
 
   return scalar keys %$n unless wantarray;	# shortcut
 
-  values %$n;
+  return ord_values ( $n );
   }
 
 sub anon_nodes
@@ -439,7 +441,7 @@ sub anon_nodes
   if (!wantarray)
     {
     my $count = 0;
-    for my $node (values %$n)
+    for my $node (ord_values ($n))
       {
       $count++ if $node->is_anon();
       }
@@ -447,7 +449,7 @@ sub anon_nodes
     }
 
   my @anon = ();
-  for my $node (values %$n)
+  for my $node (ord_values ( $n))
     {
     push @anon, $node if $node->is_anon();
     }
@@ -463,7 +465,7 @@ sub edges
 
   return scalar keys %$e unless wantarray;	# shortcut
 
-  values %$e;
+  ord_values ($e);
   }
 
 sub edges_within
@@ -475,7 +477,7 @@ sub edges_within
 
   return scalar keys %$e unless wantarray;	# shortcut
 
-  values %$e;
+  ord_values ($e);
   }
 
 sub sorted_nodes
@@ -564,7 +566,7 @@ sub flip_edges
 
   return $self unless ref($x) && ref($y) && ($x != $y);
 
-  for my $e (values %{$x->{edges}})
+  for my $e (ord_values ( $x->{edges} ))
     {
     $e->flip() if $e->{from} == $x && $e->{to} == $y;
     }
@@ -1204,7 +1206,7 @@ CSS
 
   # if we have nodes with rounded shapes:
   my $rounded = 0;
-  for my $n (values %{$self->{nodes}})
+  for my $n (ord_values ( $self->{nodes} ))
     {
     $rounded ++ and last if $n->shape() =~ /circle|ellipse|rounded/;
     }
@@ -1634,7 +1636,7 @@ sub _as_ascii
     }
 
   # draw all cells into framebuffer
-  foreach my $v (values %$cells)
+  foreach my $v (ord_values ($cells))
     {
     next if $v->isa('Graph::Easy::Node::Cell');		# skip empty cells
 
@@ -1663,7 +1665,7 @@ sub _as_ascii
   $out =~ s/\n+\z/\n/;		# remove trailing empty lines
 
   # restore height/width of cells from minw/minh
-  foreach my $v (values %$cells)
+  foreach my $v (ord_values $cells)
     {
     $v->{h} = $v->{minh};
     $v->{w} = $v->{minw};
@@ -1972,7 +1974,7 @@ sub copy
     # clone the attributes
     $ng->{att} = $self->_clone( $self->{groups}->{$g}->{att} );
     }
-  for my $n (values %{$self->{nodes}})
+  for my $n (ord_values ( $self->{nodes} ))
     {
     my $nn = $new->add_node($n->{name});
     # clone the attributes
@@ -1980,7 +1982,7 @@ sub copy
     # restore group membership for the node
     $nn->add_to_group( $n->{group}->{name} ) if $n->{group};
     }
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     my $ne = $new->add_edge($e->{from}->{name}, $e->{to}->{name} );
     # clone the attributes
@@ -2029,7 +2031,7 @@ sub merge_nodes
   # if the node is part of a group, deregister it first from there
   $B->{group}->del_node($B) if ref($B->{group});
 
-  my @edges = values %{$A->{edges}};
+  my @edges = ord_values ( $A->{edges} );
 
   # drop all connections from A --> B
   for my $edge (@edges)
@@ -2041,7 +2043,7 @@ sub merge_nodes
     }
 
   # Move all edges from/to B over to A, but drop "B --> B" and "B --> A".
-  for my $edge (values %{$B->{edges}})
+  for my $edge (ord_values ( $B->{edges} ))
     {
     # skip if going from B --> A or B --> B
     next if $edge->{to} == $A || ($edge->{to} == $B && $edge->{from} == $B);
@@ -2084,7 +2086,7 @@ sub del_node
   delete $self->{nodes}->{$node->{name}};
 
   # delete all edges from/to this node
-  for my $edge (values %{$node->{edges}})
+  for my $edge (ord_values ( $node->{edges} ))
     {
     # drop the edge from our global edge list
     delete $self->{edges}->{$edge->{id}};
@@ -2221,7 +2223,7 @@ sub groups_within
   # get the groups at level 0
   my $current = 0;
   my @todo;
-  for my $g (values %{$self->{groups}})
+  for my $g (ord_values ( $self->{groups} ))
     {
     # no group set => belongs to graph, set to ourself => belongs to ourself
     push @todo, $g if ( ($are_graph && !defined $g->{group}) || $g->{group} == $self);
@@ -2253,7 +2255,7 @@ sub anon_groups
   if (!wantarray)
     {
     my $count = 0;
-    for my $group (values %$n)
+    for my $group (ord_values ($n))
       {
       $count++ if $group->is_anon();
       }
@@ -2261,7 +2263,7 @@ sub anon_groups
     }
 
   my @anon = ();
-  for my $group (values %$n)
+  for my $group (ord_values ($n))
     {
     push @anon, $group if $group->is_anon();
     }

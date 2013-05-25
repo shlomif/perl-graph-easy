@@ -8,9 +8,9 @@ use strict;
 BEGIN
    {
    plan tests => 451;
-   chdir 't' if -d 't';
-   use lib '../lib';
+   # TEST
    use_ok ("Graph::Easy") or die($@);
+   # TEST
    use_ok ("Graph::Easy::Parser") or die($@);
    };
 
@@ -22,7 +22,7 @@ my $parser = Graph::Easy::Parser->new( debug => 0);
 is (ref($parser), 'Graph::Easy::Parser');
 is ($parser->error(), '', 'no error yet');
 
-opendir DIR, "in" or die ("Cannot read dir 'in': $!");
+opendir DIR, "t/in" or die ("Cannot read dir 'in': $!");
 my @files = readdir(DIR); closedir(DIR);
 
 my @failures;
@@ -34,17 +34,18 @@ binmode (STDOUT, ':utf8') or die ("Cannot do binmode(':utf8') on STDOUT: $!");
 
 foreach my $f (sort @files)
   {
-  next unless -f "in/$f";			# only files
-  
+      my $path =  "t/in/$f";
+  next unless -f $path; 			# only files
+
   next unless $f =~ /\.txt/;			# ignore anything else
 
   print "# at $f\n";
-  my $txt = readfile("in/$f");
+  my $txt = readfile($path);
   my $graph = $parser->from_text($txt);		# reuse parser object
 
   $txt =~ s/\n\s+\z/\n/;			# remove trailing whitespace
   $txt =~ s/(^|\n)\s*#[^#]{2}.*\n//g;		# remove comments
- 
+
   $f =~ /^(\d+)/;
   my $nodes = $1;
 
@@ -59,7 +60,9 @@ foreach my $f (sort @files)
   # for slow testing machines
   $graph->timeout(20);
   my $ascii = $graph->as_ascii();
-  my $out = readfile("out/$f");
+
+  my $out_path = "t/out/$f";
+  my $out = readfile($out_path);
   $out =~ s/(^|\n)\s*#[^#=]{2}.*\n//g;		# remove comments
   $out =~ s/\n\n\z/\n/mg;			# remove empty lines
 
@@ -73,7 +76,7 @@ foreach my $f (sort @files)
         if ($ENV{__SHLOMIF__UPDATE_ME})
         {
             require IO::All;
-            IO::All->new->file("out/$f")->print($ascii);
+            IO::All->new->file($out_path)->utf8->print($ascii);
         }
     push @failures, $f;
     if (defined $Test::Differences::VERSION)
@@ -86,10 +89,11 @@ foreach my $f (sort @files)
       }
     }
 
+  my $txt_path = "t/txt/$f";
   # if the txt output differes, read it in
-  if (-f "txt/$f")
+  if (-f $txt_path)
     {
-    $txt = readfile("txt/$f");
+    $txt = readfile($txt_path);
     }
 #  else
 #    {
@@ -103,7 +107,7 @@ foreach my $f (sort @files)
         if ($ENV{__SHLOMIF__UPDATE_ME})
         {
             require IO::All;
-            IO::All->new->file("txt/$f")->print($graph->as_txt());
+            IO::All->new->file($txt_path)->utf8->print($graph->as_txt());
         }
     push @failures, $f;
     if (defined $Test::Differences::VERSION)
@@ -136,13 +140,13 @@ if (@failures)
 
 sub readfile
   {
-  my ($file) = @_;
+  my ($filename) = @_;
 
-  open my $FILE, $file or die ("Cannot read file $file: $!");
-  binmode ($FILE, ':utf8') or die ("Cannot do binmode(':utf8') on $FILE: $!");
+  open my $fh, $filename or die ("Cannot read file ${filename}: $!");
+  binmode ($fh, ':utf8') or die ("Cannot do binmode(':utf8') on ${fh}: $!");
   local $/ = undef;				# slurp mode
-  my $doc = <$FILE>;
-  close $FILE;
+  my $doc = <$fh>;
+  close $fh;
 
   $doc;
   }

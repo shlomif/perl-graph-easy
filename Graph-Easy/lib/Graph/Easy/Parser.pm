@@ -15,6 +15,8 @@ use Scalar::Util qw/weaken/;
 use strict;
 use constant NO_MULTIPLES => 1;
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _init
   {
   my ($self,$args) = @_;
@@ -1350,7 +1352,7 @@ sub _parser_cleanup
 
   my $g = $self->{_graph};
   
-  for my $n (values %{$g->{nodes}})
+  for my $n (ord_values ( $g->{nodes} ))
     {
     next if $n->{autosplit};
     $self->warn("Node '" . $self->_quote($n->{name}) . "' has an offset but no origin")

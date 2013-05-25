@@ -5,7 +5,7 @@ use warnings;
 
 use base 'Exporter';
 
-our @EXPORT_OK = (qw(first_kv));
+our @EXPORT_OK = (qw(first_kv ord_values));
 
 use List::Util qw(minstr);
 
@@ -25,6 +25,26 @@ sub first_kv
     my $v = $href->{$n};
 
     return ($n, $v);
+}
+
+=head2 ord_values($hash_ref)
+
+The values of the hash ordered by a lexicographical keyname.
+
+=cut
+
+sub ord_values
+{
+    my $href = shift;
+
+    if ((!defined $href) || (! %$href))
+    {
+        return (wantarray ? () : 0);
+    }
+    else
+    {
+        return (wantarray ? @{$href}{sort keys( %$href )} : 0);
+    }
 }
 
 1;

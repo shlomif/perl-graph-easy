@@ -199,6 +199,8 @@ sub _generate_vcg_edge
   "  edge:$edge_att\n";				# return edge text
   }
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _as_vcg
   {
   my ($self) = @_;
@@ -208,7 +210,7 @@ sub _as_vcg
 
   # gather all edge classes to build the classname attribute from them:
   $self->{_vcg_edge_classes} = {};
-  for my $e (values %{$self->{edges}})
+  for my $e (ord_values ( $self->{edges} ))
     {
     my $class = $e->sub_class();
     $self->{_vcg_edge_classes}->{$class} = undef if defined $class && $class ne '';
@@ -308,7 +310,7 @@ sub _as_vcg
 #      }
 
 #    # output node connections in this group
-#    for my $e (values %{$group->{edges}})
+#    for my $e (ord_values ( $group->{edges} ))
 #      {
 #      next if exists $e->{_p};
 #      $txt .= $self->_generate_edge($e, $indent);
@@ -362,7 +364,7 @@ sub _as_vcg
 
   # insert now edges between groups (clusters/subgraphs)
 
-#  foreach my $e (values %{$self->{edges}})
+#  foreach my $e (ord_values ( $self->{edges} ))
 #    {
 #    $txt .= $self->_generate_group_edge($e, '  ') 
 #     if $e->{from}->isa('Graph::Easy::Group') ||
@@ -370,7 +372,7 @@ sub _as_vcg
 #    }
 
   # clean up
-  for my $n ( values %{$self->{nodes}}, values %{$self->{edges}})
+  for my $n ( ord_values ( $self->{nodes} ), ord_values ( $self->{edges} ))
     {
     delete $n->{_p};
     }

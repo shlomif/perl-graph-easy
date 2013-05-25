@@ -17,12 +17,14 @@ package Graph::Easy;
 
 use strict;
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _edges_into_groups
   {
   my $self = shift;
 
   # Put all edges between two nodes with the same group in the group as well
-  for my $edge (values %{$self->{edges}})
+  for my $edge (ord_values $self->{edges})
     {
     my $gf = $edge->{from}->group();
     my $gt = $edge->{to}->group();
@@ -53,7 +55,7 @@ sub _repair_nodes
   # cells as used (e.g. use only one global filler cell) since filler cells
   # aren't actually rendered, anyway.
 
-  for my $cell (values %$cells)
+  for my $cell (ord_values $cells)
     {
     next unless $cell->isa('Graph::Easy::Node::Cell');
 
@@ -260,7 +262,7 @@ sub _check_edge_cell
   my ($self, $cell, $x, $y, $flag, $type, $match, $check, $where) = @_;
 
   my $edge = $cell->{edge};
-  if (grep { exists $_->{cell_class} && $_->{cell_class} =~ $match } values %$check)
+  if (grep { exists $_->{cell_class} && $_->{cell_class} =~ $match } ord_values ($check))
     {
     $cell->{type} &= ~ $flag;		# delete the flag
 
@@ -365,7 +367,7 @@ sub _repair_edge
 
   if  (!ref($below) && (($cell->{type} & EDGE_END_MASK) == EDGE_END_S))
     {
-    if (grep { exists $_->{cell_class} && $_->{cell_class} =~ /g[tb]/ } values %{$rows->{$y}})
+    if (grep { exists $_->{cell_class} && $_->{cell_class} =~ /g[tb]/ } ord_values $rows->{$y})
       {
       # delete the start flag
       $cell->{type} &= ~ EDGE_END_S;
@@ -440,7 +442,7 @@ sub _fill_group_cells
   $self->_repair_nodes();		# repair multi-celled nodes
 
   my $c = 'Graph::Easy::Group::Cell';
-  for my $cell (values %{$self->{cells}})
+  for my $cell (ord_values $self->{cells})
     {
     # DO NOT MODIFY $cell IN THE LOOP BODY!
 
@@ -475,7 +477,7 @@ sub _fill_group_cells
   # three cells apart (y == 0 and y == 4) after the splicing, the step above
   # will not be able to close that hole - it will create fillers at y == 1 and
   # y == 3. So we close these holes now with an extra step.
-  for my $cell (values %{$self->{cells}})
+  for my $cell (ord_values ( $self->{cells} ))
     {
     # only for filler cells
     next unless $cell->isa('Graph::Easy::Group::Cell');
@@ -512,7 +514,7 @@ sub _fill_group_cells
   # XXX TODO
   # we should "grow" the group area to close holes
 
-  for my $group (values %{$self->{groups}})
+  for my $group (ord_values ( $self->{groups} ))
     {
     $group->_set_cell_types($cells);
     }
@@ -520,7 +522,7 @@ sub _fill_group_cells
   # create a mapping for each row/column so that we can repair edge starts/ends
   my $rows = {};
   my $cols = {};
-  for my $cell (values %$cells)
+  for my $cell (ord_values ($cells))
     {
     $rows->{$cell->{y}}->{$cell->{x}} = $cell;
     $cols->{$cell->{x}}->{$cell->{y}} = $cell;
@@ -529,14 +531,14 @@ sub _fill_group_cells
 					# border rows/columns
 
   # for all groups, set the cell carrying the label (top-left-most cell)
-  for my $group (values %{$self->{groups}})
+  for my $group (ord_values ( $self->{groups} ))
     {
     $group->_find_label_cell();
     }
 
 # DEBUG:
-# for my $cell (values %$cells)
-#   { 
+# for my $cell (ord_values $cells)
+#   {
 #   $cell->_correct_size();
 #   }
 #

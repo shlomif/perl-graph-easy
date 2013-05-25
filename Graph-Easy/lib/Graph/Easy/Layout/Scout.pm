@@ -772,6 +772,8 @@ my $prev_fields =
   EDGE_S_W() => [ 0,-1, EDGE_W_N_S, +1,0, EDGE_S_E_W ],
   };
 
+use Graph::Easy::Util qw(ord_values);
+
 sub _get_joints
   { 
   # from a list of shared, already placed edges, get possible start/end fields
@@ -815,7 +817,7 @@ sub _get_joints
  
   my @R;
   # convert hash to array
-  for my $s (values %{$cells})
+  for my $s (ord_values ( $cells ))
     {
     push @R, @$s;
     }
