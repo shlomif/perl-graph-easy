@@ -35,15 +35,15 @@ binmode (STDOUT, ':utf8') or die ("Cannot do binmode(':utf8') on STDOUT: $!");
 
 eval { require Test::Differences; };
 
-foreach my $f (sort { 
-  $a =~ /^(\d+)/; my $a1 = $1 || '1'; 
-  $b =~ /^(\d+)/; my $b1 = $1 || '1'; 
+foreach my $f (sort {
+  $a =~ /^(\d+)/; my $a1 = $1 || '1';
+  $b =~ /^(\d+)/; my $b1 = $1 || '1';
   $a1 <=> $b1 || $a cmp $b;
   } @files)
   {
   my $file = File::Spec->catfile($dir,$f);
   my $parser = $def_parser;
-  
+
   next unless $f =~ /\.gdl/;			# ignore anything else
 
   print "# at $f\n";
