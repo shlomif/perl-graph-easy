@@ -3,3 +3,4 @@ graph { flow: north; }
 node { align: left; }
 
 [ A ] --> [ B ]
+[ B ]
