@@ -1,0 +1,2 @@
+[ B ]
+[ Long Node Label\l left\r right\c center ] -- A\r long\n edge label --> [ B ]
