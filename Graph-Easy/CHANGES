@@ -1,5 +1,10 @@
 Revision history for Graph::Easy (formerly known as Graph::Simple):
 
+2013-05-25 v0.73 Shlomi Fish 2938 tests
+  * Got the tests to pass on perl-5.18.0 (and hopefully above).
+    - Done by making sure hash traversals (each/keys/values) are only
+    done by lexicographical order of the keys.
+
 2012-10-20 v0.72 Shlomi Fish 2938 tests
   * Update Module-Install from version 1.04 (which is broken on perl-5.16.x).
     - http://weblog.bulknews.net/post/33907905561/do-not-ship-modules-with-module-install-1-04
