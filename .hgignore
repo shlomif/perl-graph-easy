@@ -1,4 +1,7 @@
 syntax: regexp
+^Graph-Easy/Build
+^Graph-Easy/META.json
+^Graph-Easy/_build
 ^Graph-Easy/MANIFEST
 ^Graph-Easy/META.yml
 ^Graph-Easy/MYMETA.yml
