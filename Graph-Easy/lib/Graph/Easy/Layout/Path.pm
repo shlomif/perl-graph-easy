@@ -13,6 +13,7 @@ $VERSION = '0.74';
 package Graph::Easy::Node;
 
 use strict;
+use warnings;
 
 use Graph::Easy::Edge::Cell qw/
  EDGE_END_E EDGE_END_N EDGE_END_S EDGE_END_W

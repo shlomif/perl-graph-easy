@@ -11,6 +11,7 @@ $VERSION = '0.74';
 @ISA = qw/Graph::Easy::Base/;
 
 use strict;
+use warnings;
 
 use Graph::Easy::Util qw(ord_values);
 

@@ -6,6 +6,7 @@
 package Graph::Easy::Edge::Cell;
 
 use strict;
+use warnings;
 use Graph::Easy::Edge;
 use Graph::Easy::Attributes;
 require Exporter;

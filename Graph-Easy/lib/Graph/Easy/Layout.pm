@@ -14,6 +14,7 @@ $VERSION = '0.74';
 package Graph::Easy;
 
 use strict;
+use warnings;
 require Graph::Easy::Node::Cell;
 use Graph::Easy::Edge::Cell qw/
   EDGE_HOR EDGE_VER

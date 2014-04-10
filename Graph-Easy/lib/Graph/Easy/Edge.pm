@@ -10,6 +10,7 @@ use Graph::Easy::Node;
 $VERSION = '0.74';
 
 use strict;
+use warnings;
 
 use constant isa_cell => 1;
 

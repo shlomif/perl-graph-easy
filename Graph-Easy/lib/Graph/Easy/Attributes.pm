@@ -10,6 +10,7 @@ $VERSION = '0.74';
 package Graph::Easy;
 
 use strict;
+use warnings;
 use utf8;		# for examples like "Fähre"
 
 # to make it easier to remember the attribute names:

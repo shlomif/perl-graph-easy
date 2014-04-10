@@ -8,6 +8,7 @@ package Graph::Easy::Base;
 $VERSION = '0.74';
 
 use strict;
+use warnings;
 
 #############################################################################
 

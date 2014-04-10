@@ -10,6 +10,8 @@ use Graph::Easy::Parser;
 @ISA = qw/Graph::Easy::Parser/;
 
 use strict;
+use warnings;
+
 use utf8;
 use constant NO_MULTIPLES => 1;
 

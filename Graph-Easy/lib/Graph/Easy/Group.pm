@@ -13,6 +13,7 @@ use Scalar::Util qw/weaken/;
 $VERSION = '0.74';
 
 use strict;
+use warnings;
 
 use Graph::Easy::Util qw(ord_values);
 

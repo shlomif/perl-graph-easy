@@ -10,6 +10,7 @@ use Graph::Easy::Parser::Graphviz;
 @ISA = qw/Graph::Easy::Parser::Graphviz/;
 
 use strict;
+use warnings;
 use utf8;
 use constant NO_MULTIPLES => 1;
 use Encode qw/decode/;

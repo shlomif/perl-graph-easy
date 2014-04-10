@@ -12,6 +12,7 @@ $VERSION = '0.74';
 package Graph::Easy;
 
 use strict;
+use warnings;
 
 sub _as_txt
   {

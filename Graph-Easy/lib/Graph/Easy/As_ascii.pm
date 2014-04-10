@@ -16,6 +16,7 @@ use utf8;
 package Graph::Easy::Edge::Cell;
 
 use strict;
+use warnings;
 
 my $edge_styles = [ 
   {

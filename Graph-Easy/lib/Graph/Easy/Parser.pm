@@ -13,6 +13,7 @@ use Graph::Easy::Base;
 use Scalar::Util qw/weaken/;
 
 use strict;
+use warnings;
 use constant NO_MULTIPLES => 1;
 
 use Graph::Easy::Util qw(ord_values);
