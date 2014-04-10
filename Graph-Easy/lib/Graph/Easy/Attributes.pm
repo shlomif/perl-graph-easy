@@ -5,7 +5,7 @@
 
 package Graph::Easy::Attributes;
 
-$VERSION = '0.32';
+$VERSION = '0.74';
 
 package Graph::Easy;
 

@@ -2,6 +2,8 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 
 2014-04-10 v0.74 Shlomi Fish 2938 tests
   * Remove leftover files from the MANIFEST (CPANTS error).
+  * All the versions of the .pm files are now consistent (CPANTS error).
+    - Add scripts/bump-version-number.pl to facilitate that.
 
 2013-05-25 v0.73 Shlomi Fish 2938 tests
   * Got the tests to pass on perl-5.18.0 (and hopefully above).
