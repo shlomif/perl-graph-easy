@@ -2,6 +2,8 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 
 2014-04-12 v0.75 Shlomi Fish 2938 tests
   * Remove "./Build" from the distribution (CPANTS error).
+  * Got rid of an implicit dependency on IO::All for the tests (CPANTS error).
+    - it was not a real dependency.
 
 2014-04-10 v0.74 Shlomi Fish 2938 tests
   * Remove leftover files from the MANIFEST (CPANTS error).

@@ -4,6 +4,20 @@ use Test::More;
 use strict;
 use File::Spec;
 
+sub _write_utf8_file
+{
+    my ($out_path, $contents) = @_;
+
+    open my $out_fh, '>:encoding(utf8)', $out_path
+        or die "Cannot open '$out_path' for writing - $!";
+
+    print {$out_fh} $contents;
+
+    close($out_fh);
+
+    return;
+}
+
 # test graphviz (dot) file input => ASCII output
 # and back to as_txt() again
 
@@ -112,8 +126,7 @@ foreach my $f (sort {
   {
       if ($ENV{__SHLOMIF__UPDATE_ME})
       {
-          require IO::All;
-          IO::All->new->file($out_path)->utf8->print($ascii);
+          _write_utf8_file($out_path, $ascii);
       }
       if (defined $Test::Differences::VERSION)
       {
@@ -139,8 +152,7 @@ foreach my $f (sort {
   {
       if ($ENV{__SHLOMIF__UPDATE_ME})
       {
-          require IO::All;
-          IO::All->new->file($f_txt)->utf8->print($graph->as_txt());
+          _write_utf8_file($f_txt, scalar( $graph->as_txt() ));
       }
       if (defined $Test::Differences::VERSION)
       {
