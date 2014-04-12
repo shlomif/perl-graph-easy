@@ -7,7 +7,7 @@ package Graph::Easy::Edge;
 
 use Graph::Easy::Node;
 @ISA = qw/Graph::Easy::Node/;		# an edge is just a special node
-$VERSION = '0.74';
+$VERSION = '0.75';
 
 use strict;
 use warnings;

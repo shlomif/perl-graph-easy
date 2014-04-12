@@ -7,7 +7,7 @@ package Graph::Easy::Parser;
 
 use Graph::Easy;
 
-$VERSION = '0.74';
+$VERSION = '0.75';
 use Graph::Easy::Base;
 @ISA = qw/Graph::Easy::Base/;
 use Scalar::Util qw/weaken/;

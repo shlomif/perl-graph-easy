@@ -10,7 +10,7 @@ use Graph::Easy;
 use Scalar::Util qw/weaken/;
 
 @ISA = qw/Graph::Easy::Node Graph::Easy/;
-$VERSION = '0.74';
+$VERSION = '0.75';
 
 use strict;
 use warnings;

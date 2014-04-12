@@ -9,7 +9,7 @@ use Graph::Easy::Group;
 use warnings;
 
 @ISA = qw/Graph::Easy::Group/;
-$VERSION = '0.74';
+$VERSION = '0.75';
 
 use strict;
 
