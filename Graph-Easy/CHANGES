@@ -4,6 +4,9 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Remove "./Build" from the distribution (CPANTS error).
   * Got rid of an implicit dependency on IO::All for the tests (CPANTS error).
     - it was not a real dependency.
+  * Got rid of no_index so we will have provides (CPANTS error).
+    - the no_index was a leftover from Module-Install and did not contain
+    anything important of no indexing.
 
 2014-04-10 v0.74 Shlomi Fish 2938 tests
   * Remove leftover files from the MANIFEST (CPANTS error).

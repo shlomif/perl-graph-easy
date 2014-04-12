@@ -53,10 +53,6 @@ my $build = Test::Run::Builder->new(
     [
         'bin/graph-easy',
     ],
-    no_index =>
-    {
-        directory => ['examples', 'bench', 'todos',],
-    },
 );
 
 $build->create_build_script;
