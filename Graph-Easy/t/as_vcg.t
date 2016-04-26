@@ -32,7 +32,7 @@ is ($vcg, $vcg_file, 'as_vcg and as_vcg_file are equal');
 
 $graph->add_edge('A','B');
 
-like ($graph->as_vcg(), qr/edge: { sourcename: "A" targetname: "B" }/,
+like ($graph->as_vcg(), qr/edge: \{ sourcename: "A" targetname: "B" \}/,
 	'as_vcg matches');
 
 # set edge label
@@ -40,7 +40,7 @@ my @edges = $graph->edges();
 $edges[0]->set_attribute('label', 'my car');
 
 like ($graph->as_vcg(),
-	qr/edge: { label: "my car" sourcename: "A" targetname: "B" }/,
+	qr/edge: \{ label: "my car" sourcename: "A" targetname: "B" \}/,
 	'as_vcg matches');
 
 #############################################################################

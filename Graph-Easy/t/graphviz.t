@@ -700,4 +700,4 @@ is($a_->{_order},1,'subgraph A is level 1');
 is($d->{_order},1,'subgraph D is level 1');
 is($b_->{_order},2,'subgraph B is level 2');
 is($c->{_order},3,'subgraph C is level 3');
-like($grviz,qr/subgraph "cluster\d+" {\n  label="A";\n    subgraph "cluster\d+" {/,'subgraph indent');
+like($grviz,qr/subgraph "cluster\d+" \{\n  label="A";\n    subgraph "cluster\d+" \{/,'subgraph indent');
