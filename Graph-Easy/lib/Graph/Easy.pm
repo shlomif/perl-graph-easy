@@ -3906,7 +3906,9 @@ online manual for examples and their usage:
  orrd3 orrd4 orrd5 orrd6 orrd7 orrd8 orrd9
 
  paired3 paired4 paired5 paired6 paired7 paired8 paired9 paired10 paired11
- paired12 pastel13 pastel14 pastel15 pastel16 pastel17 pastel18 pastel19
+ paired12 
+ 
+ pastel13 pastel14 pastel15 pastel16 pastel17 pastel18 pastel19
 
  pastel23 pastel24 pastel25 pastel26 pastel27 pastel28
 
@@ -3918,14 +3920,17 @@ online manual for examples and their usage:
 
  pubugn3 pubugn4 pubugn5 pubugn6 pubugn7 pubugn8 pubugn9
 
- puor3 puor4 puor5 puor6 puor7 puor8 puor9 purd3 purd4 purd5 purd6 purd7 purd8
- purd9 puor10 puor11
+ puor3 puor4 puor5 puor6 puor7 puor8 puor9 puor10 puor11
+ 
+ purd3 purd4 purd5 purd6 purd7 purd8 purd9 
 
  purples3 purples4 purples5 purples6 purples7 purples8 purples9
 
- rdbu10 rdbu11 rdbu3 rdbu4 rdbu5 rdbu6 rdbu7 rdbu8 rdbu9 rdgy3 rdgy4 rdgy5 rdgy6
-
- rdgy7 rdgy8 rdgy9 rdpu3 rdpu4 rdpu5 rdpu6 rdpu7 rdpu8 rdpu9 rdgy10 rdgy11
+ rdbu3 rdbu4 rdbu5 rdbu6 rdbu7 rdbu8 rdbu9 rdbu10 rdbu11
+ 
+ rdgy3 rdgy4 rdgy5 rdgy6 rdgy7 rdgy8 rdgy9 
+ 
+ rdpu3 rdpu4 rdpu5 rdpu6 rdpu7 rdpu8 rdpu9 rdgy10 rdgy11
 
  rdylbu3 rdylbu4 rdylbu5 rdylbu6 rdylbu7 rdylbu8 rdylbu9 rdylbu10 rdylbu11
 
@@ -3933,13 +3938,14 @@ online manual for examples and their usage:
 
  reds3 reds4 reds5 reds6 reds7 reds8 reds9
 
- set13 set14 set15 set16 set17 set18 set19 set23 set24 set25 set26 set27 set28
- set33 set34 set35 set36 set37 set38 set39
-
- set310 set311 set312
+ set13 set14 set15 set16 set17 set18 set19
+ 
+ set23 set24 set25 set26 set27 set28
+ 
+ set33 set34 set35 set36 set37 set38 set39 set310 set311 set312
 
  spectral3 spectral4 spectral5 spectral6 spectral7 spectral8 spectral9
- spectral10spectral11
+ spectral10 spectral11
 
  ylgn3 ylgn4 ylgn5 ylgn6 ylgn7 ylgn8 ylgn9
 
