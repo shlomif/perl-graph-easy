@@ -25,7 +25,7 @@ sub _init
   $self->{error} = '';
   $self->{debug} = 0;
   $self->{fatal_errors} = 1;
-  
+
   foreach my $k (sort keys %$args)
     {
     if ($k !~ /^(debug|fatal_errors)\z/)
@@ -69,7 +69,7 @@ sub reset
   $self->{clusters} = {};		# cluster names we already created
 
   Graph::Easy::Base::_reset_id();	# start with the same set of IDs
-  
+
   # After "[ 1 ] -> [ 2 ]" we push "2" on the stack and when we encounter
   # " -> [ 3 ]" treat the stack as a node-list left of "3".
   # In addition, for " [ 1 ], [ 2 ] => [ 3 ]", the stack will contain
@@ -127,7 +127,7 @@ sub use_class
 
   $self->{use_class}->{$object} = $class;
 
-  $self;  
+  $self;
   }
 
 sub _register_handler
@@ -233,7 +233,7 @@ sub _register_node_attribute_handler
       my $n1 = $1;
       my $a1 = $self->_parse_attributes($2||'');
       return undef if $self->{error};
- 
+
       $self->{stack} = [ $self->_new_node ($self->{_graph}, $n1, $self->{group_stack}, $a1) ];
 
       # forget left stack
@@ -306,7 +306,7 @@ sub _add_group_match
       if ($end eq ')')
         {
         # we matched an empty group like "()", or "( group name )"
-        $self->{stack} = [ $group ]; 
+        $self->{stack} = [ $group ];
          print STDERR "# Seen end of group '$group->{name}'.\n" if $self->{debug};
         }
       else
@@ -356,7 +356,7 @@ sub _build_match_stack
 
   my $e = $self->{use_class}->{edge};
 
-  # node { color: red; } 
+  # node { color: red; }
   # node.graph { ... }
   # .foo { ... }
   # .foo, node, edge.red { ... }
@@ -394,7 +394,7 @@ sub _build_match_stack
       my $a1 = $self->_parse_attributes($2||'');
       return undef if $self->{error};
 
-      push @{$self->{stack}}, 
+      push @{$self->{stack}},
         $self->_new_node ($graph, $n1, $self->{group_stack}, $a1, $self->{stack});
 
       if (defined $self->{left_edge})
@@ -488,7 +488,7 @@ sub _build_match_stack
 
       my $edge_atr = $11 || '';				# save edge attributes
 
-      my $gn = $12; 
+      my $gn = $12;
       # matched "-> ( Group [" or "-> ( Group ("
       $self->{replace} = '[' if defined $13 && $13 eq '[';
       $self->{replace} = '(' if defined $13 && $13 eq '(';
@@ -528,7 +528,7 @@ sub _line_insert
   }
 
 sub _clean_line
-  { 
+  {
   # do some cleanups on a line before handling it
   my ($self,$line) = @_;
 
@@ -556,13 +556,13 @@ sub from_text
   # matches a multi-line comment
   my $o_cmt = qr#((\s*/\*.*?\*/\s*)*\s*|\s+)#;
 
-  if ((ref($self)||$self) eq 'Graph::Easy::Parser' && 
+  if ((ref($self)||$self) eq 'Graph::Easy::Parser' &&
     # contains "digraph GRAPH {" or something similiar
      ( $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)(strict)?$o_cmt(di)?graph$o_cmt("[^"]*"|[\w_]+)$o_cmt\{/im ||
-    # contains "digraph {" or something similiar	
-      $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)(strict)?${o_cmt}digraph$o_cmt\{/im || 
-    # contains "strict graph {" or something similiar	
-      $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)strict${o_cmt}(di)?graph$o_cmt\{/im)) 
+    # contains "digraph {" or something similiar
+      $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)(strict)?${o_cmt}digraph$o_cmt\{/im ||
+    # contains "strict graph {" or something similiar
+      $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)strict${o_cmt}(di)?graph$o_cmt\{/im))
     {
     require Graph::Easy::Parser::Graphviz;
     # recreate ourselfes, and pass our arguments along
@@ -578,9 +578,9 @@ sub from_text
     $self->{_old_self} = $old_self if ref($self);
     }
 
-  if ((ref($self)||$self) eq 'Graph::Easy::Parser' && 
+  if ((ref($self)||$self) eq 'Graph::Easy::Parser' &&
     # contains "graph: {"
-      $txt =~ /^([\s\n\t]*|\s*\/\*.*?\*\/\s*)graph\s*:\s*\{/m) 
+      $txt =~ /^([\s\n\t]*|\s*\/\*.*?\*\/\s*)graph\s*:\s*\{/m)
     {
     require Graph::Easy::Parser::VCG;
     # recreate ourselfes, and pass our arguments along
@@ -601,7 +601,7 @@ sub from_text
 
   my $graph = $self->{_graph};
   return $graph if !defined $txt || $txt =~ /^\s*\z/;		# empty text?
- 
+
   my $uc = $self->{use_class};
 
   # instruct the graph to use the custom classes, too
@@ -724,14 +724,14 @@ sub _edge_style
   my ($self, $ed) = @_;
 
   my $style = undef;			# default is "inherit from class"
-  $style = 'double-dash' if $ed =~ /^(= )+\z/; 
-  $style = 'double' if $ed =~ /^=+\z/; 
-  $style = 'dotted' if $ed =~ /^\.+\z/; 
-  $style = 'dashed' if $ed =~ /^(- )+\z/; 
-  $style = 'dot-dot-dash' if $ed =~ /^(..-)+\z/; 
-  $style = 'dot-dash' if $ed =~ /^(\.-)+\z/; 
-  $style = 'wave' if $ed =~ /^\~+\z/; 
-  $style = 'bold' if $ed =~ /^#+\z/; 
+  $style = 'double-dash' if $ed =~ /^(= )+\z/;
+  $style = 'double' if $ed =~ /^=+\z/;
+  $style = 'dotted' if $ed =~ /^\.+\z/;
+  $style = 'dashed' if $ed =~ /^(- )+\z/;
+  $style = 'dot-dot-dash' if $ed =~ /^(..-)+\z/;
+  $style = 'dot-dash' if $ed =~ /^(\.-)+\z/;
+  $style = 'wave' if $ed =~ /^\~+\z/;
+  $style = 'bold' if $ed =~ /^#+\z/;
 
   $style;
   }
@@ -743,7 +743,7 @@ sub _link_lists
   my ($self, $left, $right, $ed, $label, $edge_atr, $edge_bd, $edge_un) = @_;
 
   my $graph = $self->{_graph};
- 
+
   my $style = $self->_edge_style($ed);
   my $e = $self->{use_class}->{edge};
 
@@ -864,7 +864,7 @@ sub _set_new_basename
 
     $part->{autosplit_basename} = $new_basename;
     $part->set_attribute('basename', $new_basename);
-  
+
     # delete it from the list of nodes
     delete $g->{nodes}->{$part->{name}};
     $part->{name} = $new_basename . '.' . $nr; $nr++;
@@ -881,7 +881,7 @@ sub _autosplit_node
   # Takes a node name like "a|b||c" and splits it into "a", "b", and "c".
   # Returns the individual parts.
   my ($self, $graph, $name, $att, $allow_empty) = @_;
- 
+
   # Default is to have empty parts. Graphviz sets this to true;
   $allow_empty = 1 unless defined $allow_empty;
 
@@ -926,7 +926,7 @@ sub _autosplit_node
     if ($add == 0 && $remaining eq '' && $sep =~ /\|\|?/)
       {
       $add++;				# only do it once
-      $remaining .= '|' 
+      $remaining .= '|'
       }
 
     print STDERR "# Parser: Found autosplit part '$part'\n" if $graph->{debug};
@@ -1005,7 +1005,7 @@ sub _autosplit_node
 
       # suppress as_txt output for other parts
       $node->{autosplit} = undef;
-      }	
+      }
     # nec. for border-collapse
     $node->{autosplit_xy} = "$x,$y";
 
@@ -1056,8 +1056,8 @@ sub _new_node
   else
     {
     # strip trailing and leading spaces
-    $name =~ s/\s+\z//; 
-    $name =~ s/^\s+//; 
+    $name =~ s/\s+\z//;
+    $name =~ s/^\s+//;
 
     # collapse multiple spaces
     $name =~ s/\s+/ /g;
@@ -1102,7 +1102,7 @@ sub _new_node
     $node->set_attributes ($att, $index);
     $index++;
     }
-  
+
   $att->{basename} = $b if defined $b;
 
   # return list of created nodes (usually one, but more for "A|B")
@@ -1188,8 +1188,8 @@ sub _match_edge
   # Matches all possible edge variants like:
   # -->, ---->, ==> etc
   # <-->, <---->, <==>, <..> etc
-  # <-- label -->, <.- label .-> etc  
-  # -- label -->, .- label .-> etc  
+  # <-- label -->, <.- label .-> etc
+  # -- label -->, .- label .-> etc
 
   # "- " must come before "-"!
   # likewise, "..-" must come before ".-" must come before "."
@@ -1253,16 +1253,16 @@ sub _parse_attributes
   my $qr_att  = $self->{_match_single_attribute};
   my $qr_cmt;  $qr_cmt  = $self->_match_multi_line_comment()
    if $self->can('_match_multi_line_comment');
-  my $qr_satt; $qr_satt = $self->_match_special_attribute() 
+  my $qr_satt; $qr_satt = $self->_match_special_attribute()
    if $self->can('_match_special_attribute');
 
   return {} if $text =~ /^\s*\z/;
 
-  print STDERR "attr parsing: matching\n '$text'\n against $qr_att\n" if $self->{debug} > 3;    
+  print STDERR "attr parsing: matching\n '$text'\n against $qr_att\n" if $self->{debug} > 3;
 
   while ($text ne '')
     {
-    print STDERR "attr parsing: matching '$text'\n" if $self->{debug} > 3;    
+    print STDERR "attr parsing: matching '$text'\n" if $self->{debug} > 3;
 
     # remove a possible comment
     $text =~ s/^$qr_cmt//g if $qr_cmt;
@@ -1352,7 +1352,7 @@ sub _parser_cleanup
   my ($self) = @_;
 
   my $g = $self->{_graph};
-  
+
   for my $n (ord_values ( $g->{nodes} ))
     {
     next if $n->{autosplit};
@@ -1662,7 +1662,7 @@ appropriate base class:
 
 	######################################################
 	package main;
-	
+
 	use Graph::Easy::Parser;
 	use Graph::Easy;
 
@@ -1751,7 +1751,7 @@ templates like C<##param1##> with the passed parameters.
 
 	my $attributes = $parser->_parse_attributes( $txt, $class );
 	my ($att, $multiples) = $parser->_parse_attributes( $txt, $class );
-  
+
 B<Internal usage only>. Takes a text like this:
 
 	attribute: value;  attribute2 : value2;

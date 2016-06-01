@@ -61,10 +61,10 @@ foreach my $l (<DATA>)
     }
 
   # XXX TODO check edge style and type:
-  # 0 - undirected 
-  # 2 - right 
+  # 0 - undirected
+  # 2 - right
   # 3 - left and right
- 
+
   like ($in, qr/^$qr_edge\z/, "$in");
 
 #  $in =~ /^$qr_edge\z/;
@@ -105,7 +105,7 @@ __DATA__
 ==>|2|==
 ..>|2|..
 ~~>|2|~~
-= >|2|= 
+= >|2|=
 - - >|2| -
 --->|2|--
 ===>|2|==
@@ -144,7 +144,7 @@ __DATA__
 <--|-1|--
 <==|-1|==
 <..|-1|..
-<- -|-1| - 
+<- -|-1| -
 <-- Landstrasse -|-1|
 <== Autobahn =|-1|
 <.. Im Bau .|-1|

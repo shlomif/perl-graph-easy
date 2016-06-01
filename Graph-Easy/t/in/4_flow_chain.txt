@@ -1,4 +1,4 @@
 
-[ Bonn ] 
+[ Bonn ]
   -> { flow: forward; } [ Berlin ]
 [ Bonn ]  -> [ Cottbus ] --> [ Ulm ]

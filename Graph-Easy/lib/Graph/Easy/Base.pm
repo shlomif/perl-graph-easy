@@ -30,7 +30,7 @@ sub new
   my $args = $_[0];
   $args = { name => $_[0] } if ref($args) ne 'HASH' && @_ == 1;
   $args = { @_ } if ref($args) ne 'HASH' && @_ > 1;
- 
+
   $self->_init($args);
   }
 
@@ -38,16 +38,16 @@ sub _init
   {
   # Generic init routine, to be overriden in subclasses.
   my ($self,$args) = @_;
-  
+
   $self;
   }
 
 sub self
   {
   my $self = shift;
-  
+
   $self;
-  }  
+  }
 
 #############################################################################
 
@@ -108,7 +108,7 @@ sub error_as_html
   $msg =~ s/>/&gt;/g;
   $msg =~ s/"/&quot;/g;
 
-  $msg; 
+  $msg;
   }
 
 sub catch_messages
@@ -224,7 +224,7 @@ sub _croak
     Carp::croak($msg);
     }
   }
- 
+
 #############################################################################
 # class management
 
@@ -246,7 +246,7 @@ sub sub_class
 
   return $1 if defined $1;
 
-  return $self->{cache}->{subclass} if defined $self->{cache}->{subclass}; 
+  return $self->{cache}->{subclass} if defined $self->{cache}->{subclass};
 
   # Subclass not defined, so check our base class for a possible set class
   # attribute and return this:
@@ -422,7 +422,7 @@ A true parameter is equivalent to:
 
 	$object->catch_warnings(1);
 	$object->catch_errors(1);
-	
+
 See also: L<catch_warnings()> and L<catch_errors()> as well as
 L<errors()> and L<warnings()>.
 

@@ -63,10 +63,10 @@ sub _repair_nodes
     # we have "[ empty  ] [ filler ]" (unless cell is on the same column as node)
     if ($cell->{x} > $cell->{node}->{x})
       {
-      my $x = $cell->{x} - 1; my $y = $cell->{y}; 
+      my $x = $cell->{x} - 1; my $y = $cell->{y};
 
 #      print STDERR "# inserting filler at $x,$y for $cell->{node}->{name}\n";
-      $cells->{"$x,$y"} = 
+      $cells->{"$x,$y"} =
         Graph::Easy::Node::Cell->new(node => $cell->{node}, x => $x, y => $y );
       }
 
@@ -77,7 +77,7 @@ sub _repair_nodes
       my $x = $cell->{x}; my $y = $cell->{y} - 1;
 
 #      print STDERR "# inserting filler at $x,$y for $cell->{node}->{name}\n";
-      $cells->{"$x,$y"} = 
+      $cells->{"$x,$y"} =
         Graph::Easy::Node::Cell->new(node => $cell->{node}, x => $x, y => $y );
       }
     }
@@ -93,8 +93,8 @@ sub _repair_cell
 #  print STDERR "# Insert edge cell at $x,$y (type $type) for edge $edge->{from}->{name} --> $edge->{to}->{name}\n";
 
   $self->{cells}->{"$x,$y"} =
-    Graph::Easy::Edge::Cell->new( 
-      type => $type, 
+    Graph::Easy::Edge::Cell->new(
+      type => $type,
       edge => $edge, x => $x, y => $y, before => $before, after => $after );
 
   }
@@ -117,13 +117,13 @@ sub _splice_edges
   for my $cell (sort { $a->{x} <=> $b->{x} || $a->{y} <=> $b->{y} } values %$cells)
     {
     next unless $cell->isa('Graph::Easy::Edge::Cell');
- 
-    my $edge = $cell->{edge}; 
+
+    my $edge = $cell->{edge};
 
     #########################################################################
     # check for "[ JOINT ] [ empty  ] [ edge ]"
-    
-    my $x = $cell->{x} + 2; my $y = $cell->{y}; 
+
+    my $x = $cell->{x} + 2; my $y = $cell->{y};
 
     my $type = $cell->{type} & EDGE_TYPE_MASK;
 
@@ -139,7 +139,7 @@ sub _splice_edges
       if ($right->isa('Graph::Easy::Edge::Cell'))
 	{
         # when the left one is a joint, the right one must be an edge
-        $self->error("Found non-edge piece ($right->{type} $right) right to a joint ($type)") 
+        $self->error("Found non-edge piece ($right->{type} $right) right to a joint ($type)")
           unless $right->isa('Graph::Easy::Edge::Cell');
 
 #        print STDERR "splicing in HOR piece to the right of joint at $x, $y ($edge $right $right->{edge})\n";
@@ -152,8 +152,8 @@ sub _splice_edges
 
     #########################################################################
     # check for "[ edge ] [ empty  ] [ joint ]"
-    
-    $x = $cell->{x} - 2; $y = $cell->{y}; 
+
+    $x = $cell->{x} - 2; $y = $cell->{y};
 
     # right is a joint and left exists
     if ( ($type == EDGE_S_E_W || $type == EDGE_N_E_W || $type == EDGE_W_N_S)
@@ -165,7 +165,7 @@ sub _splice_edges
       if (!$left->isa('Graph::Easy::Node'))
 	{
         # when the left one is a joint, the right one must be an edge
-        $self->error('Found non-edge piece right to a joint') 
+        $self->error('Found non-edge piece right to a joint')
           unless $left->isa('Graph::Easy::Edge::Cell');
 
         # insert the new piece before the joint
@@ -178,8 +178,8 @@ sub _splice_edges
     # check for " [ joint ]
     #		  [ empty ]
     #             [ edge ]"
-    
-    $x = $cell->{x}; $y = $cell->{y} + 2; 
+
+    $x = $cell->{x}; $y = $cell->{y} + 2;
 
     # top is a joint and down exists
     if ( ($type == EDGE_S_E_W || $type == EDGE_E_N_S || $type == EDGE_W_N_S)
@@ -188,7 +188,7 @@ sub _splice_edges
       my $bottom = $cells->{"$x,$y"};
 
       # when top is a joint, the bottom one must be an edge
-      $self->error('Found non-edge piece below a joint') 
+      $self->error('Found non-edge piece below a joint')
         unless $bottom->isa('Graph::Easy::Edge::Cell');
 
 #      print STDERR "splicing in VER piece below joint at $x, $y\n";
@@ -196,20 +196,20 @@ sub _splice_edges
 	# XXX TODO
       # insert the new piece after the joint
       $self->_repair_cell(EDGE_VER(), $bottom->{edge},$x,$cell->{y}+1,0)
-        if $edge != $bottom->{edge}; 
+        if $edge != $bottom->{edge};
       }
 
     #########################################################################
     # check for "[ --- ] [ empty  ] [ ---> ]"
 
-    $x = $cell->{x} + 2; $y = $cell->{y}; 
+    $x = $cell->{x} + 2; $y = $cell->{y};
 
     if (exists $cells->{"$x,$y"})
       {
       my $right = $cells->{"$x,$y"};
 
       $self->_repair_cell(EDGE_HOR(), $edge, $cell->{x}+1,$y,$cell,$right)
-        if $right->isa('Graph::Easy::Edge::Cell') && 
+        if $right->isa('Graph::Easy::Edge::Cell') &&
            defined $right->{edge} && defined $right->{type} &&
 	# check that both cells belong to the same edge
 	(  $edge == $right->{edge}  ||
@@ -218,12 +218,12 @@ sub _splice_edges
 	# or the left part is a cross
 	   $cell->{type} == EDGE_CROSS );
       }
-    
+
     #########################################################################
     # check for [ | ]
     #		[ empty ]
     #		[ | ]
-    $x = $cell->{x}; $y = $cell->{y}+2; 
+    $x = $cell->{x}; $y = $cell->{y}+2;
 
     if (exists $cells->{"$x,$y"})
       {
@@ -251,7 +251,7 @@ sub _new_edge_cell
 
   $type += EDGE_SHORT_CELL() if defined $group;
 
-  my $e_cell = Graph::Easy::Edge::Cell->new( 
+  my $e_cell = Graph::Easy::Edge::Cell->new(
 	  type => $type, edge => $edge, x => $x, y => $y, after => $after);
   $group->_del_cell($e_cell) if defined $group;
   $cells->{"$x,$y"} = $e_cell;
@@ -318,7 +318,7 @@ sub _repair_group_edge
   # vertical cases
 
   #########################################################################
-  # check for [empty] 
+  # check for [empty]
   #           [ | ]
   $x = $cell->{x}; $y = $cell->{y} - 1;
 
@@ -326,7 +326,7 @@ sub _repair_group_edge
     if (($type & EDGE_START_MASK) == EDGE_START_N);
 
   #########################################################################
-  # check for [ |] 
+  # check for [ |]
   #           [ empty ]
   $y = $cell->{y} + 1;
 
@@ -335,7 +335,7 @@ sub _repair_group_edge
 
   #########################################################################
   # check for [ v ]
-  #           [empty] 
+  #           [empty]
   $y = $cell->{y} + 1;
 
   $self->_check_edge_cell($cell, $x, $y, EDGE_END_S, EDGE_VER, qr/g[tb]/, $rows->{$y}, -1)
@@ -343,7 +343,7 @@ sub _repair_group_edge
 
   #########################################################################
   # check for [ empty ]
-  #           [ ^     ] 
+  #           [ ^     ]
   $y = $cell->{y} - 1;
 
   $self->_check_edge_cell($cell, $x, $y, EDGE_END_N, EDGE_VER, qr/g[tb]/, $rows->{$y}, -1)
@@ -373,7 +373,7 @@ sub _repair_edge
       # delete the start flag
       $cell->{type} &= ~ EDGE_END_S;
 
-      $self->_new_edge_cell($cells, undef, $cell->{edge}, $x, $y, -1, 
+      $self->_new_edge_cell($cells, undef, $cell->{edge}, $x, $y, -1,
           EDGE_VER() + EDGE_END_S() );
       }
     }
@@ -394,7 +394,7 @@ sub _repair_edges
     next unless $cell->isa('Graph::Easy::Edge::Cell');
 
     # skip odd positions
-    next unless ($cell->{x} & 1) == 0 && ($cell->{y} & 1) == 0; 
+    next unless ($cell->{x} & 1) == 0 && ($cell->{y} & 1) == 0;
 
     my $group = $cell->group();
 
@@ -410,7 +410,7 @@ sub _fill_group_cells
   # what group the nearest node is in.
   my ($self, $cells_layout) = @_;
 
-  print STDERR "\n# Padding with fill cells, have ", 
+  print STDERR "\n# Padding with fill cells, have ",
     scalar $self->groups(), " groups.\n" if $self->{debug};
 
   # take a shortcut if we do not have groups
@@ -434,7 +434,7 @@ sub _fill_group_cells
     $cell->{x} = $x;
     $cell->{y} = $y;
 
-    $cells->{"$x,$y"} = $cell; 
+    $cells->{"$x,$y"} = $cell;
     }
 
   $self->{cells} = $cells;		# override with new cell layout
@@ -565,7 +565,7 @@ Graph::Easy::Layout::Repair - Repair spliced layout with group cells
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	my $bonn = Graph::Easy::Node->new(

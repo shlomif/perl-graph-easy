@@ -10,7 +10,7 @@ edge { label-color: green; color: blue; }
 [ One ] => { arrow-style: closed; } [ Three ]
 [ Five ] { fill: maroon; color: yellow; } <=> [ Three ]
 [ One ] .. Test\n label ..> [ Four ]
-[ Three ] { border-style: dashed; } 
+[ Three ] { border-style: dashed; }
 .. Test\n label ..> { arrow-style: closed; } [ Six ] { label: Sixty\n Six\nand\nsix; }
 [ Five ] -  Test label - > { label-color: darkslategrey; color: red; } [ Seven ]
 [ Seven ] -- [ Eight ]

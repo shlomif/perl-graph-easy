@@ -115,9 +115,9 @@ for my $n (qw/Red Green Green2 Blue/)
   my $node = $graph->node($n);
   my $color = lc($node->{name});
   $color =~ s/\d//g;
-  is ($node->attribute('color'), $color, 
+  is ($node->attribute('color'), $color,
     "scopes: $n => $color");
-  is ($node->attribute('shape'), 'circle', 
+  is ($node->attribute('shape'), 'circle',
     "scopes: ${n}'s shope is 'circle'");
   is ($node->attribute('border-style'), 'double',
     "scopes: ${n}'s border-style is 'doube'");
@@ -172,8 +172,8 @@ for my $test (keys %$tests)
   $color = Graph::Easy->color_as_hex( 'hsv(' . $test .')' );
   is ($color, $hex, "color_as_hex(hsv($test))");
   }
-  
-my $color = 
+
+my $color =
   Graph::Easy::Parser::Graphviz->_from_graphviz_color('color',"/accent4/4");
 is ($color, '#ffff99', "/accent4/4 works");
 
@@ -241,7 +241,7 @@ foreach (<DATA>)
     fail($graph->error());
     next;
     }
- 
+
   my $got = scalar $graph->nodes();
 
   my @edges = $graph->edges();
@@ -259,8 +259,8 @@ foreach (<DATA>)
     {
     $got .= "," . $n->label() unless $n->label() =~ /^\s?\z/ || $n->label() eq $n->name();
     $got .= "," . $n->name() unless $n->name() eq '';
-    } 
-  
+    }
+
   my @groups = $graph->groups();
 
   for my $gr ( @groups )

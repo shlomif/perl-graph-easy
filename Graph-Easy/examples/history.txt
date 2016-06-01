@@ -1,4 +1,4 @@
- [ Bonn ] -> [ Berlin ] 
+ [ Bonn ] -> [ Berlin ]
  [ Berlin ] -> [ Frankfurt ]
  [ Frankfurt ] -> [ Dresden ]
  [ Berlin ] -> [ Potsdam ]

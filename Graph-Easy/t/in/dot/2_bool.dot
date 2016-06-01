@@ -1,5 +1,5 @@
 digraph G {
-  node [ center 
+  node [ center
   compound
   concentrate
   constraint

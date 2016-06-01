@@ -31,7 +31,7 @@ my @files = readdir(DIR); closedir(DIR);
 foreach my $f (sort @files)
   {
   next unless -f "layouter/$f";			# only files
-  
+
   next unless $f =~ /\.txt/;			# ignore anything else
 
   print "# at $f\n";
@@ -64,7 +64,7 @@ foreach my $f (sort @files)
     print "# Generated:\n#\n# $ascii\n";
 
     } # for all directions
-  
+
   }
 
 1;

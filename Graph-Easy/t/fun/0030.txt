@@ -5,7 +5,7 @@ node { shape: circle; }
 
 [ main ] { shape: rect; } # this is a comment
 -> [ parse ]
--> [ execute ] 
+-> [ execute ]
 -> [ make_string ] { label: make a\n string; }
 
 [ main ] ..> [ init ]

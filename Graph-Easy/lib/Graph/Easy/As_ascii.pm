@@ -18,7 +18,7 @@ package Graph::Easy::Edge::Cell;
 use strict;
 use warnings;
 
-my $edge_styles = [ 
+my $edge_styles = [
   {
   # style            hor, ver,   cross,	corner (SE, SW, NE, NW)
   'solid'	 => [ '--',  "|", '+', '+','+','+','+' ],	# simple line
@@ -65,12 +65,12 @@ sub _edge_style
   $edge_styles->[$g]->{ $st };
   }
 
-  #    |       |        |        |        :        }       |     
+  #    |       |        |        |        :        }       |
   # ===+=== ###+### ....!.... ~~~+~~~ ----+---  ...+... .-.+.-.-
-  #    |       |        |        |        :        {       |   
+  #    |       |        |        |        :        {       |
 
 my $cross_styles = [
-  # normal cross 
+  # normal cross
   [
     {
     'boldsolid' 	=> '┿',
@@ -83,17 +83,17 @@ my $cross_styles = [
     'dasheddouble' 	=> '╢',
     },
     {
-    'boldsolid'		=> '+',  
-    'dashedsolid'	=> '+',  
+    'boldsolid'		=> '+',
+    'dashedsolid'	=> '+',
     'dottedsolid'	=> '!',
-    'dottedwave'	=> '+',  
-    'doublesolid'	=> '+',  
-    'dot-dashsolid'	=> '+',  
-    'dot-dot-dashsolid'	=> '+',  
-    'soliddotted'	=> '+',  
-    'solidwave'		=> '+',  
-    'soliddashed'	=> '+',  
-    'soliddouble'	=> 'H',  
+    'dottedwave'	=> '+',
+    'doublesolid'	=> '+',
+    'dot-dashsolid'	=> '+',
+    'dot-dot-dashsolid'	=> '+',
+    'soliddotted'	=> '+',
+    'solidwave'		=> '+',
+    'soliddashed'	=> '+',
+    'soliddouble'	=> 'H',
     'wavesolid'		=> '+',
     },
   ],
@@ -107,43 +107,43 @@ my $cross_styles = [
   #        |
   [
     {
-    'solidsolid'		=> '┬',  
-    'boldbold'			=> '┳',  
-    'doubledouble'		=> '╦',  
-    'dasheddashed'		=> '╴',  
-    'dotteddotted'		=> '·',  
+    'solidsolid'		=> '┬',
+    'boldbold'			=> '┳',
+    'doubledouble'		=> '╦',
+    'dasheddashed'		=> '╴',
+    'dotteddotted'		=> '·',
     },
   ],
   # N_E_W  |
   #       -+-
-  [ 
+  [
     {
-    'solidsolid'		=> '┴',  
-    'boldbold'			=> '┻',  
-    'doubledouble'		=> '╩',  
-    'dotteddotted'		=> '·',  
+    'solidsolid'		=> '┴',
+    'boldbold'			=> '┻',
+    'doubledouble'		=> '╩',
+    'dotteddotted'		=> '·',
     },
   ],
   # E_N_S  |
   #        +-
   #        |
-  [ 
+  [
     {
-    'solidsolid'		=> '├',  
-    'boldbold'			=> '┣',  
-    'doubledouble'		=> '╠',  
-    'dotteddotted'		=> ':',  
+    'solidsolid'		=> '├',
+    'boldbold'			=> '┣',
+    'doubledouble'		=> '╠',
+    'dotteddotted'		=> ':',
     },
   ],
   # W_N_S  |
   #       -+
   #        |
-  [ 
+  [
     {
-    'solidsolid'		=> '┤',  
-    'boldbold'			=> '┫',  
-    'doubledouble'		=> '╣',  
-    'dotteddotted'		=> ':',  
+    'solidsolid'		=> '┤',
+    'boldbold'			=> '┫',
+    'doubledouble'		=> '╣',
+    'dotteddotted'		=> ':',
     },
   ] ];
 
@@ -189,10 +189,10 @@ sub _insert_label
   my ($self, $fb, $xs, $ys, $ws, $hs, $align_ver) = @_;
 
   my $align = $self->{edge}->attribute('align');
-  
+
   my ($lines,$aligns) = $self->_aligned_label($align);
 
-  $ys = $self->{h} - scalar @$lines + $ys if $ys < 0; 
+  $ys = $self->{h} - scalar @$lines + $ys if $ys < 0;
 
   $ws ||= 0; $hs ||= 0;
   my $w = $self->{w} - $ws - $xs;
@@ -207,12 +207,12 @@ sub _draw_hor
   my ($self, $fb) = @_;
 
   my $style = $self->_edge_style();
-  
+
   my $w = $self->{w};
   # '-' => '-----', '.-' => '.-.-.-'
   # "(2 + ... )" to get space for the offset
-  my $len = length($style->[0]); 
-  my $line = $style->[0] x (2 + $w / $len); 
+  my $len = length($style->[0]);
+  my $line = $style->[0] x (2 + $w / $len);
 
   # '.-.-.-' => '-.-.-' if $x % $ofs == 1 (e.g. on odd positions)
   my $ofs = $self->{rx} % $len;
@@ -259,7 +259,7 @@ sub _draw_hor
 
   $self->_printfb_line ($fb, $x, $self->{h} - 2, $line);
 
-  $self->_insert_label($fb, $xs, 0, $xs+$xr, 2, 'bottom' )  
+  $self->_insert_label($fb, $xs, 0, $xs+$xr, 2, 'bottom' )
    if ($self->{type} & EDGE_LABEL_CELL);
 
   }
@@ -301,7 +301,7 @@ sub _draw_cross
   {
   # draw a CROSS sections, or a joint (which is a 3/4 cross)
   my ($self, $fb) = @_;
-  
+
   # vertical piece
   my $style = $self->_edge_style( $self->{style_ver} );
 
@@ -318,14 +318,14 @@ sub _draw_cross
     {
     my $h = $self->{h};
     # '|' => '|||||', '{}' => '{}{}{}'
-    $line = $style->[1] x (2 + $h / length($style->[1])); 
+    $line = $style->[1] x (2 + $h / length($style->[1]));
 
     $line = substr($line, 0, $h) if length($line) > $h;
 
     if ($as ne 'none')
       {
       my $ashape = $self->_arrow_shape();
-      substr($line,0,1) = $self->_arrow($as,ARROW_UP, $ashape) 
+      substr($line,0,1) = $self->_arrow($as,ARROW_UP, $ashape)
         if (($flags & EDGE_END_N) != 0);
       substr($line,-1,1) = $self->_arrow($as,ARROW_DOWN, $ashape)
         if (($flags & EDGE_END_S) != 0);
@@ -341,22 +341,22 @@ sub _draw_cross
 
   # horizontal piece
   $style = $self->_edge_style();
-  
+
   my $ashape; $ashape = $self->_arrow_style() if $as ne 'none';
 
   if ($self->{style} ne 'invisible')
     {
     my $w = $self->{w};
     # '-' => '-----', '.-' => '.-.-.-'
-    my $len = length($style->[0]); 
-    $line = $style->[0] x (2 + $w / $len); 
-  
+    my $len = length($style->[0]);
+    $line = $style->[0] x (2 + $w / $len);
+
     # '.-.-.-' => '-.-.-' if $x % $ofs == 1 (e.g. on odd positions)
     my $ofs = $self->{rx} % $len;
     substr($line,0,$ofs) = '' if $ofs != 0;
 
     $line = substr($line, 0, $w) if length($line) > $w;
-  
+
     my $x = 0;
     if (($flags & EDGE_START_W) != 0)
       {
@@ -416,20 +416,20 @@ sub _draw_corner
   # 2 :  +---:    (w-3) = 3 chars wide
   # 3 :  |   :    always 1 char high
   #   .......:
-  #    012345 
+  #    012345
 
   # draw the vertical piece
- 
+
   # get the style
   my $style = $self->_edge_style();
- 
-  my $h = 1; my $y = $self->{h} -1; 
+
+  my $h = 1; my $y = $self->{h} -1;
   if ($type == EDGE_N_E || $type == EDGE_N_W)
     {
-    $h = $self->{h} - 2; $y = 0; 
+    $h = $self->{h} - 2; $y = 0;
     }
   # '|' => '|||||', '{}' => '{}{}{}'
-  my $line = $style->[1] x (1 + $h / length($style->[1])); 
+  my $line = $style->[1] x (1 + $h / length($style->[1]));
   $line = substr($line, 0, $h) if length($line) > $h;
 
   my $as = $self->_arrow_style();
@@ -448,19 +448,19 @@ sub _draw_corner
   my $w = $self->{w} - 3; $y = $self->{h} - 2; my $x = 3;
   if ($type == EDGE_N_W || $type == EDGE_S_W)
     {
-    $w = 2; $x = 0; 
+    $w = 2; $x = 0;
     }
 
   # '-' => '-----', '.-' => '.-.-.-'
-  my $len = length($style->[0]); 
-  $line = $style->[0] x (2 + $w / $len); 
-  
+  my $len = length($style->[0]);
+  $line = $style->[0] x (2 + $w / $len);
+
   # '.-.-.-' => '-.-.-' if $x % $ofs == 1 (e.g. on odd positions)
   my $ofs = ($x + $self->{rx}) % $len;
   substr($line,0,$ofs) = '' if $ofs != 0;
 
   $line = substr($line, 0, $w) if length($line) > $w;
-  
+
   substr($line,-1,1) = ' ' if ($flags & EDGE_START_E) != 0;
   substr($line,0,1) = ' '  if ($flags & EDGE_START_W) != 0;
 
@@ -500,31 +500,31 @@ sub _draw_loop_hor
   # 2 :  +--+  :    (w-6) = 2 chars wide
   # 3 :  |  v  :    1 char high
   #   .........:
-  #    01234567 
+  #    01234567
 
   ############
   #   ..........
-  # 0 :  |  ^  :    ver is h-2 chars high	
+  # 0 :  |  ^  :    ver is h-2 chars high
   # 1 :  |  |  :    label would appear here
   # 2 :  +--+  :    (w-6) = 2 chars wide
   # 3 :        :
   #   .........:
-  #    01234567 
+  #    01234567
 
   # draw the vertical pieces
- 
+
   # get the style
   my $style = $self->_edge_style();
- 
-  my $h = 1; my $y = $self->{h} - 1; 
+
+  my $h = 1; my $y = $self->{h} - 1;
   if ($type == EDGE_S_W_N)
     {
-    $h = $self->{h} - 2; $y = 0; 
+    $h = $self->{h} - 2; $y = 0;
     }
   # '|' => '|||||', '{}' => '{}{}{}'
-  my $line = $style->[1] x (1 + $h / length($style->[1])); 
+  my $line = $style->[1] x (1 + $h / length($style->[1]));
   $line = substr($line, 0, $h) if length($line) > $h;
-  
+
   my $as = $self->_arrow_style();
   my $ashape; $ashape = $self->_arrow_shape() if $as ne 'none';
 
@@ -546,17 +546,17 @@ sub _draw_loop_hor
   my $w = $self->{w} - 6; $y = $self->{h} - 2; my $x = 3;
 
   # '-' => '-----', '.-' => '.-.-.-'
-  my $len = length($style->[0]); 
-  $line = $style->[0] x (2 + $w / $len); 
-  
+  my $len = length($style->[0]);
+  $line = $style->[0] x (2 + $w / $len);
+
   # '.-.-.-' => '-.-.-' if $x % $ofs == 1 (e.g. on odd positions)
   my $ofs = ($x + $self->{rx}) % $len;
   substr($line,0,$ofs) = '' if $ofs != 0;
 
   $line = substr($line, 0, $w) if length($line) > $w;
-  
+
   $self->_printfb_line ($fb, $x, $y, $line);
-  
+
   my $corner_idx = 3; $corner_idx = 5 if $type == EDGE_S_W_N;
 
   # insert the corner characters
@@ -584,7 +584,7 @@ sub _draw_loop_ver
   # 2 :  |   :
   # 3 :  +-> :
   #   .......:
-  #    012345 
+  #    012345
 
   #   ........
   # 0 :      :  label would appear here
@@ -592,17 +592,17 @@ sub _draw_loop_ver
   # 2 :   |  :
   # 3 : <-+  :
   #   .......:
-  #    012345 
+  #    012345
 
   ###########################################################################
   # draw the vertical piece
- 
+
   # get the style
   my $style = $self->_edge_style();
- 
-  my $h = 1; my $y = $self->{h} - 3; 
+
+  my $h = 1; my $y = $self->{h} - 3;
   # '|' => '|||||', '{}' => '{}{}{}'
-  my $line = $style->[1] x (1 + $h / length($style->[1])); 
+  my $line = $style->[1] x (1 + $h / length($style->[1]));
   $line = substr($line, 0, $h) if length($line) > $h;
 
   my $x = 2; $x = $self->{w}-3 if ($type == EDGE_E_S_W);
@@ -615,9 +615,9 @@ sub _draw_loop_ver
   $x = 2; $x = 1 if ($type == EDGE_E_S_W);
 
   # '-' => '-----', '.-' => '.-.-.-'
-  my $len = length($style->[0]); 
-  $line = $style->[0] x (2 + $w / $len); 
-  
+  my $len = length($style->[0]);
+  $line = $style->[0] x (2 + $w / $len);
+
   # '.-.-.-' => '-.-.-' if $x % $ofs == 1 (e.g. on odd positions)
   my $ofs = ($x + $self->{rx}) % $len;
   substr($line,0,$ofs) = '' if $ofs != 0;
@@ -626,7 +626,7 @@ sub _draw_loop_ver
 
   my $as = $self->_arrow_style();
   my $ashape; $ashape = $self->_arrow_shape() if $as ne 'none';
- 
+
   if ($self->{edge}->{bidirectional} && $as ne 'none')
     {
     substr($line,0,1)  = $self->_arrow($as, ARROW_LEFT, $ashape) if (($flags & EDGE_END_W) != 0);
@@ -640,7 +640,7 @@ sub _draw_loop_ver
     substr($line,0,1)  = $self->_arrow($as, ARROW_LEFT, $ashape) if (($flags & EDGE_END_W) != 0);
     substr($line,-1,1) = $self->_arrow($as, ARROW_RIGHT, $ashape) if (($flags & EDGE_END_E) != 0);
     }
-  
+
   $self->_printfb_line ($fb, $x, $self->{h} - 2, $line);
 
   $x = 2; $x = $self->{w}-3 if ($type == EDGE_E_S_W);
@@ -664,7 +664,7 @@ my $draw_dispatch =
   EDGE_HOR() => '_draw_hor',
   EDGE_VER() => '_draw_ver',
 
-  EDGE_S_E() => '_draw_corner', 
+  EDGE_S_E() => '_draw_corner',
   EDGE_S_W() => '_draw_corner',
   EDGE_N_E() => '_draw_corner',
   EDGE_N_W() => '_draw_corner',
@@ -739,12 +739,12 @@ sub _printfb_aligned
   my $y = $y1 + ($h / 2) - (scalar @$lines / 2);
   if ($align_ver eq 'top')
     {
-    $y = $y1; 
+    $y = $y1;
     $y1 = 0;
     }
   if ($align_ver eq 'bottom')
     {
-    $y = $h - scalar @$lines; $y1 = 0; 
+    $y = $h - scalar @$lines; $y1 = 0;
     }
 
   my $xc = ($w / 2);
@@ -832,7 +832,7 @@ sub _printfb_ver
  # T to left
  # T to top
  # T shape (to bottom)
- 
+
  #
  # +-----4-----4------+
  # |     |     |      |
@@ -844,7 +844,7 @@ sub _printfb_ver
  # |     |
  # +-----+
 
-my $border_styles = 
+my $border_styles =
   [
   {
   solid =>		[ '+', '+', '+', '+', '-',   '-',   [ '|'      ], [ '|'     ], '+', '+', '+', '+', '+' ],
@@ -884,14 +884,14 @@ my $border_styles =
  # lower right edge
  # lower left edge
 
-my $rounded_edges = [ '╭', '╮', '╯', '╰', ]; 
+my $rounded_edges = [ '╭', '╮', '╯', '╰', ];
 
  # for ASCII/boxart drawing slopes/slants
  #             lower-left to upper right (repeated twice)
  #                   lower-right to upper left (repeated twice)
 my $slants = [
   # ascii
-  {                    
+  {
   solid	 	 => [ '/'  , '\\'   ],
   dotted	 => [ '.' , '.'     ],
   dashed	 => [ '/ ', '\\ '   ],
@@ -906,7 +906,7 @@ my $slants = [
   wide	 	 => [ '#' , '#'     ],
   },
   # boxart
-  {                     
+  {
   solid	 	 => [ '╱'  , '╲'   ],
   dotted	 => [ '⋰' , '⋱'    ],
   dashed	 => [ '╱ ', '╲ '   ],
@@ -923,9 +923,9 @@ my $slants = [
   ];
 
  # ASCII and box art: the different point shapes and styles
-my $point_shapes = 
+my $point_shapes =
   [ {
-    filled => 
+    filled =>
       {
       'star'		=> '*',
       'square'		=> '#',
@@ -935,7 +935,7 @@ my $point_shapes =
       'diamond'		=> '<>',
       'x'		=> 'X',
       },
-    closed => 
+    closed =>
       {
       'star'		=> '*',
       'square'		=> '#',
@@ -957,7 +957,7 @@ my $point_shapes =
       'diamond'		=> '◆',
       'x'		=> '╳',
       },
-    closed => 
+    closed =>
       {
       'star'		=> '☆',
       'square'		=> '□',
@@ -968,7 +968,7 @@ my $point_shapes =
       'x'		=> '╳',
       },
     }
-  ];  
+  ];
 
 sub _point_style
   {
@@ -1033,9 +1033,9 @@ my $arrow_shapes =
   x => 7,
   };
 
-# todo: ≪ ≫ 
+# todo: ≪ ≫
 
-my $arrow_styles = 
+my $arrow_styles =
   [
     [
     # triangle
@@ -1202,7 +1202,7 @@ sub _draw_border
     # generate the top border
     my $top = $style->[4] x (($self->{w}) / length($style->[4]) + 1);
 
-    my $len = length($style->[4]); 
+    my $len = length($style->[4]);
 
     # for seamless rendering
     if (defined $x)
@@ -1215,7 +1215,7 @@ sub _draw_border
     substr($top,0,1) = $tl if $tl ne '';
 
     $top = substr($top,0,$w) if length($top) > $w;
-    
+
     # top-right corner piece is only there if we have a right border
     substr($top,-1,1) = $style->[1] if $do_right ne 'none';
 
@@ -1241,7 +1241,7 @@ sub _draw_border
     my $bottom = $style->[5] x (($self->{w}) / length($style->[5]) + 1);
 
     my $len = length($style->[5]);
- 
+
     # for seamless rendering
     if (defined $x)
       {
@@ -1302,7 +1302,7 @@ sub _draw_border
 
   $self;
   }
- 
+
 sub _draw_label
   {
   # Draw the node label into the framebuffer
@@ -1320,7 +1320,7 @@ sub _draw_label
     }
 
   #        +----
-  #        | Label  
+  #        | Label
   # 2,1: ----^
 
   my $w = $self->{w} - 4; my $xs = 2;
@@ -1341,7 +1341,7 @@ sub as_ascii
   # renders a node or edge like:
   # +--------+    ..........    ""
   # | A node | or : A node : or " --> "
-  # +--------+    ..........    "" 
+  # +--------+    ..........    ""
   my ($self, $x,$y) = @_;
 
   my $shape = 'rect';
@@ -1354,7 +1354,7 @@ sub as_ascii
     $cell->{w} = $self->{w};
     $cell->{h} = $self->{h};
     $cell->{att}->{label} = $self->label();
-    $cell->{type} = 
+    $cell->{type} =
      Graph::Easy::Edge::Cell->EDGE_HOR +
      Graph::Easy::Edge::Cell->EDGE_LABEL_CELL;
     return $cell->as_ascii();
@@ -1384,7 +1384,7 @@ sub as_ascii
   # "draw" the label into the framebuffer (e.g. the node/edge and the text)
 
   $self->_draw_label($fb, $x, $y, $shape);
-  
+
   join ("\n", @$fb);
   }
 

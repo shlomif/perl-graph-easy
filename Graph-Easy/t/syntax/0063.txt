@@ -5,7 +5,7 @@ node.lilac { background: #deadff; }
 
 [ Bergheim ] { shape: diamond; } ->
 [ Kirchheim ] { shape: triangle; } ->
-[ Weilheim ] { shape: house; } 
+[ Weilheim ] { shape: house; }
 
 [ Wilhelmshaven ] { shape: invisible; } ->
 [ Cuxhaven ] { shape: rounded; } ->

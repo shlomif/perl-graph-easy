@@ -29,7 +29,7 @@ my $vcg_color_by_name = {};
 
 my $vcg_colors = [
   white 	=> 'white',
-  blue  	=> 'blue',	
+  blue  	=> 'blue',
   red 		=> 'red',
   green		=> 'green',
   yellow	=> 'yellow',
@@ -128,7 +128,7 @@ sub _unquote
   # we need to use "[ ]" here, because "\s" also matches 0x0c, and
   # these color codes need to be kept intact:
   $name =~ s/^"[ ]*//; 		# remove left-over quotes
-  $name =~ s/[ ]*"\z//; 
+  $name =~ s/[ ]*"\z//;
 
   # unquote special chars
   $name =~ s/\\([\[\(\{\}\]\)#"])/$1/g;
@@ -234,7 +234,7 @@ sub _match_attributes
 
   my $qr_att = _match_single_attribute();
   my $qr_cmt = _match_multi_line_comment();
- 
+
   qr/\s*\{\s*((?:$qr_att|$qr_cmt)*)\s*\}/;
   }
 
@@ -275,7 +275,7 @@ sub _match_group_start
   }
 
 sub _clean_line
-  { 
+  {
   # do some cleanups on a line before handling it
   my ($self,$line) = @_;
 
@@ -394,7 +394,7 @@ sub _build_match_stack
       if (@{$self->{scope_stack}} == 0)
         {
         print STDERR "# Parser: found main graph\n" if $self->{debug};
-	$self->{_vcg_graph_name} = 'unnamed'; 
+	$self->{_vcg_graph_name} = 'unnamed';
 	$self->_new_scope(1);
         }
       else
@@ -413,7 +413,7 @@ sub _build_match_stack
       my $self = shift;
 
       print STDERR "# Parser: found end of (sub-)graph\n" if $self->{debug};
-      
+
       my $scope = pop @{$self->{scope_stack}};
       return $self->parse_error(0) if !defined $scope;
 
@@ -512,7 +512,7 @@ sub _build_match_stack
 
   # remove multi line comments /* comment */
   $self->_register_handler( $qr_cmt, undef );
-  
+
   # remove single line comment // comment
   $self->_register_handler( qr/^\s*\/\/.*/, undef );
 
@@ -527,7 +527,7 @@ sub _new_node
 #  print STDERR "add_node $name\n";
 
   my $node = $graph->node($name);
- 
+
   if (!defined $node)
     {
     $node = $graph->add_node($name);		# add
@@ -535,7 +535,7 @@ sub _new_node
     # apply attributes from the current scope (only for new nodes)
     my $scope = $self->{scope_stack}->[-1];
     return $self->error("Scope stack is empty!") unless defined $scope;
-  
+
     my $is_group = $scope->{_is_group};
     delete $scope->{_is_group};
     $node->set_attributes($scope->{node});
@@ -827,7 +827,7 @@ sub _textmode_from_vcg
   # remap "textmode: left_justify" to "align: left;"
   my ($graph, $name, $align) = @_;
 
-  $align =~ s/_.*//;	# left_justify => left	
+  $align =~ s/_.*//;	# left_justify => left
 
   ('align', lc($align));
   }
@@ -877,7 +877,7 @@ sub _port_sharing_from_vcg
   my ($graph, $name, $value) = @_;
 
   $value = ($value =~ /yes/i) ? 'yes' : 'no';
- 
+
   ('autojoin', $value, 'autosplit', $value);
   }
 
@@ -887,7 +887,7 @@ sub _inport_sharing_from_vcg
   my ($graph, $name, $value) = @_;
 
   $value = ($value =~ /yes/i) ? 'yes' : 'no';
- 
+
   ('autojoin', $value);
   }
 
@@ -897,7 +897,7 @@ sub _outport_sharing_from_vcg
   my ($graph, $name, $value) = @_;
 
   $value = ($value =~ /yes/i) ? 'yes' : 'no';
- 
+
   ('autosplit', $value);
   }
 
@@ -969,7 +969,7 @@ sub _remap_attributes
       # put the color into the current color map
       $self->_vcg_color_map_entry($1, $att->{$key});
       delete $att->{$key};
-      next; 
+      next;
       }
 
     # remap \fi065 to 'A'

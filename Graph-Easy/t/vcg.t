@@ -103,7 +103,7 @@ $graph = $parser->from_text( <<EOG
 graph: {title: "red vs. black"
 colorentry 42: 128 128 128
 	node: { title: "A" color: 42 }
-	node: { title: "B" color: 1 } 
+	node: { title: "B" color: 1 }
 	edge: { sourcename: "A" targetname: "B" }
 }
 EOG
@@ -173,8 +173,8 @@ $graph = $parser->from_text( <<EOG
 // test
 graph: {
 	node: { title: "A" label: "i065" }
-	node: { 
-	title: "\\fi066" 
+	node: {
+	title: "\\fi066"
 	label: "foo
 	bar
 	baz"

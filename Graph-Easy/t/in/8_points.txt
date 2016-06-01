@@ -1,6 +1,6 @@
 node { shape: point; }
 
-[ A ] 
+[ A ]
  -> [ B ] { point-style: square; }
  -> [ C ] { point-style: dot; }
  -> [ D ] { point-style: circle; }

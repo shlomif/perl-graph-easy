@@ -6,7 +6,7 @@ group.outer { fill: #f07070; }
 ( Internal Network:
   [ Workstation ]
 ) { fill: #70b070; }
-  
+
 [ Workstation ] --> [ Inner Firewall ]
 
 ( DMZ:
@@ -15,7 +15,7 @@ group.outer { fill: #f07070; }
 [ Proxy ] --> [ Database\n Server ]
 ) { class: dmz; }
 
-( Outer: 
+( Outer:
   [ Internet ]
 ) { class: outer }
 

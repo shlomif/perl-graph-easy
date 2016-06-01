@@ -126,7 +126,7 @@ sub _assign_ranks
 
       # If the rank comes from a user-supplied rank, make the next node
       # have an automatic rank (e.g. 4 => -4)
-      $l = -$l if $l > 0; 
+      $l = -$l if $l > 0;
       # -4 > -5
       $l--;
 
@@ -149,7 +149,7 @@ sub _assign_ranks
       # already done? so skip it
       next if defined $n->{rank};
 
-      $n->{rank} = -1; 
+      $n->{rank} = -1;
       $todo->add([-1, $n]);
       # leave the others for later
       last;
@@ -288,7 +288,7 @@ sub _follow_chain
 
       push @rc, [ $ch, $s ];
       # point node to new next node
-      ($next_chain, $max, $next) = 
+      ($next_chain, $max, $next) =
 	($ch, $ch->{len}, $s) if $ch->{len} > $max;
       }
 
@@ -326,7 +326,7 @@ sub _follow_chain
 
     last;
     }
-  
+
   print STDERR "#$indent Chain $node->{_chain} ended at $node->{name}\n" if $self->{debug};
 
   $done;				# return nr of done nodes
@@ -373,10 +373,10 @@ sub _find_chains
     $aa->[2] <=> $bb->[2] ||
     # nodes that have an origin come last
     $aa->[1] <=> $bb->[1] ||
-    # nodes with no predecessorts are to be prefered 
+    # nodes with no predecessorts are to be prefered
     $aa->[0] <=> $bb->[0] ||
     # last resort, alphabetically sorted
-    $a cmp $b 
+    $a cmp $b
    } keys %$p)
     {
     next unless defined $name;		# in case no root was set, first entry
@@ -531,7 +531,7 @@ sub _drop_caches
 
   for my $n (ord_values ( $self->{nodes} ))
     {
-    # XXX after we laid out the individual groups:    
+    # XXX after we laid out the individual groups:
     # skip nodes that are not part of the current group
     #next if $n->{group} && !$self->{graph};
 
@@ -556,11 +556,11 @@ sub _layout
   ###########################################################################
   # do some assorted stuff beforehand
 
-  print STDERR "# Doing layout for ", 
+  print STDERR "# Doing layout for ",
 	(defined $self->{name} ? 'group ' . $self->{name} : 'main graph'),
 	"\n" if $self->{debug};
 
-  # XXX TODO: 
+  # XXX TODO:
   # for each primary group
 #  my @groups = $self->groups_within(0);
 #
@@ -609,7 +609,7 @@ sub _layout
 
   # mark all edges as unprocessed, so that we do not process them twice
   for my $edge (ord_values ( $self->{edges} ))
-    { 
+    {
     $edge->_clear_cells();
     $edge->{_todo} = undef;		# mark as todo
     }
@@ -649,7 +649,7 @@ sub _layout
   # After laying out all chained nodes and their links, we need to resolve
   # left-over edges and links. We do this for each node, and then for each of
   # its edges, but do the edges shortest-first.
- 
+
   for my $n (ord_values ( $self->{nodes} ))
     {
     push @todo, $self->_action( ACTION_NODE, $n, 0 ); # if exists $n->{_todo};
@@ -771,12 +771,12 @@ sub _layout
         {
 #	warn ("Target node $dst->{name} not yet placed");
         $mod = $self->_find_node_place( $dst, 0, undef, $edge );
-	}        
+	}
       if (!defined $src->{x})
         {
 #	warn ("Source node $src->{name} not yet placed");
         $mod = $self->_find_node_place( $src, 0, undef, $edge );
-	}        
+	}
 
       # find path (mod is score modifier, or undef if no path exists)
       $mod = $self->_trace_path( $src, $dst, $edge );
@@ -797,7 +797,7 @@ sub _layout
       {
       # rewind stack
       if (($action_type == ACTION_NODE || $action_type == ACTION_CHAIN))
-        { 
+        {
         print STDERR "# Step $step: Rewind stack for $action->[1]->{name}\n" if $self->{debug};
 
         # undo node placement and free all cells
@@ -809,7 +809,7 @@ sub _layout
       else
         {
         print STDERR "# Step $step: Rewind stack for path from $src->{name} to $dst->{name}\n" if $self->{debug};
-    
+
         # if we couldn't find a path, we need to rewind one more action (just
 	# redoing the path would would fail again!)
 
@@ -830,10 +830,10 @@ sub _layout
   	$tries--;
 	last TRY if $tries == 0;
         next TRY;
-        } 
+        }
       unshift @todo, $action;
       next TRY;
-      } 
+      }
 
     $score += $mod;
     print STDERR "# Step $step: Score is $score\n\n" if $self->{debug};
@@ -973,7 +973,7 @@ sub _optimize_layout
 	  # replace with placeholder (important for HTML output)
 	  $all_cells->{$xy} = Graph::Easy::Edge::Cell::Empty->new (
 	    x => $px, y => $py,
-	  ) unless $all_cells->{$xy};	
+	  ) unless $all_cells->{$xy};
 
           $i--; $c = $f;				# for the next statement
 	  }
@@ -1005,7 +1005,7 @@ Graph::Easy::Layout - Layout the graph from Graph::Easy
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	my $bonn = Graph::Easy::Node->new(

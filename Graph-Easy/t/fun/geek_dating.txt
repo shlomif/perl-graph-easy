@@ -9,7 +9,7 @@ edge.no { label: No; }
 
 [ Start ] { label: Do you have someone in mind? } --> { class: no; flow: forward; } [ GPF ] { fill: #00b0ff; }
 
-[ Start ] --> { class: yes; } 
+[ Start ] --> { class: yes; }
   [ Available ] { label: Are they available? } --> { class: yes; } [ Exist ] { label: Do they know you exist? }
 
   --> { class: yes; } [ Truly remararkable. They're available and they know you exist. Will wonders never cease. ]
@@ -20,20 +20,20 @@ edge.no { label: No; }
 
   [ Available ] --> { class: no; } [ GPF ]
 
-  [ Exist ] --> { class: no; } 
+  [ Exist ] --> { class: no; }
   [ Ask them if they like Computers: ]
   --> { class: no; } [ Ask them if they like 'Star Wars': ]
   --> { class: no; } [ Ask them if they like the "Hitchhiker's Guide': ]
   --> { class: no; } [ Qualities ] { label: Ask them if they have any redeeming qualities at all: }
-  
+
   [ Ask them if they like Computers: ],
   [ Ask them if they like 'Star Wars': ]
   [ Ask them if they like the "Hitchhiker's Guide': ],
   [ Qualities ] --> { class: yes; end: back, 0; } [ Lying ] { label: They're lying. Ditch them; }
- 
+
   [ Qualities ] --> { class: no; } [ Smell ] { label: At least they're honest. Ask them if you smell bad: }
   --> { class: no; } [ Lying ]
   --> [ End ]
-  
+
   [ Smell ] --> { class: yes;} [ Yup, they're honest all right. But now you know they think you smell bad. Ditch them. ] --> [ End ]
 

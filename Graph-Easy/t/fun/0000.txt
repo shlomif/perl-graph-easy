@@ -12,7 +12,7 @@ node.red { background: red; }
  [ ns ] -> [ logs ]
  [ ns ] -> [ gfx ] -> [ vgui ]
  [ addons ] -> [ amxmodx ] -> [ configs ] { class: red }
- 
+
  [ amxmodx ] -> [ data ] -> [ lang ]
  [ amxmodx ] -> [ dlls ]
  [ amxmodx ] -> [ plugins ] { class: red }

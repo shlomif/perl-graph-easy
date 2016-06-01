@@ -37,7 +37,7 @@ use constant {
   GROUP_MAX		=> 5, 	# max number
   };
 
-my $border_styles = 
+my $border_styles =
   {
   # type		    top,	bottom, left,   right,	class
   GROUP_INNER()		=> [ 0,		0,	0,	0,	['gi'] ],
@@ -63,7 +63,7 @@ sub _css
   for my $type (0 .. 5)
     {
     my $b = $border_styles->{$type};
-  
+
     # If border eq 'none', this would needlessly repeat the "border: none"
     # from the general group class.
     next if $border eq 'none';
@@ -98,11 +98,11 @@ sub _init
   {
   # generic init, override in subclasses
   my ($self,$args) = @_;
-  
+
   $self->{class} = 'group';
   $self->{cell_class} = ' gi';
   $self->{name} = '';
-  
+
   $self->{'x'} = 0;
   $self->{'y'} = 0;
 
@@ -111,7 +111,7 @@ sub _init
     {
     $self->{$k} = $args->{$k};
     }
- 
+
   if (defined $self->{group})
     {
     # register ourselves at this group
@@ -120,7 +120,7 @@ sub _init
     $self->{class} = $self->{group}->{class};
     $self->{class} = 'group' unless defined $self->{class};
     }
- 
+
   $self;
   }
 
@@ -171,7 +171,7 @@ sub _set_label
   my $self = shift;
 
   $self->{has_label} = 1;
- 
+
   $self->{name} = $self->{group}->label();
   }
 
@@ -228,10 +228,10 @@ sub as_ascii
     # draw our border into the framebuffer
 
     my $c = $self->{cell_class};
-  
+
     my $b_top = $border_style;
     my $b_left = $border_style;
-    my $b_right = $border_style; 
+    my $b_right = $border_style;
     my $b_bottom = $border_style;
     if ($c !~ 'ga')
       {
@@ -254,7 +254,7 @@ sub as_ascii
     $ys = 0 if $border_style eq 'none';
     my $h = $self->{h} - 1; $h ++ if $border_style eq 'none';
 
-    $self->_printfb_aligned ($fb, 0, $ys, $self->{w}, $h, 
+    $self->_printfb_aligned ($fb, 0, $ys, $self->{w}, $h,
 	$self->_aligned_label($align), 'middle');
     }
 

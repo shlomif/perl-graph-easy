@@ -107,7 +107,7 @@ sub _layout_force
 
 	my $r = $dx * $dx + $dy * $dy;
 
-	$r = 0.01 if $r < 0.01;			# too small? 
+	$r = 0.01 if $r < 0.01;			# too small?
 	if ($r < 4)
 	  {
 	  # not too big
@@ -138,7 +138,7 @@ sub _layout_force
 	my $dy = -($n->{y} - $n2->{y}) / 2;
 
 	print STDERR "# Spring force between $n->{name} and $n2->{name}: fx $dx, fy $dy\n";
-	$n->{_x_force} += $dx; 
+	$n->{_x_force} += $dx;
 	$n->{_y_force} += $dy;
 	}
 
@@ -155,7 +155,7 @@ sub _layout_force
 
       print STDERR "# $n->{name}: Final force: fx $n->{_x_force}, fy $n->{_y_force}\n";
 
-      $energy += $n->{_x_force} * $n->{_x_force} + $n->{_x_force} * $n->{_y_force}; 
+      $energy += $n->{_x_force} * $n->{_x_force} + $n->{_x_force} * $n->{_y_force};
 
       print STDERR "# Net energy: $energy\n";
       }
@@ -195,7 +195,7 @@ Graph::Easy::Layout::Force - Force-based layouter for Graph::Easy
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	$graph->add_edge ('Bonn', 'Berlin');
@@ -207,7 +207,7 @@ Graph::Easy::Layout::Force - Force-based layouter for Graph::Easy
 	print $graph->as_ascii( );
 
 	# prints:
-	
+
 	#   +------------------------+
 	#   |                        v
 	# +------+     +-----+     +--------+

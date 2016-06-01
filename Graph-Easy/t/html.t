@@ -109,7 +109,7 @@ $html = $graph->as_html();
 unlike ($html, qr/border-bottom:.*#0000ff/, 'no edge got blue');
 unlike ($html, qr/border-bottom:.*;\s*color: #0000ff/, 'no edge got blue');
 
-like ($html, qr/border-bottom:.*#008000.*;\s*color: #ff0000/, 
+like ($html, qr/border-bottom:.*#008000.*;\s*color: #ff0000/,
   'color green, label-color red');
 
 #############################################################################
@@ -174,7 +174,7 @@ $edge_html = <<EDGE_CELL
 <td colspan=2 rowspan=2 class="edge lh" style="border-bottom: solid 2px #ffa500;" title="Vrooom!"><a href='http://bloodgate.com' style='color: #ffa500; text-decoration: none; font-size: 1.5em;'>Schiff</a></td>
 EDGE_CELL
 ;
-my $like = quotemeta($edge_html); 
+my $like = quotemeta($edge_html);
 
 like ($html, qr/$like/, 'graph->as_html() contains proper edge html');
 
@@ -198,7 +198,7 @@ $edge_html = <<EDGE_CELL
 EDGE_CELL
 ;
 
-$like = quotemeta($edge_html); 
+$like = quotemeta($edge_html);
 $html = $graph->as_html();
 like ($html, qr/$like/, 'edge->as_html()');
 
@@ -209,7 +209,7 @@ $edge_html = <<EDGE_CELL
 EDGE_CELL
 ;
 
-$like = quotemeta($edge_html); 
+$like = quotemeta($edge_html);
 $html = $graph->as_html();
 like ($html, qr/$like/, 'edge->as_html()');
 
@@ -223,7 +223,7 @@ $edge_html = <<EDGE_CELL
 EDGE_CELL
 ;
 
-$like = quotemeta($edge_html); 
+$like = quotemeta($edge_html);
 $html = $graph->as_html();
 like ($html, qr/$like/, 'edge->as_html()');
 
@@ -424,9 +424,9 @@ $A->set_attribute('class', 'yellow');
 
 $html = $graph->as_html_file();
 
-like ($html, 
+like ($html,
       qr/node_yellow(.|\n)*background: #fbb4ae;/, 'background is not 1');
-like ($html, 
+like ($html,
       qr/node_yellow(.|\n)*color: silver;/, 'color is silver');
 
 #############################################################################

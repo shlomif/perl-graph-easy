@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
 use strict;
 use Graph::Easy;
@@ -160,7 +160,7 @@ sub crawl {
     # and mention the redirect in the label
     $source->set_attribute('label', "$old\\n($title)");
     # now force edges to come from that node
-    $title = $old; 
+    $title = $old;
     }
 
   # iterate over all links

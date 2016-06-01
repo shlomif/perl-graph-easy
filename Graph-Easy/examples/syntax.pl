@@ -16,7 +16,7 @@
 
 BEGIN
   {
-  chdir 'examples' if -d 'examples'; 
+  chdir 'examples' if -d 'examples';
   use lib '../lib';
   }
 
@@ -92,7 +92,7 @@ sub _for_all_files
     next unless -f $f;			# not a file?
 
     print STDERR "# at file $f\n";
- 
+
     open FILE, "$f" or die ("Cannot read '$f': $!");
     local $/ = undef;
     my $input = <FILE>;
@@ -142,10 +142,10 @@ sub out
 
   # set unique ID for CSS
   $graph->id($ID++);
-  
+
   my $t = $graph->nodes() . ' Nodes, ' . $graph->edges . ' Edges';
   my $n = $dir."_$file";
- 
+
   $dir = ucfirst($dir);
 
   # get comment
@@ -157,10 +157,10 @@ sub out
   my $name = $comment || $t;
   push @toc, [ $n, $name ];
 
-  my $out = 
+  my $out =
   "<style type='text/css'>\n" .
   "<!--\n" .
-  $graph->css() . 
+  $graph->css() .
   "-->\n" .
   "</style>\n";
 
@@ -169,22 +169,22 @@ sub out
     $out .=
     "<a name=\"$n\"></a><h2>$dir: $name</h2>\n" .
     "<a class='top' href='#top' title='Go to the top'>Top -^</a>\n".
-     "<div class='text'>\n"; 
-  
+     "<div class='text'>\n";
+
     $out .= "<span style='color: red; font-weight: bold;'>Error: </span>" .
       $graph->error() if $graph->error();
 
-    my $input =  
-     "<div style='float: left;'>\n" . 
-     " <h3>Input</h3>\n" . 
-     " <pre>$txt</pre>\n</div>" . 
-     "<div style='float: left;'>\n" . 
-     " <h3>As Text</h3>\n" . 
+    my $input =
+     "<div style='float: left;'>\n" .
+     " <h3>Input</h3>\n" .
+     " <pre>$txt</pre>\n</div>" .
+     "<div style='float: left;'>\n" .
+     " <h3>As Text</h3>\n" .
      "<pre>" . $graph->as_txt() . "</pre>\n</div>";
- 
+
     $out .= $input .
-     "<div style='float: left;'>\n" . 
-     "<h3>As HTML:</h3>\n" . 
+     "<div style='float: left;'>\n" .
+     "<h3>As HTML:</h3>\n" .
      $graph->$method() . "\n</div>\n";
     $out .= "<div class='clear'>&nbsp;</div></div>\n\n";
     }
@@ -202,7 +202,7 @@ sub out
 
     $out .= $graph->$method() . "\n" .
             "<div class='clear'></div>\n\n";
-    # write out the input/text 
+    # write out the input/text
     }
 
   $out;

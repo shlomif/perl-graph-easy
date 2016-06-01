@@ -50,7 +50,7 @@ if ($help_requested > 0)
     system('perldoc', $0);
     exit 2;
     }
-  Pod::Usage::pod2usage( { -exitval => 2, -verbose => $help_requested } ); 
+  Pod::Usage::pod2usage( { -exitval => 2, -verbose => $help_requested } );
   }
 
 my $verbose = $opt->{verbose};
@@ -94,7 +94,7 @@ die ($error) if $error;
 
 if ($opt->{stats})
   {
-  print STDERR "\nInput is a ", 
+  print STDERR "\nInput is a ",
 	$graph->is_simple() ? 'simple' : 'multi-edged',
 	", ",
 	$graph->is_undirected() ? 'undirected' : 'directed',
@@ -251,11 +251,11 @@ sub get_options
     $opt->{input} = \*STDIN;
     $opt->{inputname} = 'STDIN';
     }
-  else 
+  else
    {
    $opt->{inputname} = $opt->{input};
    }
- 
+
   # This code gets confused if the user specified multiple options. Not much
   # can be done about that except whack the user with something heavy:
   for my $format (qw/ascii boxart html svg txt graphviz vcg gdl graphml/, @external )
@@ -310,7 +310,7 @@ sub get_options
       binmode $opt->{output}, ':utf8';
       }
     }
-    
+
   if ($opt->{as} !~ $qr_ext)
     {
     binmode ($opt->{output}, ':utf8') or die ("Cannot do binmode(output,':utf8')");
@@ -406,13 +406,13 @@ In addition, the following formats are understood and piped through the program
 specified with the --renderer option (default: dot):
 
     bmp		Windows bitmap
-    gif		GIF 
+    gif		GIF
     hpgl	HP-GL/2 vector graphic
     jpg		JPEG
     pcl		PCL printer language
     pdf		PDF
     png		PNG
-    ps		Postscript 
+    ps		Postscript
     ps2		Postscript with PDF notations (see graphviz documentation)
     tga		Targa bitmap
     tif		TIFF bitmap
@@ -571,7 +571,7 @@ Given exactly one of these options, produces the desired output format.
 
 	echo "[ Bonn ] -- car --> [ Berlin ], [ Ulm ]" | graph-easy --dot
 	digraph GRAPH_0 {
-	
+
 	  edge [ arrowhead=open ];
 	  graph [ rankdir=LR ];
 	  node [
@@ -579,10 +579,10 @@ Given exactly one of these options, produces the desired output format.
 	    fillcolor=white,
 	    style=filled,
 	    shape=box ];
-	
+
 	  Bonn -> Ulm [ label=car ]
 	  Bonn -> Berlin [ label=car ]
-	
+
 	}
 
 =head2 VCG example output
@@ -590,14 +590,14 @@ Given exactly one of these options, produces the desired output format.
 	echo "[ Bonn ] -- car --> [ Berlin ], [ Ulm ]" | graph-easy --vcg
 	graph: {
 	  title: "Untitled graph"
-	
+
 	  node: { title: "Berlin" }
 	  node: { title: "Bonn" }
 	  node: { title: "Ulm" }
-	
+
 	  edge:  { label: "car" sourcename: "Bonn" targetname: "Ulm" }
 	  edge:  { label: "car" sourcename: "Bonn" targetname: "Berlin" }
-	
+
 	}
 
 =head2 GDL example output
@@ -608,15 +608,15 @@ look almost the same as VCG:
 	echo "[ Bonn ] -- car --> [ Berlin ], [ Ulm ]" | graph-easy --gdl
 	graph: {
 	  title: "Untitled graph"
-	
+
 	  node: { title: "Berlin" }
 	  node: { title: "Bonn" }
 	  node: { title: "Ulm" }
-	
+
 	  edge:  { label: "car" source: "Bonn" target: "Ulm" }
 	  edge:  { label: "car" source: "Bonn" target: "Berlin" }
 
-	}	
+	}
 
 =head2 GraphML example output
 
@@ -628,11 +628,11 @@ GraphML is XML:
 	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	    xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
 	     http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
-	
+
 	  <!-- Created by Graph::Easy v0.58 at Mon Aug 20 00:01:25 2007 -->
-	
+
 	  <key id="d0" for="edge" attr.name="label" attr.type="string"/>
-	
+
 	  <graph id="G" edgedefault="directed">
 	    <node id="Berlin">
         </node>
@@ -656,7 +656,7 @@ format since every graph language out there has features that are unique to
 only this language.
 
 In addition, the conversion process always converts the input first into an
-L<Graph::Easy> graph, and then to the desired output format. 
+L<Graph::Easy> graph, and then to the desired output format.
 
 This means that only features and attributes that are actually valid in
 Graph::Easy are supported yet. Work in making Graph::Easy an universal

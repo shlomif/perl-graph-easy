@@ -2,6 +2,6 @@
 
 -> [ B ] { origin: C; offset: 1,1; }
 -> [ C ] { origin: D; offset: 1,1; }
--> [ D ] 
+-> [ D ]
 -> [ E ]
 

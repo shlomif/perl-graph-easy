@@ -91,7 +91,7 @@ like ('[ ]', $node_qr, '[ ] is a node');
 #############################################################################
 # check that setting a new subclass invalidates the cache in Base.pm
 
-$graph = Graph::Easy::Parser->from_text( 
+$graph = Graph::Easy::Parser->from_text(
   <<EOF
 group.local { fill: yellow; }
 
@@ -132,7 +132,7 @@ foreach (<DATA>)
   if (!defined $graph || $graph->error() || $parser->error())
     {
     my $error = $parser->error();
-    $error = $graph->error() if ref($graph) && $graph->error(); 
+    $error = $graph->error() if ref($graph) && $graph->error();
     if ($result =~ /ERROR/)
       {
       isnt ($error, '', 'got some error');
@@ -143,7 +143,7 @@ foreach (<DATA>)
       }
     next;
     }
- 
+
   my $got = scalar $graph->nodes();
 
   my @edges = $graph->edges();
@@ -161,8 +161,8 @@ foreach (<DATA>)
     {
     $got .= "," . $n->label() unless $n->label() =~ /^\s?\z/ || $n->label() eq $n->name();
     $got .= "," . $n->name() unless $n->name() eq '';
-    } 
-  
+    }
+
   my @groups = $graph->groups();
 
   for my $gr ( @groups )

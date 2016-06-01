@@ -192,14 +192,14 @@ sub _graphviz_remap_edge_color
   {
   my ($self, $name, $color, $object) = @_;
 
-  my $style = ref($object) ? 
-    $object->attribute('style') : 
+  my $style = ref($object) ?
+    $object->attribute('style') :
     $self->attribute('edge','style');
 
   if (!defined $color)
     {
-    $color = ref($object) ? 
-      $object->attribute('color') : 
+    $color = ref($object) ?
+      $object->attribute('color') :
       $self->attribute('edge','color');
     }
 
@@ -233,7 +233,7 @@ sub _graphviz_remap_edge_style
   $style = 'setlinewidth(2), dashed' if $style =~ /^bold-dash/;
   $style = 'setlinewidth(5)' if $style =~ /^broad/;
   $style = 'setlinewidth(11)' if $style =~ /^wide/;
-  
+
   return (undef, undef) if $style eq 'solid';	# default style can be suppressed
 
   ($name, $style);
@@ -243,7 +243,7 @@ sub _graphviz_remap_node_rotate
   {
   my ($graph, $name, $angle, $self) = @_;
 
-  # do this only for objects, not classes 
+  # do this only for objects, not classes
   return (undef,undef) unless ref($self) && defined $angle;
 
   return (undef,undef) if $angle == 0;
@@ -258,7 +258,7 @@ sub _graphviz_remap_port
   {
   my ($graph, $name, $side, $self) = @_;
 
-  # do this only for objects, not classes 
+  # do this only for objects, not classes
   return (undef,undef) unless ref($self) && defined $side;
 
   # XXX TODO
@@ -326,7 +326,7 @@ sub _graphviz_remap_border_style
   return (undef,undef) if $shape =~ /^(none|invisible|img|point)\z/;
 
   $style = $node->attribute('borderstyle') unless defined $style;
- 
+
   # valid styles are: solid dashed dotted bold invis
 
   $style = '' unless defined $style;
@@ -353,7 +353,7 @@ sub _graphviz_remap_border_style
     my $fill = 'white'; $fill = $node->color_attribute('fill') if ref($node);
     $style = 'filled'; @rc = ('color', $fill);
     }
-  
+
   # default style can be suppressed
   return (undef, undef) if $style =~ /^(|solid)\z/ && $shape ne 'rounded';
 
@@ -372,9 +372,9 @@ sub _graphviz_remap_link
   {
   my ($self, $name, $l, $object) = @_;
 
-  # do this only for objects, not classes 
+  # do this only for objects, not classes
   return (undef,undef) unless ref($object);
-  
+
   $l = $object->link() unless defined $l;
 
   ('URL', $l);
@@ -384,9 +384,9 @@ sub _graphviz_remap_label_color
   {
   my ($graph, $name, $color, $self) = @_;
 
-  # do this only for objects, not classes 
+  # do this only for objects, not classes
   return (undef,undef) unless ref($self);
-  
+
   # no label => no color nec.
   return (undef, $color) if ($self->label()||'') eq '';
 
@@ -426,7 +426,7 @@ sub _graphviz_remap_arrow_style
   my ($self, $name, $style) = @_;
 
   my $s = 'normal';
- 
+
   $s = $style if $style =~ /^(none|open)\z/;
   $s = 'empty' if $style eq 'closed';
 
@@ -554,7 +554,7 @@ sub _generate_group_edge
 
   $e->{_p} = undef;				# mark as processed
 
-  my $att = $a; 
+  my $att = $a;
   $att .= ', ' . $b if $b ne ''; $att =~ s/^,//;
   if ($att ne '')
     {
@@ -581,7 +581,7 @@ sub _insert_edge_attribute
   # remove any potential old attribute with the same name
   my $att_name = $new_att; $att_name =~ s/=.*//;
   $att =~ s/$att_name=("[^"]+"|[^\s]+)//;
-  
+
   # insert the new attribute at the end
   $att =~ s/\s?\]/,$new_att ]/;
 
@@ -603,7 +603,7 @@ sub _generate_edge
   my ($self, $e, $indent) = @_;
 
   # skip links from/to groups, these will be done later
-  return '' if 
+  return '' if
     $e->{from}->isa('Graph::Easy::Group') ||
     $e->{to}->isa('Graph::Easy::Group');
 
@@ -641,7 +641,7 @@ sub _generate_edge
       if (!defined $invis_id)
 	{
 	# create the invisible helper node
-	# find a name for it, carefully avoiding names of other nodes: 
+	# find a name for it, carefully avoiding names of other nodes:
 	$self->{_graphviz_invis_id}++ while (defined $self->node($self->{_graphviz_invis_id}));
 	$invis_id = $self->{_graphviz_invis_id}++;
 
@@ -726,7 +726,7 @@ sub _generate_edge
   $txt . "$indent$first $self->{_edge_type} $other$edge_att\n";		# return edge text
   }
 
-sub _order_group 
+sub _order_group
   {
   my ($self,$group) = @_;
   $group->{_order}++;
@@ -737,7 +737,7 @@ sub _order_group
   }
 
 
-sub _as_graphviz_group 
+sub _as_graphviz_group
   {
   my ($self,$group) = @_;
 
@@ -786,7 +786,7 @@ sub _as_graphviz_group
       $att .= $indent."$name=$v;\n";
       }
     $txt .= $att . "\n" if $att ne '';
- 
+
     # output nodes (w/ or w/o attributes) in that group
     for my $n ($group->sorted_nodes())
       {
@@ -807,7 +807,7 @@ sub _as_graphviz_group
       }
 
     $txt .= $indent."}\n";
-   
+
    return $txt;
   }
 
@@ -838,7 +838,7 @@ sub _as_graphviz
   # for LR, BT layouts
   $self->{_flip_edges} = 0;
   $self->{_flip_edges} = 1 if $flow == 270 || $flow == 0;
-  
+
   my $groups = $self->groups();
 
   # to keep track of invisible helper nodes
@@ -858,7 +858,7 @@ sub _as_graphviz
     # per default, our nodes are rectangular, white, filled boxes
     if ($class eq 'node')
       {
-      $out->{shape} = 'box' unless $out->{shape}; 
+      $out->{shape} = 'box' unless $out->{shape};
       $out->{style} = 'filled' unless $out->{style};
       $out->{fontsize} = '11' unless $out->{fontsize};
       $out->{fillcolor} = 'white' unless $out->{fillcolor};
@@ -916,10 +916,10 @@ sub _as_graphviz
       {
       $n->{_p} = undef;			# mark as processed
       $count++;
-      $txt .= "  " . $n->as_graphviz_txt() . $att . "\n"; 
+      $txt .= "  " . $n->as_graphviz_txt() . $att . "\n";
       }
     }
- 
+
   $txt .= "\n" if $count > 0;		# insert a newline
 
   my @nodes = $self->sorted_nodes();
@@ -951,7 +951,7 @@ sub _as_graphviz
 
   foreach my $e (ord_values $self->{edges})
     {
-    $txt .= $self->_generate_group_edge($e, '  ') 
+    $txt .= $self->_generate_group_edge($e, '  ')
      if $e->{from}->isa('Graph::Easy::Group') ||
         $e->{to}->isa('Graph::Easy::Group');
     }
@@ -1039,14 +1039,14 @@ sub attributes_as_graphviz
     delete $a->{dir};
     my ($n,$s) = Graph::Easy::_graphviz_remap_arrow_style(
 	$self,'', $self->attribute('arrowstyle'));
-    $a->{arrowhead} = $s; 
-    $a->{arrowtail} = $s; 
+    $a->{arrowhead} = $s;
+    $a->{arrowtail} = $s;
     }
   if ($self->{undirected})
     {
     delete $a->{dir};
-    $a->{arrowhead} = 'none'; 
-    $a->{arrowtail} = 'none'; 
+    $a->{arrowhead} = 'none';
+    $a->{arrowtail} = 'none';
     }
 
   if (!$self->isa_cell())
@@ -1074,13 +1074,13 @@ sub attributes_as_graphviz
     {
     require Graph::Easy::As_ascii;		# for _u8 and point-style
 
-    my $style = $self->_point_style( 
-	$self->attribute('pointshape'), 
+    my $style = $self->_point_style(
+	$self->attribute('pointshape'),
 	$self->attribute('pointstyle') );
 
     $a->{label} = $style;
     # for point-shaped invisible nodes, set height/width = 0
-    $a->{width} = 0, $a->{height} = 0 if $style eq '';  
+    $a->{width} = 0, $a->{height} = 0 if $style eq '';
     }
   if ($shape eq 'invisible')
     {
@@ -1160,7 +1160,7 @@ sub _html_like_label
       {
       # need some spacers
       $label .= '<TD BORDER="0" COLSPAN="' . ($x - $old_x) . '"></TD>';
-      } 
+      }
     $label .= '<TD BORDER="1" PORT="' . $portname . '">' . $l . '</TD>';
     $old_y = $y + $n->{cy}; $old_x = $x + $n->{cx};
     }
@@ -1197,7 +1197,7 @@ sub as_graphviz_txt
 
   $name;
   }
- 
+
 1;
 __END__
 
@@ -1208,7 +1208,7 @@ Graph::Easy::As_graphviz - Generate graphviz description from graph object
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	my $bonn = Graph::Easy::Node->new(

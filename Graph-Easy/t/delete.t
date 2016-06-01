@@ -91,12 +91,12 @@ sub is_ok
   {
   my $graph = shift;
 
-  is ($graph->nodes(), 2, '2 nodes'); 
-  is ($graph->edges(), 1, '1 edge'); 
+  is ($graph->nodes(), 2, '2 nodes');
+  is ($graph->edges(), 1, '1 edge');
 
   my $t = '';
   for my $n (sort { $a->{name} cmp $b->{name} } $graph->nodes())
-    { 
+    {
     $t .= $n->name();
     }
   is ($t, 'BerlinBonn', 'two nodes');
@@ -107,7 +107,7 @@ sub is_ok
   is (scalar keys %{$bonn->{edges}}, 1, 'one edge');
   is (scalar keys %{$berlin->{edges}}, 1, 'one edge');
 
-  my $ids = join (',', 
+  my $ids = join (',',
     keys %{$bonn->{edges}},
     keys %{$berlin->{edges}},
     keys %{$graph->{edges}} );

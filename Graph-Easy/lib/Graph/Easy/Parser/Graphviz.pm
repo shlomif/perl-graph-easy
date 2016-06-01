@@ -68,7 +68,7 @@ sub reset
   $self;
   }
 
-# map "&tilde;" to "~" 
+# map "&tilde;" to "~"
 my %entities = (
   'amp'    => '&',
   'quot'   => '"',
@@ -339,7 +339,7 @@ sub _unquote_attribute
       $val = $1; $val = ' ' if $val eq '';
       }
     }
-  
+
   my $v = $self->_unquote($val);
 
   # Now HTML labels always start with "<", while non-HTML labels
@@ -381,7 +381,7 @@ sub _unquote
 
   # "foo bar" => foo bar
   $name =~ s/^"\s*//; 		# remove left-over quotes
-  $name =~ s/\s*"\z//; 
+  $name =~ s/\s*"\z//;
 
   # unquote special chars
   $name =~ s/\\([\[\(\{\}\]\)#"])/$1/g;
@@ -390,7 +390,7 @@ sub _unquote
   }
 
 sub _clean_line
-  { 
+  {
   # do some cleanups on a line before handling it
   my ($self,$line) = @_;
 
@@ -522,7 +522,7 @@ sub _match_edge
 sub _match_html_regexps
   {
   # Return hash with regexps matching different parts of an HTML label.
-  my $qr = 
+  my $qr =
   {
     # BORDER="2"
     attribute 	=> qr/\s*([A-Za-z]+)\s*=\s*"((?:\\"|[^"])*)"/,
@@ -558,7 +558,7 @@ sub _match_html
   # < <TABLE> .. </TABLE> >
   qr/<$qr->{table}(?:$qr->{row})*$qr->{table_end}\s*>/;
   }
-  
+
 sub _match_single_attribute
   {
   my $qr_html = _match_html();
@@ -614,7 +614,7 @@ sub _match_attributes
   my $qr_att = _match_single_attribute();
   my $qr_satt = _match_special_attribute();
   my $qr_cmt = _match_multi_line_comment();
- 
+
   qr/\s*\[\s*((?:$qr_att|$qr_satt|$qr_cmt)*)\s*\];?/;
   }
 
@@ -633,7 +633,7 @@ sub _match_optional_attributes
   my $qr_att = _match_single_attribute();
   my $qr_satt = _match_special_attribute();
   my $qr_cmt = _match_multi_line_comment();
- 
+
   qr/\s*(\[\s*((?:$qr_att|$qr_satt|$qr_cmt)*)\s*\])?;?/;
   }
 
@@ -702,7 +702,7 @@ sub _add_group_match
       $self->_new_scope( 1 );
       1;
       } );
-  
+
   # "{ "
   $self->_register_handler( $qr_pseudo_group_start,
     sub
@@ -733,7 +733,7 @@ sub _add_group_match
       else { print STDERR "# Parser: end scope\n" if $self->{debug}; }
 
       1;
-      }, 
+      },
     sub
       {
       my ($self, $line) = @_;
@@ -746,7 +746,7 @@ sub _add_group_match
     sub
       {
       my $self = shift;
- 
+
       my $scope = pop @{$self->{scope_stack}};
       return $self->parse_error(0) if !defined $scope;
 
@@ -811,29 +811,29 @@ sub _build_match_stack
 
   # remove multi line comments /* comment */
   $self->_register_handler( qr/^$qr_cmt/, undef );
-  
+
   # remove single line comment // comment
   $self->_register_handler( qr/^\s*\/\/.*/, undef );
-  
+
   # simple remove the graph start, but remember that we did this
-  $self->_register_handler( qr/^\s*((?i)strict)?$qr_ocmt((?i)digraph|graph)$qr_ocmt$qr_node$qr_ocmt\{/, 
-    sub 
+  $self->_register_handler( qr/^\s*((?i)strict)?$qr_ocmt((?i)digraph|graph)$qr_ocmt$qr_node$qr_ocmt\{/,
+    sub
       {
       my $self = shift;
-      return $self->parse_error(6) if @{$self->{scope_stack}} > 0; 
-      $self->{_graphviz_graph_name} = $3; 
+      return $self->parse_error(6) if @{$self->{scope_stack}} > 0;
+      $self->{_graphviz_graph_name} = $3;
       $self->_new_scope(1);
       $self->{_graph}->set_attribute('type','undirected') if lc($2) eq 'graph';
       1;
       } );
 
   # simple remove the graph start, but remember that we did this
-  $self->_register_handler( qr/^\s*(strict)?$qr_ocmt(di)?graph$qr_ocmt\{/i, 
-    sub 
+  $self->_register_handler( qr/^\s*(strict)?$qr_ocmt(di)?graph$qr_ocmt\{/i,
+    sub
       {
       my $self = shift;
-      return $self->parse_error(6) if @{$self->{scope_stack}} > 0; 
-      $self->{_graphviz_graph_name} = 'unnamed'; 
+      return $self->parse_error(6) if @{$self->{scope_stack}} > 0;
+      $self->{_graphviz_graph_name} = 'unnamed';
       $self->_new_scope(1);
       $self->{_graph}->set_attribute('type','undirected') if lc($2) ne 'di';
       1;
@@ -843,12 +843,12 @@ sub _build_match_stack
   $self->_register_handler( qr/^\s*;/, undef );
 
   # cluster/subgraph "subgraph G { .. }"
-  # scope (dummy group): "{ .. }" 
+  # scope (dummy group): "{ .. }"
   # scope/group/subgraph end: "}"
   $self->_add_group_match();
 
   # node [ color="red" ] etc.
-  # The "(?i)" makes the keywords match case-insensitive. 
+  # The "(?i)" makes the keywords match case-insensitive.
   $self->_register_handler( qr/^\s*((?i)node|graph|edge)$qr_ocmt$qr_attr/,
     sub
       {
@@ -865,7 +865,7 @@ sub _build_match_stack
 	my $s = $scope->{$type};
 	for my $k (sort keys %$att)
 	  {
-          $s->{$k} = $att->{$k}; 
+          $s->{$k} = $att->{$k};
 	  }
 	}
       else
@@ -930,7 +930,7 @@ sub _build_match_stack
       my $n1 = $1;
       my $port = $2;
       push @{$self->{stack}},
-        $self->_new_nodes ($n1, $self->{group_stack}, {}, $port, $self->{stack}); 
+        $self->_new_nodes ($n1, $self->{group_stack}, {}, $port, $self->{stack});
 
       if (defined $self->{left_edge})
         {
@@ -945,7 +945,7 @@ sub _build_match_stack
 	  my $scope = $self->{scope_stack}->[-1];
           $edge->set_attributes($scope->{edge}) if $scope;
 
-	  # override with the local attributes 
+	  # override with the local attributes
 	  # 'string' => [ 'string' ]
 	  # [ { hash }, 'string' ] => [ { hash }, 'string' ]
 	  my $e = $edge_atr; $e = [ $edge_atr ] unless ref($e) eq 'ARRAY';
@@ -1052,7 +1052,7 @@ sub _add_node
     }
 
   my $node = $graph->node($name);
- 
+
   if (!defined $node)
     {
     $node = $graph->add_node($name);		# add
@@ -1060,7 +1060,7 @@ sub _add_node
     # apply attributes from the current scope (only for new nodes)
     my $scope = $self->{scope_stack}->[-1];
     return $self->error("Scope stack is empty!") unless defined $scope;
-  
+
     my $is_group = $scope->{_is_group};
     delete $scope->{_is_group};
     $node->set_attributes($scope->{node});
@@ -1304,10 +1304,10 @@ sub _from_graphviz_style
     @rc = ('shape', 'invisible') if $s eq 'invis';
     @rc = ('border', 'black ' . $1) if $s =~ /^(bold|dotted|dashed)\z/;
     if ($is_node != 0)
-      {	
+      {
       @rc = ('shape', 'rect') if $s eq 'filled';
       }
-    # convert "setlinewidth(12)" => 
+    # convert "setlinewidth(12)" =>
     if ($s =~ /setlinewidth\((\d+|\d*\.\d+)\)/)
       {
       my $width = abs($1 || 1);
@@ -1328,7 +1328,7 @@ sub _from_graphviz_node_orientation
   my ($self, $name, $o) = @_;
 
   my $r = int($o);
-  
+
   return (undef,undef) if $r == 0;
 
   # 1.0 => 1
@@ -1352,7 +1352,7 @@ sub _from_graphviz_headport
   # one of "n","ne","e","se","s","sw","w","nw
   # "ne => n"
   my $c = $port_remap->{ substr(lc($compass),0,1) } || 'east';
- 
+
   ('end', $c);
   }
 
@@ -1366,7 +1366,7 @@ sub _from_graphviz_tailport
   # one of "n","ne","e","se","s","sw","w","nw
   # "ne => n" => "north"
   my $c = $port_remap->{ substr(lc($compass),0,1) } || 'east';
-  
+
   ('start', $c);
   }
 
@@ -1435,7 +1435,7 @@ sub _from_graphviz_edge_style
   # although "normal" is not documented, it occurs in the wild
   $style = 'solid' if $style eq 'normal';
 
-  # convert "setlinewidth(12)" => 
+  # convert "setlinewidth(12)" =>
   if ($style =~ /setlinewidth\((\d+|\d*\.\d+)\)/)
     {
     my $width = abs($1 || 1);
@@ -1649,7 +1649,7 @@ sub _html_per_node
     }
 
   my $att = $self->_remap_attributes($attr,$node,$html_remap);
- 
+
   $node->set_attributes($att);
 
   $self;
@@ -1682,7 +1682,7 @@ sub _parse_html
 
 #  print STDERR "# 3 HTML-like label is now: $label\n";
 
-  my $table_tag = $1 || ''; 
+  my $table_tag = $1 || '';
   $table_tag =~ /$qr->{table_tag}(.*?)>/;
   my $table_attr = $self->_parse_html_attributes($1 || '', $qr, 'table');
 
@@ -1704,7 +1704,7 @@ sub _parse_html
   while ($label ne '')
     {
     $label =~ s/^\s*($qr->{row})//;
-  
+
     return $self->error ("Cannot parse HTML-like label: '$label'")
       unless defined $1;
 
@@ -1714,7 +1714,7 @@ sub _parse_html
 #  print STDERR "# 3 HTML-like row is $row\n";
 
     # remove <TR>
-    $row =~ s/^\s*$qr->{tr}\s*//; 
+    $row =~ s/^\s*$qr->{tr}\s*//;
     # remove </TR>
     $row =~ s/\s*$qr->{tr_end}\s*\z//;
 
@@ -1765,7 +1765,7 @@ sub _parse_html
       $self->_html_per_node( $self->_parse_html_attributes($attr_txt,$qr,'td'), $node );
 
 #     print STDERR "# Created $node_name\n";
- 
+
       $node->{autosplit_label} = $node_label;
       $node->{autosplit_basename} = $base_name;
 
@@ -1790,11 +1790,11 @@ sub _parse_html
           ($sx,$sy) = (0,1); $origin = $first_in_row;
           $first_in_row = $node;
 	  $first = 0;
-          } 
+          }
         $node->relative_to($origin,$sx,$sy);
 	# suppress as_txt output for other parts
 	$node->{autosplit} = undef;
-        }	
+        }
       # nec. for border-collapse
       $node->{autosplit_xy} = "$x,$y";
 
@@ -1947,7 +1947,7 @@ sub _parser_cleanup
 	{
         $compass = $1;
 	}
-      # "Bonn:w" is port "w", and only "west" when that port doesnt exist	
+      # "Bonn:w" is port "w", and only "west" when that port doesnt exist
 
       # look it up in the cache first
       my $node = $node_cache->{"$base:$port"};
@@ -2018,7 +2018,7 @@ sub _parser_cleanup
     # we have reconnected this edge
     }
 
-  # after reconnecting all edges, we can delete temp. nodes: 
+  # after reconnecting all edges, we can delete temp. nodes:
   for my $n (@nodes)
     {
     next unless exists $n->{_graphviz_portlet};
@@ -2028,13 +2028,13 @@ sub _parser_cleanup
     # and autosplit nodes, but keeps loners like "c:w" around as "c":
     $g->add_node($name) unless exists $delete->{$name};
     # delete "c:w"
-    $g->del_node($n); 
+    $g->del_node($n);
     }
 
   # if the graph doesn't have a title, set the graph name as title
   $g->set_attribute('title', $self->{_graphviz_graph_name})
     unless defined $g->raw_attribute('title');
-  
+
   # cleanup if there are no groups
   if ($g->groups() == 0)
     {

@@ -32,7 +32,7 @@ foreach (<DATA>)
   {
   chomp;
   next if $_ =~ /^(\s*\z|#)/;			# skip empty lines or comments
-  
+
   my ($in,$result) = split /\|/, $_;
 
   my $txt = $in;
@@ -76,7 +76,7 @@ foreach (<DATA>)
       for my $k1 (@{$att->{$k}})
         {
         my $v = $parser->{_graph}->unquote_attribute('graph',$k,$k1);
-        $exp .= "$v,";    
+        $exp .= "$v,";
         }
       $exp =~ s/,\z//;
       $exp .= ";";

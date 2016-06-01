@@ -112,12 +112,12 @@ use constant {
   EDGE_START_S
 
   EDGE_END_E
-  EDGE_END_W	
+  EDGE_END_W
   EDGE_END_N
   EDGE_END_S
 
   EDGE_SHORT_E
-  EDGE_SHORT_W	
+  EDGE_SHORT_W
   EDGE_SHORT_N
   EDGE_SHORT_S
 
@@ -140,7 +140,7 @@ use constant {
   EDGE_S_E_W
   EDGE_N_E_W
   EDGE_E_N_S
-  EDGE_W_N_S	
+  EDGE_W_N_S
 
   EDGE_LOOP_NORTH
   EDGE_LOOP_SOUTH
@@ -155,7 +155,7 @@ use constant {
   EDGE_TYPE_MASK
   EDGE_FLAG_MASK
   EDGE_ARROW_MASK
-  
+
   EDGE_START_MASK
   EDGE_END_MASK
   EDGE_MISC_MASK
@@ -238,10 +238,10 @@ sub _init
   {
   # generic init, override in subclasses
   my ($self,$args) = @_;
-  
+
   $self->{type} = EDGE_SHORT_E();	# -->
   $self->{style} = 'solid';
-  
+
   $self->{x} = 0;
   $self->{y} = 0;
   $self->{w} = undef;
@@ -301,9 +301,9 @@ sub _make_cross
   {
   # Upgrade us to a cross-section.
   my ($self, $edge, $flags) = @_;
-  
+
   my $type = $self->{type} & EDGE_TYPE_MASK;
-    
+
   $self->_croak("Trying to cross non hor/ver piece at $self->{x},$self->{y}")
     if (($type != EDGE_HOR) && ($type != EDGE_VER));
 
@@ -327,7 +327,7 @@ sub _make_joint
   {
   # Upgrade us to a joint
   my ($self, $edge, $new_type) = @_;
-  
+
   my $type = $self->{type} & EDGE_TYPE_MASK;
 
   $self->_croak("Trying to join non hor/ver piece (type: $type) at $self->{x},$self->{y}")
@@ -355,22 +355,22 @@ sub _make_joint
 #############################################################################
 # conversion to HTML
 
-my $edge_end_north = 
+my $edge_end_north =
    ' <td colspan=2 class="##class## eb" style="##bg####ec##">&nbsp;</td>' . "\n" .
    ' <td colspan=2 class="##class## eb" style="##bg####ec##"><span class="su">^</span></td>' . "\n";
-my $edge_end_south = 
+my $edge_end_south =
    ' <td colspan=2 class="##class## eb" style="##bg####ec##">&nbsp;</td>' . "\n" .
    ' <td colspan=2 class="##class## eb" style="##bg####ec##"><span class="sv">v</span></td>' . "\n";
 
 my $edge_empty_row =
    ' <td colspan=4 class="##class## eb"></td>';
 
-my $edge_arrow_west_upper = 
+my $edge_arrow_west_upper =
    '<td rowspan=2 class="##class## eb" style="##ec####bg##"><span class="shl">&lt;</span></td>' . "\n";
-my $edge_arrow_west_lower = 
+my $edge_arrow_west_lower =
    '<td rowspan=2 class="##class## eb">&nbsp;</td>' . "\n";
 
-my $edge_arrow_east_upper = 
+my $edge_arrow_east_upper =
    '<td rowspan=2 class="##class## eb" style="##ec####bg##"><span class="sh">&gt;</span></td>' . "\n";
 my $edge_arrow_east_lower =
    '<td rowspan=2 class="##class## eb"></td>' . "\n";
@@ -566,7 +566,7 @@ my $edge_html = {
    ],
 
   EDGE_N_W() + EDGE_START_W() => [
-    ' <td rowspan=2 class="##class## el"></td>' . "\n" . 
+    ' <td rowspan=2 class="##class## el"></td>' . "\n" .
     ' <td rowspan=2 class="##class## eb" style="border-bottom: ##border##;">&nbsp;</td>' . "\n" .
     ' <td colspan=2 rowspan=2 class="##class## eb" style="border-left: ##border##;">&nbsp;</td>' . "\n",
     '',
@@ -575,7 +575,7 @@ my $edge_html = {
    ],
 
   EDGE_N_W() + EDGE_END_W() => [
-    ' <td rowspan=4 class="##class## sh"##edgecolor##>&lt;</td>' . "\n" . 
+    ' <td rowspan=4 class="##class## sh"##edgecolor##>&lt;</td>' . "\n" .
     ' <td rowspan=2 class="##class## eb" style="border-bottom: ##border##;">&nbsp;</td>' . "\n" .
     ' <td colspan=2 rowspan=2 class="##class## eb" style="border-left: ##border##;">&nbsp;</td>' . "\n",
     '',
@@ -666,7 +666,7 @@ my $edge_html = {
    ],
 
   EDGE_LOOP_SOUTH() - EDGE_LABEL_CELL() => [
-    '<td colspan=2 class="##class## v" style="##bg##"##edgecolor##>^</td>' . "\n" . 
+    '<td colspan=2 class="##class## v" style="##bg##"##edgecolor##>^</td>' . "\n" .
     ' <td colspan=2 class="##class## eb">&nbsp;</td>',
 
     '<td rowspan=2 class="##class## eb">&nbsp;</td>' . "\n".
@@ -688,7 +688,7 @@ my $edge_html = {
 
     '<td colspan=2 class="##class## eb" style="border-left: ##border##; border-bottom: ##border##;##bg##">&nbsp;</td>' . "\n".
     ' <td rowspan=2 class="##class## va" style="##bg##"##edgecolor##><span class="sa">&gt;</span></td>',
-    
+
     '<td colspan=2 class="##class## eb">&nbsp;</td>',
    ],
 
@@ -703,7 +703,7 @@ my $edge_html = {
     '<td rowspan=2 class="##class## va" style="##bg##"##edgecolor##><span class="sh">&lt;</span></td>' ."\n".
     ' <td colspan=2 class="##class## eb" style="border-bottom: ##border##;##bg##">&nbsp;</td>'."\n".
     ' <td class="##class## eb" style="border-left: ##border##;##bg##">&nbsp;</td>',
-   
+
     '<td colspan=3 class="##class## eb">&nbsp;</td>',
    ],
 
@@ -846,7 +846,7 @@ sub _html_edge_hor
   my $rc = [
     ' <td colspan=##mod## rowspan=2 class="##class## lh" style="border-bottom: ##border##;##lc####bg##">##label##</td>',
     '',
-    '<td colspan=##mod## rowspan=2 class="##class## eb">&nbsp;</td>', 
+    '<td colspan=##mod## rowspan=2 class="##class## eb">&nbsp;</td>',
     '',
     ];
 
@@ -866,11 +866,11 @@ sub _html_edge_hor
   if ($e_flags & EDGE_END_W)
     {
     $mod--;
-    $rc->[0] = $edge_arrow_west_upper . $rc->[0]; 
-    $rc->[2] = $edge_arrow_west_lower . $rc->[2]; 
+    $rc->[0] = $edge_arrow_west_upper . $rc->[0];
+    $rc->[2] = $edge_arrow_west_lower . $rc->[2];
     }
   if ($e_flags & EDGE_END_E)
-    { 
+    {
     $mod--;
     $rc->[0] .= "\n " . $edge_arrow_east_upper;
     $rc->[2] .= "\n " . $edge_arrow_east_lower;
@@ -903,7 +903,7 @@ sub _html_edge_ver
 
   # normal vertical edge with no start/end flags
   my $rc = [
-    '<td colspan=2 rowspan=##mod## class="##class## el">&nbsp;</td>' . "\n " . 
+    '<td colspan=2 rowspan=##mod## class="##class## el">&nbsp;</td>' . "\n " .
     '<td colspan=2 rowspan=##mod## class="##class## lv" style="border-left: ##border##;##lc####bg##">##label##</td>' . "\n",
     '',
     '',
@@ -979,7 +979,7 @@ sub as_html
   # none, open, filled, closed
   my $as; $as = 'none' if $self->{edge}->{undirected};
   $as = $self->attribute('arrowstyle') unless $as;
-  
+
   # triangle, box, dot, inv, diamond, line etc.
   my $ashape; $ashape = 'triangle' if $self->{edge}->{undirected};
   $ashape = $self->attribute('arrowshape') unless $ashape;
@@ -1021,7 +1021,7 @@ sub as_html
     my $switch_to_center;
     ($label,$switch_to_center) = $self->_label_as_html();
 
-    # replace linebreaks by <br>, but remove extra spaces 
+    # replace linebreaks by <br>, but remove extra spaces
     $label =~ s/\s*\\n\s*/<br \/>/g;
 
     my $label_color = $self->raw_color_attribute('labelcolor') || $color;
@@ -1031,7 +1031,7 @@ sub as_html
     my $font = $self->attribute('font') || '';
     $font = '' if $font eq ($self->default_attribute('font') || '');
     $label_style = "font-family: $font;" if $font;
-  
+
     $label_style .= $self->text_styles_as_css(1,1) unless $label eq '';
 
     $label_style =~ s/^\s*//;
@@ -1087,7 +1087,7 @@ sub as_html
 
   ###########################################################################
   # replace templates
-      
+
   require Graph::Easy::As_ascii if $as ne 'none';	# for _unicode_arrow()
 
   # replace borderv with the border for the vertical edge on CROSS sections
@@ -1102,13 +1102,13 @@ sub as_html
       {
       for my $c (@$a)
         {
-        push @$rc, $self->_format_td($c, 
+        push @$rc, $self->_format_td($c,
 	  $border, $border_v, $label_style, $edge_color, $bg, $as, $ashape, $title, $label, $cl);
 	}
       }
     else
       {
-      push @$rc, $self->_format_td($a, 
+      push @$rc, $self->_format_td($a,
 	$border, $border_v, $label_style, $edge_color, $bg, $as, $ashape, $title, $label, $cl);
       }
     }
@@ -1121,7 +1121,7 @@ sub _format_td
   my ($self, $c,
 	$border, $border_v, $label_style, $edge_color, $bg, $as, $ashape, $title, $label, $cl) = @_;
 
-  # insert 'style="##bg##"' unless there is already a style 
+  # insert 'style="##bg##"' unless there is already a style
   $c =~ s/( e[bl]")(>(&nbsp;)?<\/td>)/$1 style="##bg##"$2/g;
   # insert missing "##bg##"
   $c =~ s/style="border/style="##bg##border/g;
@@ -1203,7 +1203,7 @@ sub _correct_size
 
   return if defined $self->{w};
 
-  # min-size is this 
+  # min-size is this
   $self->{w} = 5; $self->{h} = 3;
   # make short cell pieces very small
   if (($self->{type} & EDGE_SHORT_CELL) != 0)
@@ -1211,7 +1211,7 @@ sub _correct_size
     $self->{w} = 1; $self->{h} = 1;
     return;
     }
-    
+
   my $arrows = ($self->{type} & EDGE_ARROW_MASK);
   my $type = ($self->{type} & EDGE_TYPE_MASK);
 
@@ -1234,7 +1234,7 @@ sub _correct_size
 
   if ($type >= EDGE_LOOP_TYPE)
     {
-    #  +---+ 
+    #  +---+
     #  |   V
 
     #       +
@@ -1399,12 +1399,12 @@ None by default. Can export the following on request:
   EDGE_START_S
 
   EDGE_END_E
-  EDGE_END_W	
+  EDGE_END_W
   EDGE_END_N
   EDGE_END_S
 
   EDGE_SHORT_E
-  EDGE_SHORT_W	
+  EDGE_SHORT_W
   EDGE_SHORT_N
   EDGE_SHORT_S
 
@@ -1426,7 +1426,7 @@ None by default. Can export the following on request:
   EDGE_S_E_W
   EDGE_N_E_W
   EDGE_E_N_S
-  EDGE_W_N_S	
+  EDGE_W_N_S
 
   EDGE_LOOP_NORTH
   EDGE_LOOP_SOUTH
@@ -1441,7 +1441,7 @@ None by default. Can export the following on request:
   EDGE_TYPE_MASK
   EDGE_FLAG_MASK
   EDGE_ARROW_MASK
-  
+
   EDGE_START_MASK
   EDGE_END_MASK
   EDGE_MISC_MASK

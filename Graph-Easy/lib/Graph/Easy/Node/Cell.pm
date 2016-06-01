@@ -21,10 +21,10 @@ sub _init
   {
   # generic init, override in subclasses
   my ($self,$args) = @_;
-  
+
   $self->{class} = '';
   $self->{name} = '';
-  
+
   $self->{'x'} = 0;
   $self->{'y'} = 0;
 
@@ -40,7 +40,7 @@ sub _init
       }
     $self->{$k} = $args->{$k};
     }
- 
+
   $self;
   }
 

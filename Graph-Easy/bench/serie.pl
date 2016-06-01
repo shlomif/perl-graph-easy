@@ -34,7 +34,7 @@ for my $count (@counts)
     }
   else
     {
-    push @$rc, 
+    push @$rc,
 	time_it ( \&as_txt ),
         time_it ( \&as_ascii);
     }
@@ -51,7 +51,7 @@ for my $r (@results)
   print join (" ", @$r),"\n";
   }
 
-print " <tr>\n  <th>Graph::Easy v$Graph::Easy::VERSION</th>\n  <th>" 
+print " <tr>\n  <th>Graph::Easy v$Graph::Easy::VERSION</th>\n  <th>"
  . join ("</th>\n  <th>", @counts) . "</th>\n </tr>\n";
 
 my $i = 0;
@@ -65,7 +65,7 @@ for my $t ( qw/Creation as_txt as_ascii Memory/ )
   print " </tr>\n";
   $i++;
   }
-  
+
 #print STDERR $g->as_graphviz();
 
 1;

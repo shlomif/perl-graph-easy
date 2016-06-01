@@ -35,7 +35,7 @@ This page was automatically created at <strong><small>##time##</small></strong> 
 <p>
 On each of the following testcases you will see the original text
 representation of the graph, a text representation created automatically
-from the parsed input, as well the automatically generated HTML+CSS code. 
+from the parsed input, as well the automatically generated HTML+CSS code.
 </p>
 
 <p>

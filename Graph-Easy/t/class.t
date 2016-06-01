@@ -25,7 +25,7 @@ is (ref($graph), 'Graph::Easy');
 
 $graph->add_edge( 'A', 'B' );
 
-for my $class ('node', 'edge', 'graph', 'group', 
+for my $class ('node', 'edge', 'graph', 'group',
 	       'node.foo', 'edge.foo', 'group.foo')
   {
   _is ($class, $graph->_check_class($class));
@@ -37,7 +37,7 @@ _is ('edge.b,group.b,node.b', $graph->_check_class('.b'));
 #############################################################################
 # lists of class selectors
 
-_is ('edge.f,group.f,node.f,edge.b,group.b,node.b', 
+_is ('edge.f,group.f,node.f,edge.b,group.b,node.b',
   $graph->_check_class('.f, .b'));
 
 _is ('edge,group,node', $graph->_check_class('edge, group, node'));

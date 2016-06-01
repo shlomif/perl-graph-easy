@@ -1,4 +1,4 @@
-edge { start: south, 0; } 
+edge { start: south, 0; }
 
  [ A ]
  [ A ] -> [ A1 ] { origin: A; offset: 2,1; }

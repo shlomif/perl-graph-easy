@@ -34,6 +34,6 @@ print $graph->as_txt();
 
 print $graph->as_ascii(), "\n";
 
-print "<style type='text/css'>\n<!--\n", 
+print "<style type='text/css'>\n<!--\n",
       $graph->css(), "--></style>\n", $graph->as_html();
 

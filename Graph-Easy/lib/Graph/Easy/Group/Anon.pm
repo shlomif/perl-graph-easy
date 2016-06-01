@@ -62,7 +62,7 @@ sub _as_part_txt
 sub as_graphviz_txt
   {
   my $self = shift;
-  
+
   my $name = $self->{name};
 
   # quote special chars in name

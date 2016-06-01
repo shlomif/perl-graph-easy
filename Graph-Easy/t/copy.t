@@ -44,7 +44,7 @@ check_members($copy);
 $graph->fatal_errors();
 $graph->catch_warnings(1);
 $graph->catch_errors(1);
- 
+
 check_settings($graph);
 $copy = $graph->copy();
 check_settings($copy);

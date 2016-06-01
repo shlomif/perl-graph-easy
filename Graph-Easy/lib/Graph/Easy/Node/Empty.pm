@@ -21,7 +21,7 @@ sub _init
   my ($self,$args) = @_;
 
   $self->SUPER::_init($args);
-  
+
   $self->{class} = 'node.empty';
 
   $self;

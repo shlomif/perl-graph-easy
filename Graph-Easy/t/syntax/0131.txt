@@ -6,7 +6,7 @@ group.sachsen { fill: #f07070; }
 ( Bayern
   [ Augsburg ]
 ) { fill: #70b070; }
-  
+
 [ Augsburg ] --> [ Dortmund ]
 
 ( Nordrhein-Westfalen
@@ -14,7 +14,7 @@ group.sachsen { fill: #f07070; }
 --> [ Hamm ]
 ) { class: nrw; }
 
-( Sachsen 
+( Sachsen
   [ Leipzig ]
 ) { class: sachsen }
 

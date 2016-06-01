@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Some basic GraphML tests with the format=yED 
+# Some basic GraphML tests with the format=yED
 
 use Test::More;
 use strict;

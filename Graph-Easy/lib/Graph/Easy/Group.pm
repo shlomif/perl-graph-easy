@@ -23,7 +23,7 @@ sub _init
   {
   # generic init, override in subclasses
   my ($self,$args) = @_;
-  
+
   $self->{name} = 'Group #'. $self->{id};
   $self->{class} = 'group';
   $self->{_cells} = {};				# the Group::Cell objects
@@ -39,7 +39,7 @@ sub _init
       }
     $self->{$k} = $args->{$k};
     }
-  
+
   $self->{nodes} = {};
   $self->{groups} = {};
   $self->{att} = {};
@@ -70,7 +70,7 @@ sub edges_within
   # edges between nodes inside this group
   my $self = shift;
 
-  wantarray ? ( ord_values ( $self->{edges_within} ) ) : 
+  wantarray ? ( ord_values ( $self->{edges_within} ) ) :
 		scalar keys %{$self->{edges_within}};
   }
 
@@ -162,7 +162,7 @@ sub add_member
   {
   # add a node or group to this group
   my ($self,$n) = @_;
- 
+
   if (!ref($n) || !$n->isa("Graph::Easy::Node"))
     {
     if (!ref($self->{graph}))
@@ -471,7 +471,7 @@ sub _find_label_cell
 	# find top-most, right-most cell
 	next if $lc->{x} > $c->{x} || $lc->{y} < $c->{y};
 	}
-      }  
+      }
     $lc = $c;
     }
 
@@ -483,7 +483,7 @@ sub _find_label_cell
     for my $c (ord_values ( $self->{_cells} ))
       {
       next if $c->{y} != $lc->{y};
-      $left = $c->{x} if !defined $left || $left > $c->{x};  
+      $left = $c->{x} if !defined $left || $left > $c->{x};
       $right = $c->{x} if !defined $right || $right < $c->{x};
       }
     my $center = int(($right - $left) / 2 + $left);
@@ -532,7 +532,7 @@ sub _set_cell_types
     {
     $cell->_set_type($cells);
     }
- 
+
   $self;
   }
 
@@ -714,7 +714,7 @@ L<edges()>.
 
 Returns the contained groups of this group as L<Graph::Easy::Group> objects,
 in arbitrary order.
-  
+
 =head2 groups_within()
 
 	# equivalent to $group->groups():

@@ -2,4 +2,4 @@ digraph G {
   a [ label = < ] > ]
 
   a -> b;
-}   
+}

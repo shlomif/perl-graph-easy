@@ -25,7 +25,7 @@ can_ok ("Graph::Easy::Heap", qw/
   add
   /);
 
-use Graph::Easy::Edge::Cell qw/  
+use Graph::Easy::Edge::Cell qw/
   EDGE_N_E EDGE_N_W EDGE_S_E EDGE_S_W
   EDGE_HOR EDGE_VER
 /;
@@ -153,7 +153,7 @@ sub place
   my $r = ($node->{cy} || 1) - 1;
 
   $node->{x} = $x; $node->{y} = $y;
-  
+
   for my $rr (0..$r)
     {
     my $cy = $y + $rr;

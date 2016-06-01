@@ -1,7 +1,7 @@
  node { color: silver; }
 
  [ Some      ||
-  Autosplit  ||  
+  Autosplit  ||
   Node       ]
 
  {

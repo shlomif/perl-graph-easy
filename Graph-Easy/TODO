@@ -35,7 +35,7 @@ Important short-term TODO:
   + implement full color-remapping support (in both directions)
   + support subgraphs
   + support regions
-  + support "nearedges:no" 
+  + support "nearedges:no"
   + generally handle all attribute names without "_", too
   + add support for "anchor"
   + GDL has portsharing only as attributes for the top graph, while
@@ -59,7 +59,7 @@ Important short-term TODO:
     should not block the last port on B, it makes a bend. In this case, tho,
     it could just go along B, because the edges join each other anyway.
   + handle the special case where a node relative to another belongs to
-    a different group than the parent/child  
+    a different group than the parent/child
 
 Recursive layouter:
   + an empty group should consist of one cell (with the label and border)
@@ -92,7 +92,7 @@ Recursive layouter:
   + attributes unknown to dot, but valid under Graph::Easy (like "labelpos")
     cause an error instead of a warning
   + autosplit nodes (record) lose their attributes, these need to
-    be carried over from the temp. node.  
+    be carried over from the temp. node.
   + parse nested tables
 
 * as_ascii:
@@ -103,7 +103,7 @@ Recursive layouter:
     since the current layouter doesn't add any group cells if a group doesn't
     have any node or edge at all)
 
-* as_html: 
+* as_html:
   + fill on edges
   + v-- and --^ edges (mis-aligned arrows)
     (complete edge-arrow alignment in HTML)
@@ -148,7 +148,7 @@ Output:
 
 * support two different arrow shapes on bidirectional edges
 
-* as_txt(): 
+* as_txt():
   + output of node clusters and node chains is not optimal
   + links between groups are missing
 * as_ascii() and others: grow cells around point-shaped nodes to intrude:

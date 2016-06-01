@@ -26,10 +26,10 @@ my $att_aliases;
 
 use Graph::Easy::Util qw(ord_values);
 
-BEGIN 
+BEGIN
   {
   # a few aliases for backwards compatibility
-  *get_attribute = \&attribute; 
+  *get_attribute = \&attribute;
   *as_html_page = \&as_html_file;
   *as_graphviz_file = \&as_graphviz;
   *as_ascii_file = \&as_ascii;
@@ -92,7 +92,7 @@ sub new
 sub DESTROY
   {
   my $self = shift;
- 
+
   # Be carefull to not delete ->{graph}, these will be cleaned out by
   # Perl automatically in O(1) time, manual delete is O(N) instead.
 
@@ -149,14 +149,14 @@ my $html_att = {
     padding => '0.5em',
     'empty-cells' => 'show',
     },
-  edge => { 
+  edge => {
     border => 'none',
     padding => '0.2em',
     margin => '0.1em',
     'font' => 'monospaced, courier-new, courier, sans-serif',
     'vertical-align' => 'bottom',
     },
-  group => { 
+  group => {
     'borderstyle' => 'dashed',
     'borderwidth' => '1',
     'fontsize' => '0.8em',
@@ -180,7 +180,7 @@ sub _init
   $self->{debug} = 0;
   $self->{timeout} = 5;			# in seconds
   $self->{strict} = 1;			# check attributes strict?
-  
+
   $self->{class} = 'graph';
   $self->{id} = '';
   $self->{groups} = {};
@@ -334,7 +334,7 @@ sub root_node
   {
   # Return the root node
   my $self = shift;
-  
+
   my $root = $self->{att}->{root};
   $root = $self->{nodes}->{$root} if defined $root;
 
@@ -349,7 +349,7 @@ sub source_nodes
   my @roots;
   for my $node (ord_values ( $self->{nodes} ))
     {
-    push @roots, $node 
+    push @roots, $node
       if (keys %{$node->{edges}} != 0) && !$node->has_predecessors();
     }
   @roots;
@@ -363,7 +363,7 @@ sub predecessorless_nodes
   my @roots;
   for my $node (ord_values ( $self->{nodes} ))
     {
-    push @roots, $node 
+    push @roots, $node
       if (keys %{$node->{edges}} == 0) || !$node->has_predecessors();
     }
   @roots;
@@ -502,7 +502,7 @@ sub sorted_nodes
   $sort = sub { $a->{$f1} <=> $b->{$f1} || abs($a->{$f2}) <=> abs($b->{$f2}) } if $f2 && $f2 eq 'rank';
   $sort = sub { $a->{$f1} <=> $b->{$f1} || $a->{$f2} cmp $b->{$f2} } if $f2 &&
            $f2 =~ /^(name|title|label)$/;
-  $sort = sub { abs($a->{$f1}) <=> abs($b->{$f1}) || $a->{$f2} cmp $b->{$f2} } if 
+  $sort = sub { abs($a->{$f1}) <=> abs($b->{$f1}) || $a->{$f2} cmp $b->{$f2} } if
            $f1 && $f1 eq 'rank' &&
            $f2 && $f2 =~ /^(name|title|label)$/;
   # 'name', 'id'
@@ -521,7 +521,7 @@ sub add_edge_once
   # got an edge object? Don't add it twice!
   return undef if ref($edge);
 
-  # turn plaintext scalars into objects 
+  # turn plaintext scalars into objects
   my $x1 = $self->{nodes}->{$x} unless ref $x;
   my $y1 = $self->{nodes}->{$y} unless ref $y;
 
@@ -541,7 +541,7 @@ sub edge
   # return an edge between two nodes as object
   my ($self, $x, $y) = @_;
 
-  # turn plaintext scalars into objects 
+  # turn plaintext scalars into objects
   $x = $self->{nodes}->{$x} unless ref $x;
   $y = $self->{nodes}->{$y} unless ref $y;
 
@@ -549,7 +549,7 @@ sub edge
   return undef unless ref($x) && ref($y);
 
   my @ids = $x->edges_to($y);
-  
+
   wantarray ? @ids : $ids[0];
   }
 
@@ -558,7 +558,7 @@ sub flip_edges
   # turn all edges going from $x to $y around
   my ($self, $x, $y) = @_;
 
-  # turn plaintext scalars into objects 
+  # turn plaintext scalars into objects
   $x = $self->{nodes}->{$x} unless ref $x;
   $y = $self->{nodes}->{$y} unless ref $y;
 
@@ -693,8 +693,8 @@ sub _check_class
     return if $class =~ /\.\z/;
 
     # run a loop over all classes: "node.foo" => ("node"), ".foo" => ("node","edge","group")
-    $class =~ /^(\w*)/; 
-    my $base_class = $1; 
+    $class =~ /^(\w*)/;
+    my $base_class = $1;
     if ($base_class eq '')
       {
       push @classes, ('edge'.$class, 'group'.$class, 'node'.$class);
@@ -804,7 +804,7 @@ sub set_attributes
       {
       $self->set_attribute($class, $a, $att->{$a});
       }
-    } 
+    }
   $self;
   }
 
@@ -913,7 +913,7 @@ sub _class_styles
   # css() and as_svg(). $skip is a qr// object that returns true for
   # attribute names to be skipped (e.g. excluded), and $map is a
   # HASH that contains mapping for attribute names for the output.
-  # "$base" is the basename for classes (either "table.graph$id" if 
+  # "$base" is the basename for classes (either "table.graph$id" if
   # not defined, or whatever you pass in, like "" for svg).
   # $indent is a left-indenting spacer like "  ".
   # $overlay contains a HASH with attribute-value pairs to set as defaults.
@@ -1131,7 +1131,7 @@ sub css
       borderwidth => 'border-width',
     },
     undef,
-    undef, 
+    undef,
     $html_att,
     );
 
@@ -1227,10 +1227,10 @@ CSS
       {
       my $class = $group->class();
 
-      my $border = $group->attribute('borderstyle'); 
+      my $border = $group->attribute('borderstyle');
 
       $class =~ s/.*\.//;	# leave only subclass
-      $css .= Graph::Easy::Group::Cell->_css($self->{id}, $class, $border); 
+      $css .= Graph::Easy::Group::Cell->_css($self->{id}, $class, $border);
       }
     }
 
@@ -1244,7 +1244,7 @@ sub html_page_header
   {
   # return the HTML header for as_html_file()
   my ($self, $css) = @_;
-  
+
   my $html = <<HTML
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -1312,7 +1312,7 @@ sub _caption
 
   my $style = ' style="';
   $style .= "background: $bg;" if $bg;
-    
+
   # the font family
   my $f = $self->raw_attribute('font') || '';
   $style .= "font-family: $f;" if $f ne '';
@@ -1344,7 +1344,7 @@ sub _caption
   my $pos = $self->attribute('labelpos');
 
   ($caption,$pos);
-  } 
+  }
 
 sub as_html
   {
@@ -1354,10 +1354,10 @@ sub as_html
   $self->layout() unless defined $self->{score};
 
   my $top = "\n" . $self->quoted_comment();
-  
+
   my $cells = $self->{cells};
   my ($rows,$cols);
-  
+
   my $max_x = undef;
   my $min_x = undef;
 
@@ -1369,18 +1369,18 @@ sub as_html
 
     $max_x = $x if !defined $max_x || $x > $max_x;
     $min_x = $x if !defined $min_x || $x < $min_x;
-    
+
     # trace the rows we do have
     $rows->{$y}->{$x} = $node;
     # record all possible columns
     $cols->{$x} = undef;
     }
-  
+
   $max_x = 1, $min_x = 1 unless defined $max_x;
-  
-  # number of cells in the table, maximum  
+
+  # number of cells in the table, maximum
   my $max_cells = $max_x - $min_x + 1;
-  
+
   my $groups = scalar $self->groups();
 
   my $id = $self->{id};
@@ -1394,7 +1394,7 @@ sub as_html
   my ($caption,$pos) = $self->_caption();
 
   my $row_id = 0;
-  # now run through all rows, and for each of them through all columns 
+  # now run through all rows, and for each of them through all columns
   for my $y (sort { ($a||0) <=> ($b||0) } keys %$rows)
     {
 
@@ -1460,7 +1460,7 @@ sub as_html
         #next if $row->[$i] =~ /class="[^"]+ eb"/;	# is class=".. eb"
 
 	# contains wo succ. cell?
-        next if $row->[$i] =~ /(row|col)span.*\1span/m;	
+        next if $row->[$i] =~ /(row|col)span.*\1span/m;
 
         # count all sucessive equal ones
         my $j = $i + 1;
@@ -1486,7 +1486,7 @@ sub as_html
 
     ######################################################################
 
-    my $i = 0;    
+    my $i = 0;
     for my $row (@$rs)
       {
       # append row to output
@@ -1518,20 +1518,20 @@ sub as_html
   $html =~ s#(<tr></tr>\n\n)+\z##;
 
   $html .= "</table>\n";
- 
-  $html;
-  } 
 
-############################################################################# 
+  $html;
+  }
+
+#############################################################################
 # as_boxart_*
-  
+
 sub as_boxart
   {
   # Create box-drawing art using Unicode characters - will return utf-8.
   my ($self) = shift;
 
   require Graph::Easy::As_ascii;
-  
+
   # select Unicode box drawing characters
   $self->{_ascii_style} = 1;
 
@@ -1544,8 +1544,8 @@ sub as_boxart_html
   # suitable to be embedded into an HTML page.
   my ($self) = shift;
 
-  "<pre style='line-height: 1em; line-spacing: 0;'>\n" . 
-    $self->as_boxart(@_) . 
+  "<pre style='line-height: 1em; line-spacing: 0;'>\n" .
+    $self->as_boxart(@_) .
     "\n</pre>\n";
   }
 
@@ -1555,7 +1555,7 @@ sub as_boxart_html_file
 
   $self->layout() unless defined $self->{score};
 
-  $self->html_page_header(' ') . "\n" . 
+  $self->html_page_header(' ') . "\n" .
     $self->as_boxart_html() . $self->html_page_footer();
   }
 
@@ -1644,7 +1644,7 @@ sub _as_ascii
     # get as ASCII box
     my $x = $cols->{ $v->{x} } + $x_start;
     my $y = $rows->{ $v->{y} } + $y_start;
- 
+
     my @lines = split /\n/, $v->as_ascii($x,$y);
     # get position from cell
     for my $i (0 .. scalar @lines-1)
@@ -1652,7 +1652,7 @@ sub _as_ascii
       next if length($lines[$i]) == 0;
       # XXX TODO: framebuffer shouldn't be to small!
       $fb->[$y+$i] = ' ' x $max_x if !defined $fb->[$y+$i];
-      substr($fb->[$y+$i], $x, length($lines[$i])) = $lines[$i]; 
+      substr($fb->[$y+$i], $x, length($lines[$i])) = $lines[$i];
       }
     }
 
@@ -1670,7 +1670,7 @@ sub _as_ascii
     {
     $v->{h} = $v->{minh};
     $v->{w} = $v->{minw};
-    } 
+    }
   $out;				# return output
   }
 
@@ -1708,7 +1708,7 @@ sub as_debug
   my $self = shift;
 
   my $output = '';
- 
+
   $output .= '# Using Graph::Easy v' . $Graph::Easy::VERSION . "\n";
   if ($Graph::Easy::As_svg::VERSION)
     {
@@ -1783,7 +1783,7 @@ sub as_graphml
 sub add_edge
   {
   my ($self,$x,$y,$edge) = @_;
- 
+
   my $uc = $self->{use_class};
 
   my $ec = $uc->{edge};
@@ -1838,7 +1838,7 @@ sub add_edge
   # Store at the edge from where to where it goes for easier reference
   $edge->{from} = $x;
   $edge->{to} = $y;
- 
+
   # store the edge at the nodes/groups, too
   $x->{edges}->{$edge->{id}} = $edge;
   $y->{edges}->{$edge->{id}} = $edge;
@@ -2091,7 +2091,7 @@ sub del_node
     {
     # drop the edge from our global edge list
     delete $self->{edges}->{$edge->{id}};
- 
+
     my $to = $edge->{to}; my $from = $edge->{from};
 
     # drop the edge from the other node
@@ -2129,7 +2129,7 @@ sub del_edge
   # delete the edge from the nodes
   delete $from->{edges}->{$edge->{id}};
   delete $to->{edges}->{$edge->{id}};
-  
+
   # drop the edge from our global edge list
   delete $self->{edges}->{$edge->{id}};
 
@@ -2150,7 +2150,7 @@ sub add_group
   my $uc = $self->{use_class};
 
   # group with that name already exists?
-  my $name = $group; 
+  my $name = $group;
   $group = $self->{groups}->{ $group } unless ref $group;
 
   # group with that name doesn't exist, so create new one
@@ -2164,7 +2164,7 @@ sub add_group
   {
     no warnings; # dont warn on already weak references
     weaken($group->{graph});
-  } 
+  }
   $self->{score} = undef;			# invalidate last layout
 
   $group;
@@ -2176,7 +2176,7 @@ sub del_group
   my ($self,$group) = @_;
 
   delete $self->{groups}->{ $group->{name} };
- 
+
   $self->{score} = undef;			# invalidate last layout
 
   $self;
@@ -2281,7 +2281,7 @@ sub use_class
 
   $self->{use_class}->{$object} = $class;
 
-  $self;  
+  $self;
   }
 
 #############################################################################
@@ -2291,7 +2291,7 @@ sub use_class
 sub add_vertex
   {
   my ($self,$x) = @_;
-  
+
   $self->add_node($x);
   $self;
   }
@@ -2299,7 +2299,7 @@ sub add_vertex
 sub add_vertices
   {
   my ($self) = shift;
-  
+
   $self->add_nodes(@_);
   $self;
   }
@@ -2314,7 +2314,7 @@ sub add_path
     {
     my $second = shift;
     $self->add_edge($first, $second );
-    $first = $second; 
+    $first = $second;
     }
   $self;
   }
@@ -2329,7 +2329,7 @@ sub add_cycle
     {
     my $second = shift;
     $self->add_edge($first, $second );
-    $first = $second; 
+    $first = $second;
     }
   # complete the cycle
   $self->add_edge($first, $a);
@@ -2341,7 +2341,7 @@ sub has_edge
   # return true if at least one edge between X and Y exists
   my ($self, $x, $y) = @_;
 
-  # turn plaintext scalars into objects 
+  # turn plaintext scalars into objects
   $x = $self->{nodes}->{$x} unless ref $x;
   $y = $self->{nodes}->{$y} unless ref $y;
 
@@ -2399,7 +2399,7 @@ Graph::Easy - Convert or render graphs (as ASCII, HTML, SVG or via Graphviz)
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	# make a fresh copy of the graph
@@ -2568,7 +2568,7 @@ more nodes into a group:
 	$group->add_node($rom);
 	$group->add_nodes($rom,$bonn);
 
-For more options please see the online manual: 
+For more options please see the online manual:
 L<http://bloodgate.com/perl/graph/manual/> .
 
 =head2 Output
@@ -2739,7 +2739,7 @@ C<Graph::Easy> supports the following methods:
         use Graph::Easy;
 
         my $graph = Graph::Easy->new( );
-        
+
 Creates a new, empty C<Graph::Easy> object.
 
 Takes optinal a hash reference with a list of options. The following are
@@ -2827,7 +2827,7 @@ C<add_edge_once()> on how to avoid that.
 
 You can also use C<edge()> to check whether an edge from X to Y already exists
 in the graph.
- 
+
 =head2 add_edge_once()
 
 	my ($first, $second, $edge) = $graph->add_edge_once( 'node 1', 'node 2');
@@ -3275,7 +3275,7 @@ Returns the type of the graph as string, either "directed" or "undirected".
 	$graph->layout();
 	$graph->layout( type => 'force', timeout => 60 );
 
-Creates the internal structures to layout the graph. 
+Creates the internal structures to layout the graph.
 
 This method will be called automatically when you call any of the
 C<as_FOO> methods or C<output()> as described below.
@@ -3405,7 +3405,7 @@ to the new graph and renaming it at the same time.
 
 Returns the groups of the graph as L<Graph::Easy::Group> objects,
 in arbitrary order.
-  
+
 =head2 groups_within()
 
 	# equivalent to $graph->groups():
@@ -3675,9 +3675,9 @@ Is an alias for L<as_graphml()>.
 
 	my $nodes =
 	 $graph->sorted_nodes( );		# default sort on 'id'
-	my $nodes = 
+	my $nodes =
 	 $graph->sorted_nodes( 'name' );	# sort on 'name'
-	my $nodes = 
+	my $nodes =
 	 $graph->sorted_nodes( 'layer', 'id' );	# sort on 'layer', then on 'id'
 
 In scalar context, returns the number of nodes/vertices the graph has.
@@ -3769,10 +3769,10 @@ graph against each other:
 	my $max = undef;
 
 	$graph->randomize();
-	my $seed = $graph->seed(); 
+	my $seed = $graph->seed();
 
 	$graph->layout();
-	$max = $graph->score(); 
+	$max = $graph->score();
 
 	for (1..10)
 	  {
@@ -3906,8 +3906,8 @@ online manual for examples and their usage:
  orrd3 orrd4 orrd5 orrd6 orrd7 orrd8 orrd9
 
  paired3 paired4 paired5 paired6 paired7 paired8 paired9 paired10 paired11
- paired12 
- 
+ paired12
+
  pastel13 pastel14 pastel15 pastel16 pastel17 pastel18 pastel19
 
  pastel23 pastel24 pastel25 pastel26 pastel27 pastel28
@@ -3921,15 +3921,15 @@ online manual for examples and their usage:
  pubugn3 pubugn4 pubugn5 pubugn6 pubugn7 pubugn8 pubugn9
 
  puor3 puor4 puor5 puor6 puor7 puor8 puor9 puor10 puor11
- 
- purd3 purd4 purd5 purd6 purd7 purd8 purd9 
+
+ purd3 purd4 purd5 purd6 purd7 purd8 purd9
 
  purples3 purples4 purples5 purples6 purples7 purples8 purples9
 
  rdbu3 rdbu4 rdbu5 rdbu6 rdbu7 rdbu8 rdbu9 rdbu10 rdbu11
- 
- rdgy3 rdgy4 rdgy5 rdgy6 rdgy7 rdgy8 rdgy9 
- 
+
+ rdgy3 rdgy4 rdgy5 rdgy6 rdgy7 rdgy8 rdgy9
+
  rdpu3 rdpu4 rdpu5 rdpu6 rdpu7 rdpu8 rdpu9 rdgy10 rdgy11
 
  rdylbu3 rdylbu4 rdylbu5 rdylbu6 rdylbu7 rdylbu8 rdylbu9 rdylbu10 rdylbu11
@@ -3939,9 +3939,9 @@ online manual for examples and their usage:
  reds3 reds4 reds5 reds6 reds7 reds8 reds9
 
  set13 set14 set15 set16 set17 set18 set19
- 
+
  set23 set24 set25 set26 set27 set28
- 
+
  set33 set34 set35 set36 set37 set38 set39 set310 set311 set312
 
  spectral3 spectral4 spectral5 spectral6 spectral7 spectral8 spectral9

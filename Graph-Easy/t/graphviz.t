@@ -97,10 +97,10 @@ like ($grviz, qr/shape=box/, 'contains shape');
 #############################################################################
 # remapped attributes, quoted attributes
 
-$bonn->set_attributes( { 
-  fill => '#808080', 
-  title => 'title string', 
-  color => 'red', 
+$bonn->set_attributes( {
+  fill => '#808080',
+  title => 'title string',
+  color => 'red',
   'border-color' => 'brown',
   class => 'city',
   } );
@@ -346,7 +346,7 @@ $bonn->set_attribute( 'border-style' => 'broad' );
 
 $grviz = $graph->as_graphviz();
 like ($grviz, qr/[^"]Bonn[^"]/, 'contains Bonn unquoted');
-like ($grviz, qr/Bonn.*style="filled,setlinewidth\(5\)"/, 
+like ($grviz, qr/Bonn.*style="filled,setlinewidth\(5\)"/,
  '5 pixel for broad border');
 
 #############################################################################
@@ -416,7 +416,7 @@ $bonn->set_attribute( 'shape' => 'rounded' );
 
 $grviz = $graph->as_graphviz();
 like ($grviz, qr/[^"]Bonn[^"]/, 'contains Bonn unquoted');
-like ($grviz, qr/Bonn.*style="rounded,filled"/, 'contains rounded,filled'); 
+like ($grviz, qr/Bonn.*style="rounded,filled"/, 'contains rounded,filled');
 
 #############################################################################
 # invisible nodes and node with shape: point;
@@ -426,16 +426,16 @@ $bonn->set_attribute( 'shape' => 'invisible' );
 
 $grviz = $graph->as_graphviz();
 like ($grviz, qr/[^"]Bonn[^"]/, 'contains Bonn unquoted');
-like ($grviz, qr/Bonn.*shape=plaintext/, 'contains shape plaintext'); 
-like ($grviz, qr/Bonn.*label=" "/, 'contains label=" "'); 
+like ($grviz, qr/Bonn.*shape=plaintext/, 'contains shape plaintext');
+like ($grviz, qr/Bonn.*label=" "/, 'contains label=" "');
 
 $bonn->del_attribute('border-style');
 $bonn->set_attribute( 'shape' => 'point' );
 
 $grviz = $graph->as_graphviz();
 like ($grviz, qr/[^"]Bonn[^"]/, 'contains Bonn unquoted');
-like ($grviz, qr/Bonn.*shape=plaintext/, 'contains shape plaintext'); 
-like ($grviz, qr/Bonn.*label="*"/, 'contains label="*"'); 
+like ($grviz, qr/Bonn.*shape=plaintext/, 'contains shape plaintext');
+like ($grviz, qr/Bonn.*label="*"/, 'contains label="*"');
 
 #############################################################################
 # edge styles double and double-dash

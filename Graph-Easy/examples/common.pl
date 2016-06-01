@@ -27,7 +27,7 @@ sub gen_graphs
   $graph->add_edge( $node, $node2 );
 
   out ($graph, $method);
-  
+
   ###########################################################################
   $graph->{debug} = 0;
 
@@ -55,11 +55,11 @@ sub gen_graphs
   ###########################################################################
   my $node6 = $graph->add_node( 'Cottbus',);
   $node6->set_attribute('border', '1px red dashed');
- 
+
   my $edge5 = $graph->add_edge( 'Potsdam', $node6 );
 
   out ($graph, $method);
-  
+
   ###########################################################################
   $graph->add_edge( $node6, $node3 );
 

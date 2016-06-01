@@ -14,8 +14,8 @@ strict digraph graph0 {
   // and nodes
   "bonn" + "test" [ label="Bonn" + " (Rhei \
    n)" ]
- 
-  // test more than one concat, more than one space plus empty parts 
+
+  // test more than one concat, more than one space plus empty parts
   "Cottbus" [ label= "Cot"  + "" + "tb" +"" +"" +  "us" ]
 
   "bonntest" -> "Cottbus"

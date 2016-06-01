@@ -81,7 +81,7 @@ $node->{h} = 6;
 
 $node->_draw_border( $fb, 'solid', 'solid', 'solid', 'solid');
 
-is (join ("::", @$fb), 
+is (join ("::", @$fb),
   '+----------+::|          |::|          |::|          |::|          |::+----------+',
   'solid border');
 
@@ -108,7 +108,7 @@ my $i = 0;
 for my $style (qw/ none solid dotted dashed dot-dash dot-dot-dash bold double double-dash wave/)
   {
   $node->_draw_border( $fb, $style, $style, $style, $style);
-  is (join ('\n', @$fb), 
+  is (join ('\n', @$fb),
     $expect[$i],
     "$style border");
   $i++;
@@ -124,7 +124,7 @@ $node->{h} = 4;
 
 $node->_draw_border( $fb, 'solid', 'dotted', 'solid', 'solid');
 
-is (join ("::", @$fb), 
+is (join ("::", @$fb),
   '+------+::|      |::|      |:::......:',
   'solid border, except bottom, which is dotted');
 
@@ -135,7 +135,7 @@ $node->set_attribute('label', 'left\r right\l left\c center\n normal');
 
 my ($lines,$aligns) = $node->_aligned_label();
 
-is_deeply ( $lines, [ 'left', 'right', 'left', 'center', 'normal' ], 
+is_deeply ( $lines, [ 'left', 'right', 'left', 'center', 'normal' ],
            'lines are ok');
 is_deeply ( $aligns, [ 'c', 'r', 'l', 'c', 'c', ], 'aligns is ok');
 
@@ -144,7 +144,7 @@ $node->set_attribute('label', 'left\r right\l left\c center\n normal\c');
 
 ($lines,$aligns) = $node->_aligned_label();
 
-is_deeply ( $lines, [ 'left', 'right', 'left', 'center', 'normal' ], 
+is_deeply ( $lines, [ 'left', 'right', 'left', 'center', 'normal' ],
            'lines are ok');
 is_deeply ( $aligns, [ 'c', 'r', 'l', 'c', 'c', ], 'aligns is ok');
 
@@ -153,7 +153,7 @@ $node->set_attribute('label', '\rleft\r right\l left\c center\n normal\c');
 
 ($lines,$aligns) = $node->_aligned_label();
 
-is_deeply ( $lines, [ '', 'left', 'right', 'left', 'center', 'normal' ], 
+is_deeply ( $lines, [ '', 'left', 'right', 'left', 'center', 'normal' ],
            'lines are ok');
 is_deeply ( $aligns, [ 'c', 'r', 'r', 'l', 'c', 'c', ], 'aligns is ok');
 
@@ -162,7 +162,7 @@ $node->set_attribute('label', '\r\l\rleft\r right\l left\c center\n normal\c');
 
 ($lines,$aligns) = $node->_aligned_label();
 
-is_deeply ( $lines, [ '','','','left', 'right', 'left', 'center', 'normal' ], 
+is_deeply ( $lines, [ '','','','left', 'right', 'left', 'center', 'normal' ],
            'lines are ok');
 is_deeply ( $aligns, [ 'c','r','l','r', 'r', 'l', 'c', 'c', ], 'aligns is ok');
 

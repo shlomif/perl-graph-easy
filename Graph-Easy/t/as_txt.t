@@ -22,8 +22,8 @@ use Graph::Easy::Parser;
 
 my $parser = Graph::Easy::Parser->new();
 
-my $graph = $parser->from_text( 
-  "[A] { link: http://foo.com; color: red; origin: B; offset: 2,1; }" 
+my $graph = $parser->from_text(
+  "[A] { link: http://foo.com; color: red; origin: B; offset: 2,1; }"
   );
 
 is ($parser->error(), '', 'no parsing error' );

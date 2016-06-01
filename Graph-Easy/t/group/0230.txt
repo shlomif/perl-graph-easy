@@ -1,7 +1,7 @@
 # groups (with border none)
 group.cities { label: Cities; }
 
-( Cities 
+( Cities
     [ Ulm ] -> [ Lahn ] -> [ Bonn ]
     -> [ Trier ]
 ) { class: cities; background: #ff80a0; border: none; }

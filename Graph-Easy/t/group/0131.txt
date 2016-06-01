@@ -6,7 +6,7 @@ group.outer { background: #f07070; }
 ( Internal Network
   [ Workstation ]
 ) { background: #70b070; }
-  
+
 [ Workstation ] --> [ Inner Firewall ]
 
 ( DMZ
@@ -14,7 +14,7 @@ group.outer { background: #f07070; }
 --> [ Outer Firewall ]
 ) { class: dmz; }
 
-( Outer 
+( Outer
   [ Internet ]
 ) { class: outer }
 

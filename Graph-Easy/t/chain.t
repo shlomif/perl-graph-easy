@@ -28,11 +28,11 @@ is ($graph->error(), '', 'no error yet');
 
 my ($node, $node2) = $graph->add_edge('A','B');
 
-my $chain = Graph::Easy::Layout::Chain->new( 
+my $chain = Graph::Easy::Layout::Chain->new(
   start => $node, graph => $graph );
 
 is (ref($chain), $c, 'new() seemed to work');
-is ($chain->error(), '', 'no error'); 
+is ($chain->error(), '', 'no error');
 is ($chain->start(), $node, 'start node is $node');
 is ($chain->end(), $node, 'end node is $node');
 
@@ -59,7 +59,7 @@ my ($node3, $node4) = $graph->add_edge('C','D');
 my $other = $c->new ( start => $node3, graph => $graph );
 
 is (ref($other), $c, 'new() seemed to work');
-is ($other->error(), '', 'no error'); 
+is ($other->error(), '', 'no error');
 is ($other->length(), 1, 'length() is 1');
 is ($other->start(), $node3, 'start node is $node3');
 is ($other->end(), $node3, 'end node is $node3');
@@ -73,12 +73,12 @@ is ($other->end(), $node4, 'end node is $node4');
 
 $chain->merge($other);
 
-is ($other->error(), '', 'no error'); 
+is ($other->error(), '', 'no error');
 is ($other->length(), 0, 'other length() is still 0');
 is ($other->start(), undef, 'start node is $node3');
 is ($other->end(), undef, 'end node is $node4');
 
-is ($chain->error(), '', 'no error'); 
+is ($chain->error(), '', 'no error');
 is ($chain->length(), 4, 'chain length() is now 4');
 is ($chain->start(), $node, 'start node is $node3');
 is ($chain->end(), $node4, 'end node is $node4');

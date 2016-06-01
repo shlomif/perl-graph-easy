@@ -96,7 +96,7 @@ sub _as_graphml
   my $args = $_[0];
   $args = { name => $_[0] } if ref($args) ne 'HASH' && @_ == 1;
   $args = { @_ } if ref($args) ne 'HASH' && @_ > 1;
-  
+
   $args->{format} = 'graph-easy' unless defined $args->{format};
 
   if ($args->{format} !~ /^(graph-easy|Graph::Easy|yED)\z/i)
@@ -123,7 +123,7 @@ sub _as_graphml
 
 EOF
 ;
-	  
+
   $txt =~ s/##DATE##/scalar localtime()/e;
   $txt =~ s/##VERSION##/$Graph::Easy::VERSION/;
   $txt =~ s/##SCHEMA##/$schema/;
@@ -190,8 +190,8 @@ EOF
     {
     $txt .= $g->as_graphml($indent.'  ',$ids);			# marks nodes as processed if nec.
     }
- 
-  $indent = '    ';		
+
+  $indent = '    ';
   foreach my $n (@nodes)
     {
     next if $n->{group};				# already done in a group
@@ -338,7 +338,7 @@ sub as_graphml
   my ($self, $indent, $ids) = @_;
 
   my $g = $self->{graph};
-  my $txt = $indent . '<edge source="' . $g->_safe_xml($self->{from}->{name}) . 
+  my $txt = $indent . '<edge source="' . $g->_safe_xml($self->{from}->{name}) .
 		     '" target="' . $g->_safe_xml($self->{to}->{name}) . "\">\n";
 
   $txt .= $g->_attributes_as_graphml($self, $indent, $ids->{edge});
@@ -347,7 +347,7 @@ sub as_graphml
 
   $txt;
   }
- 
+
 1;
 __END__
 
@@ -358,7 +358,7 @@ Graph::Easy::As_graphml - Generate a GraphML text from a Graph::Easy object
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	$graph->add_edge ('Bonn', 'Berlin');

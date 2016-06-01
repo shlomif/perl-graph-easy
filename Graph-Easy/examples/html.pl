@@ -43,7 +43,7 @@ This page was automatically created at <small>##time##</small> by <code>examples
 
 <p>
 On each of the following testcases you will see a text representation of the graph on the left side,
-and on the right side the automatically generated HTML+CSS code. 
+and on the right side the automatically generated HTML+CSS code.
 </p>
 
 <p>
@@ -100,11 +100,11 @@ sub out
   my $n = $t; $n =~ s/\s/_/;
 
   $html .= "<a name=\"$n\"><h2>$t</h2></a>\n" .
-   "<div style='float: left; min-widht: 30%'>\n" . 
-   "<h3>As Text</h3>\n" . 
-   "<pre>" . $graph->as_txt() . "</pre></div>" . 
-   "<div style='float: left;'>\n" . 
-   "<h3>As HTML:</h3>\n" . 
+   "<div style='float: left; min-widht: 30%'>\n" .
+   "<h3>As Text</h3>\n" .
+   "<pre>" . $graph->as_txt() . "</pre></div>" .
+   "<div style='float: left;'>\n" .
+   "<h3>As HTML:</h3>\n" .
    $graph->$method() . "</div>\n" .
    "<div style='clear: both;'>&nbsp;</div>\n\n";
 

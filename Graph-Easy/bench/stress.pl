@@ -94,16 +94,16 @@ sub normal
 
     $o->{graph} = $container;
     weaken($o->{graph});
-  
+
     if ($old_object)
       {
       my $link = new_link($old_object, $o, $i);
       $container->{edges}->{$i} = $link;
-   
+
       $link->{graph} = $container;
 	{
 	no warnings;
-	
+
         weaken($link->{graph});
         weaken($link->{to}->{graph});
         weaken($link->{from}->{graph});

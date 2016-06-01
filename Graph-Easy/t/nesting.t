@@ -108,7 +108,7 @@ sub check_groups
   @groups = $inner->groups();
 
   is (@groups, 0, 'no group in Inner');
- 
+
   is ($inner->attribute('group'), 'Outer', 'attribute("group")');
   is ($group->attribute('group'), '', 'attribute("group")');
   }

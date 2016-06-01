@@ -1,10 +1,10 @@
- [ 
+ [
    Bonn
- ] -> 
- [ 
+ ] ->
+ [
    Berlin
    (Capital)
  ]
  [
- Bonn 
+ Bonn
  ] -> [ Wismar ]

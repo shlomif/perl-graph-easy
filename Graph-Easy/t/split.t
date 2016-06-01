@@ -78,7 +78,7 @@ foreach (<DATA>)
     fail($parser->error());
     next;
     }
- 
+
   my $got = scalar $graph->nodes();
 
   my @edges = $graph->edges();
@@ -98,8 +98,8 @@ foreach (<DATA>)
     my $dx = $n->{dx}||0;
     my $dy = $n->{dy}||0;
     $got .= ";" . $n->name() . "," . $n->label() . "=$dx.$dy." . $b;
-    } 
-  
+    }
+
   is ($got, $result, $in);
   }
 

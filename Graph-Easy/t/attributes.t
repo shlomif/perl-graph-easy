@@ -78,8 +78,8 @@ is ($att->color_name('grey', 'x11'), 'grey', 'grey => grey');
 is ($att->color_name('#c0c0c0','x11'), 'gray', '#c0c0c0 => gray');
 is ($att->color_name('#ffffff','x11'), 'white', '#ffffff => white');
 is ($att->color_name('grey23','x11'), 'grey23', 'grey23 => grey23');
-    
-# 1  => '#ca0020', 2  => '#f4a582', 3  => '#bababa', 4  => '#404040', 
+
+# 1  => '#ca0020', 2  => '#f4a582', 3  => '#bababa', 4  => '#404040',
 is ($att->color_name('1','rdgy4'), '1', '1 => 1 under rdgy4');
 
 #############################################################################
@@ -90,7 +90,7 @@ is ($att->color_value('grey'), '#808080', 'grey => #808080');
 is ($att->color_value('grey','x11'), '#c0c0c0', 'grey => #c0c0c0 under x11');
 is ($att->color_value('grey23','x11'), '#3b3b3b', 'grey23 => #3b3b3b under x11');
 
-# 1  => '#ca0020', 2  => '#f4a582', 3  => '#bababa', 4  => '#404040', 
+# 1  => '#ca0020', 2  => '#f4a582', 3  => '#bababa', 4  => '#404040',
 is ($att->color_value('1','rdgy4'), '#ca0020', '1 => #ca0020 under rdgy4');
 is ($att->color_value('4','rdgy4'), '#404040', '4 => #404040 under rdgy4');
 
@@ -113,7 +113,7 @@ is (ref($new_value), 'ARRAY', 'border-shape is not valied');
 # no class name: 'all' will be tested
 
 for my $name (
-    'red','w3c/red','x11/red', 'chocolate4', 'rgb(1,2,3)', 
+    'red','w3c/red','x11/red', 'chocolate4', 'rgb(1,2,3)',
     'rgb(10%,1%,2%)', 'rgb(8,1%,0.2)', 'w3c/grey',
    )
   {
@@ -297,17 +297,17 @@ $m->set_attribute('color', 'blue');
 # N inherits from class "node"
 
 is ($n->raw_attribute('fill'), undef, 'attribute fill not set');
-is ($n->raw_attribute('color'), 'red', 
+is ($n->raw_attribute('color'), 'red',
   'attribute color set to inherit, so we inherit red');
 
 is ($graph->raw_attribute('fill'), undef, 'attribute fill not set on graph');
-is ($graph->raw_attribute('color'), 'green', 
+is ($graph->raw_attribute('color'), 'green',
   'attribute color set to green on graph');
 
-is ($m->raw_attribute('color'), 'blue', 
+is ($m->raw_attribute('color'), 'blue',
   'attribute color set to blue on node B');
 
-is ($m->raw_attribute('fill'), undef, 
+is ($m->raw_attribute('fill'), undef,
   'attribute fill not set on node m');
 
 my $str = _att_to_str($n->raw_attributes());

@@ -39,7 +39,7 @@ sub _balance_sizes
   # endless loop until constraint is met
   while (1)
     {
-  
+
     # find the smallest size, and also compute their sum
     my $sum = 0; my $i = 0;
     my $sm = $need + 1;		# start with an arbitrary size
@@ -50,7 +50,7 @@ sub _balance_sizes
       next if $s == 0;
       if ($s < $sm)
 	{
-        $sm = $s; $sm_i = $i; 
+        $sm = $s; $sm_i = $i;
 	}
       $i++;
       }
@@ -61,7 +61,7 @@ sub _balance_sizes
     # increase the smallest size by one, then try again
     $sizes->[$sm_i]++;
     }
- 
+
 #  use Data::Dumper; print STDERR "# " . Dumper($sizes),"\n";
 
   undef;
@@ -75,7 +75,7 @@ sub _prepare_layout
 
   # Find out for each row and colum how big they are:
   #   +--------+-----+------+
-  #   | Berlin | --> | Bonn | 
+  #   | Berlin | --> | Bonn |
   #   +--------+-----+------+
   # results in:
   #        w,  h,  x,  y
@@ -116,7 +116,7 @@ sub _prepare_layout
 
     # Set the minimum cell size only for single-celled objects:
     if ( (($cell->{cx}||1) + ($cell->{cy}||1)) == 2)
-      { 
+      {
       # record maximum size for that col/row
       $rows->{$y} = $h if $h >= ($rows->{$y} || 0);
       $cols->{$x} = $w if $w >= ($cols->{$x} || 0);
@@ -127,7 +127,7 @@ sub _prepare_layout
     # is another object in the same row/column.
     $mx = $x if $x > $mx;
     $my = $y if $y > $my;
-    } 
+    }
 
   # insert a dummy row/column with size=0 as last
   $rows->{$my+1} = 0;
@@ -186,7 +186,7 @@ sub _prepare_layout
         $rows->{$i+$y} = $sizes[$i];
 	}
       }
-    } 
+    }
 
   print STDERR "# Calculating absolute positions for rows/columns\n" if $self->{debug};
 
@@ -213,7 +213,7 @@ sub _prepare_layout
 
   for my $v (ord_values $cells)
     {
-    # Skip multi-celled nodes for later. 
+    # Skip multi-celled nodes for later.
     next if ($v->{cx}||1) + ($v->{cy}||1) != 2;
 
     # X and Y are col/row, so translate them to real pos
@@ -289,7 +289,7 @@ Graph::Easy::Layout::Grid - Grid management and size calculation
 =head1 SYNOPSIS
 
 	use Graph::Easy;
-	
+
 	my $graph = Graph::Easy->new();
 
 	my $bonn = Graph::Easy::Node->new(

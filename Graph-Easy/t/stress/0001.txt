@@ -5,6 +5,6 @@
  [ Oranienburg ] -> [ Wittenberge ]
  [ Strausberg ] -> [ Herzberg ]
  [ Strausberg ] -> [ Neuruppin ]
- [ Wittenberge ] -> [ Herzberg ] 
+ [ Wittenberge ] -> [ Herzberg ]
 
 

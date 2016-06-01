@@ -100,7 +100,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + generate the base name for HTML-like nodes from the actual name,
       this allows things like "11 [ label=<<..>> ]\n 11:e -> 1" to work
     + try to handle <font> tags inside HTML-like labels
-  * graph-easy: 
+  * graph-easy:
     + change default timeout to 240 seconds
     + --version also prints Perl and Graph::Easy::As_svg versions
     + handle UTF-8 output when piping to graphviz renders
@@ -140,7 +140,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Parser:
     + fix autosplitting nodes with "empty" parts like "|  |"
       (was also broken in DOT parsing as the same code was used)
-    + don't remove spaces at front of lines to support "\n  || B" 
+    + don't remove spaces at front of lines to support "\n  || B"
   * Parser/Graphviz:
     + detect missing "}" at end of file
     + bail out if "digraph {" is found twice in the input
@@ -185,7 +185,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + remove the to_nodes() and from_nodes() POD entries
   * disallow border attributes on edges (it was ignored in all output formats)
   * make it possible to call Graph::Easy->new('[A]->[B]');
-  * add: 
+  * add:
     + $graph->copy() - clone the entire graph
     + get_custom_attributes()
     + merge_nodes() takes a third parameter: the string to join the label
@@ -206,7 +206,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 
 2007-11-19 v0.60 Tels 2700 tests
   * Base:
-    + prepend 'Warning: ' to warnings    
+    + prepend 'Warning: ' to warnings
   * Graph::Easy:
     + add add_anon_node()
     + _class_styles(): allow extra class names in overlay (for SVG)
@@ -456,13 +456,13 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
       recalculaion of the used area (make big layouts about 30% faster)
     + fix _optimize_layout() for reversed edges, that finally fixes the
       garbled HTML output
-  * as_html(): 
+  * as_html():
     + "vertical-align: center" must be "vertical-align: middle" - argh!
     + better alignment of arrows on some edge/end pieces
     + insert missing style="..." in all edge pieces (fixes missing group
       backgrounds on some edge cells)
   * remove dead code in Graph::Easy::Node::Empty
- 
+
 2007-01-05 v0.51 Tels 2305 tests
   * bin/graph-easy: add --parse option
   * Parser:
@@ -495,7 +495,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Graph:
     + add flip_edges($A,$B); - transpose all edges going from A to B
     + add flow() - return the flow of the graph in degrees
-  * Node: 
+  * Node:
     + edges() returns all the edges at that node; fix doc for it
     + rename grow() to _grow() to make clear it is a private method
   * Edge:
@@ -608,7 +608,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * as_graphviz():
     + output nodes inside groups in sorted order to make tests more predictable
     + add tests for proper colorscheme support
-  * attribute "autolabel": 
+  * attribute "autolabel":
     + allow and prefer/doc to use just "N" for specifying the length
     + use "…" (ellipse) instead of just three dots (except in as_ascii)
     + allow up to 99999 characters (was 9999)
@@ -618,7 +618,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Parser/Graphviz:
     + handle attribute "URL" (opposed to "url")
     + handle attribute "href" for graph/node/subgraph, too
-    + accept "\N" in titles and urls, too  
+    + accept "\N" in titles and urls, too
     + accept "\E" for edges, too (\E is replaced by "Bonn->Berlin" f.i.)
     + accept "\G", "\T", "\H" in labels/urls/titles, too
     + parse HTML entities like &amp; in names/labels/titles/urls
@@ -705,7 +705,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 	color: 3; # this didn't work
 	}
   * Parser/Graphviz handles the following:
-    + "root" on a graph 
+    + "root" on a graph
     + "graph G { init -- _run }" (graph vs digraph, \w+ as node)
     + funky node names: node_0, Köln, "node" etc
     + "subgraph G { .. }"
@@ -762,8 +762,8 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * as_boxart: fix rendering of corner pieces (especially for joints)
   * as_html: render invisible edges truly invisible
   * adding a node with the name '0' and retrieving it via node('0') works now
-  * Parser/Graphviz: 
-    + 'Bonn' is a valid node name, too ([A-Z][a-z]+) 
+  * Parser/Graphviz:
+    + 'Bonn' is a valid node name, too ([A-Z][a-z]+)
     + handle /* style comments */
 
 2006-04-17 v0.44 Tels 1801 tests
@@ -800,7 +800,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + fix bug in class_styles() ignoring base class name for multiple
       classes, affected SVG output
   * Parser/Graphviz:
-    + relax parsing of node names (G, GROOVY etc are valid w/o quotes) 
+    + relax parsing of node names (G, GROOVY etc are valid w/o quotes)
     + allow "graph [ ... ];" (semicolon after attribute section)
     + remap attributes: graph: rankdir; edge: minlen, dir
 
@@ -856,7 +856,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
       Thanx to Florian Lindner for a testcase.
     + Edge.pm: port() did falsely return ("east","0") for "east" instead of
       (undef,undef), causing edges with "start: east" to get wrongly split up
-  * Parser: 
+  * Parser:
     + refactor code to allow easier subclassing
     + require and use Parser::Graphviz on detection of graphviz code
     + allow quoted attributes that contain ";" like: 'label: "bar;baz";'
@@ -870,7 +870,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * add a few examples to the doc
   * remove the static classes "l" (a) and "i" (img) - these can be styled
     by CSS selectors, so there is no need for them.
-  * as_html: 
+  * as_html:
     + use unicode chars for filled/closed arrow heads
     + fix garbled class names on undirected edges (caused by removing "v")
     + fix output of default left-aligned group labels and add test for that
@@ -890,7 +890,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Layout.pm:
     + typo: {_chain} vs. {chain} (Thanx Jim Cromie)
     + don't use alarm when under the debugger (Thanx Jim Cromie)
- 
+
 2006-02-05 v0.41 Tels 1670 tests
   * use Module::Install and bundle it in inc/
   * add "point-style: invisible" for very small, invisible nodes - nodes with
@@ -933,7 +933,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
       + return list in list context
   * Node:
     + add nodes_sharing_end(), is_anon()
-    + remove place() from public API (is now _do_place())  
+    + remove place() from public API (is now _do_place())
     + allow spaces in set_attribute('size', '9 , 8')
   * Node::Cell:
     + add a group() method to make things like $cell->group() easier
@@ -954,7 +954,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 	8000      0.77     0.68    |  0.61    0.21
 	16000     1.91     2.26    |  1.19    0.48
 	32000     9.32     8.02    |  2.32    0.78
-  * Parser: 
+  * Parser:
     + add use_class() to use user-provided classes for generated objects
     + referencing an (empty) part of an autosplit node before the autosplit
       node itself would create wrongly a stray node
@@ -978,12 +978,12 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + fix a problem when placing nodes without an edge object resulting in
       a crash
     + repair edges outside of groups, as well as edges that end at a corner
-    + multi-celled nodes in spliced layouts (e.g. with group fillers) 
+    + multi-celled nodes in spliced layouts (e.g. with group fillers)
       did not preserve their filler-cells correctly
   * as_txt():
     + clean up nodes after output so that a following as_graphviz() does work
-  * as_graphviz(): 
-    + fix links involving groups: lhead/ltail were swapped 
+  * as_graphviz():
+    + fix links involving groups: lhead/ltail were swapped
     + generate shorter invisible node names ("A,south,0" vs "A,south,0,0")
     + do not create invisible joint-nodes when there is only one edge sharing
       the start/end port
@@ -1017,7 +1017,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + optimize edges() and nodes() in scalar context
   * Graph: improve handling of "|" in attributes (especially labels)
   * Graph: del_node() and del_edge() also remove these from their group
-  * Edge: 
+  * Edge:
     + add start_at(), start_port(), end_port()
     + fix POD start
   * Node: add nodes_sharing_start(), shared_edges(), has_predecessors()
@@ -1042,8 +1042,8 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + the attribute did have a fixed list of words (like "shape")
     (Due to Ron Newmann's question I stumbled over these bugs - thanx!
   * add support for "shape: img;" (Thanx to Ron Newmann for the suggestion!)
-    + as_html: use "<img...>" 
-    + as_graphviz: use "<<TABLE .. <IMG...>>" 
+    + as_html: use "<img...>"
+    + as_graphviz: use "<<TABLE .. <IMG...>>"
 
 2006-01-01 v0.38 Tels 1571 tests
   * include the missing 4_flow.txt test files
@@ -1061,9 +1061,9 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 	    filler cells
   * Attributes: remove direction() and add:
     + _direction_as_number()
-    + _flow_as_number()    
-    + _flow_as_side()    
-    + _direction_as_side()    
+    + _flow_as_number()
+    + _flow_as_side()
+    + _direction_as_side()
   * Graph: remove the unused and wrong angle() method
   * Graph: allow add_edge('Node', 'Node2', 'edge label');
   * Edge: add flow() and port()
@@ -1144,7 +1144,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * as_html: don't need to put text/font attributes on empty (group) cells
   * as_html: fix shapes like "circle" on nodes with a link
   * remove relicts of old group handling code in Nodes/Group Cells
-  * use more isa() instead of ref() checks for class names 
+  * use more isa() instead of ref() checks for class names
   * "class { label: ...; }" was ignored and did not change the label
   * allow: "start: south , 1;" (space before ",")
   * add directions "left", "right", "front" and "back for "start"/"end"
@@ -1178,7 +1178,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     registered on all potential places, instead of only the final selected
     one. In HTML, the node would thus appear multiple times in the output.
   * Graph: streamline sorted_nodes();
-  * Edge: keep edge cells in sorted order (from start to end), and allow 
+  * Edge: keep edge cells in sorted order (from start to end), and allow
 	  add_cell() to insert a cell into the list (to repair edge-splitting
 	  from the group-padding code). Also allows rendering cells in order.
   * Edge: has_ports(): return true if start or ending port of the edge are
@@ -1195,7 +1195,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 	      say this three times fast...) where you have on node at
 	      the center. Since nodes are never placed next to each other,
 	      growing the node by 1 did not make enough space for all adjacent
-	      nodes.	
+	      nodes.
   * use diag() instead of printing to STDERR in tests
   * edge crossings with a start/end point had the type check wrong and
     thus could lead to the styles being switched around (HOR vs. VER)
@@ -1218,7 +1218,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Groups: edges with their to/from nodes in the same group are also
 	    added to that group
   * as_html: put correct group class on edge cells, so that they
-	     inherit the background from the group  
+	     inherit the background from the group
   * as_html: if nec., output CSS for anon nodes
   * as_html: implement missing corner pieces (W->S, S->W etc)
   * as_graphviz: use "setlinewidth()" to simulate bold, broad and wide borders
@@ -1264,7 +1264,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * use Carp::confess() instead of Carp::croak() to aid debugging
   * setting "{ border: broad red; }" will set the style ("broad") and color
     ("red"), but leave the width alone
-  * use isa('Graph::Easy::...') instead ref() to check for Node/Edge 
+  * use isa('Graph::Easy::...') instead ref() to check for Node/Edge
   * Edge::Cell: add arrow_count()
 
 2005-11-06 v0.32 Tels 1291 tests
@@ -1289,12 +1289,12 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * fix an undef warning in Edge/Cell line 713
   * streamline printfb_line() and use it whenever possible
   * Node: more rebust detection of class in set_attribute (no longer depends
-	  on blessed class name)  
+	  on blessed class name)
   * Node: add attribute "rotate"
   * preserve cell sizes after as_ascii()/as_boxart() for next call
     (multiple calls to as_ascii()/as_boxart() in a row did grow node-heights
      by 3 every iteration)
- 
+
 2005-10-30 v0.31 Tels 1171 tests
   * require at least Perl 5.8.0 (we need proper Unicode support)
   * Edge.pm: remove unnec. _formatted_label()
@@ -1365,7 +1365,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 	       output)
   * as_html_file(): set correct document charset, and <title> tag
   * as_ascii(): output graph label, below or above, according to label-pos
-  * as_graphviz(): remap border-styles, add support for border-style: double 
+  * as_graphviz(): remap border-styles, add support for border-style: double
   * as_graphviz(): handle attributes in node, edge and group classes, too
   * as_graphviz(): handle graph attributes: label-pos, label
   * as_graphviz(): skip over graph attributes: gid, autolink etc
@@ -1428,7 +1428,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     definitions in both code and documentation that could get out of sync
   * examples/common.pl was broken - thanx to Vagn Johansen for the report!
   * disallow arguments to new(), leave only in:
-    * Node: "label" and "name" 
+    * Node: "label" and "name"
     * Edge: "label", "name" and "style"
     * Parser: "debug"
     * Node::Cell: "node"
@@ -1552,9 +1552,9 @@ Fixed:
      0.24: Files=23, Tests=820,  5 secs ( 4.37 cusr +  0.50 csys =  4.87 CPU)
      0.25: Files=23, Tests=859,  4 secs ( 2.37 cusr +  0.31 csys =  2.68 CPU)
     Loading Graph::Easy now takes less time & memory, too (output from top):
-           VIRT  RES  SHR 
-     0.24: 8252 5712 1444 
-     0.25: 5840 3376 1432 
+           VIRT  RES  SHR
+     0.24: 8252 5712 1444
+     0.25: 5840 3376 1432
 
 2005-08-07 v0.24 Tels 820 tests - Fix, fix, fix, fix the bugs...
 Added:
@@ -1702,7 +1702,7 @@ Added:
   * as_ascii(): implement border "dashed;", "dotdashed" and "bold"
   * Easy: add _framebuffer(): generate empty framebuffer for as_ascii()
   * Easy: make _framebuffer() twice as fast
- 
+
 Renamed to Graph::Easy:
 
 2005-06-11 v0.18 Tels 573 tests - Shape, shape, shape, shape the nodes...
@@ -1828,7 +1828,7 @@ Renamed to Graph::Easy:
 
 2005-01-31 v0.11 Tels 294 tests - Close, close, close, close the ugly holes...
   * Parser: add parsing of groups like in "( Groupname [ Node ] )"
-  * Parser: fix for "[1] -> [2] -> [3] { ... }" to not lose attributes on 3 
+  * Parser: fix for "[1] -> [2] -> [3] { ... }" to not lose attributes on 3
   * Parser: can now handle "[1], [2], [3] -> [4]" correctly
   * Parser: cut out rendundant parsing code
   * Graph: add group(), add_group(), del_group(), groups()
@@ -1909,13 +1909,13 @@ Renamed to Graph::Easy:
 
 2005-01-09 v0.07 Tels 124 tests
   * Parser: ignore empty lines
-  * Parser: unquote all special chars, not only the first 
+  * Parser: unquote all special chars, not only the first
   * Node: quote node name in as_txt()
   * Parser: _parse_attributes();
   * Graph: added attribute(), set_attributes()
   * Graph: added id() to set/get a unique ID per graph
   * Graph: default ID is '', CSS code contains ID in class names
-  * Parser: teach it to parse CSS and call $graph->set_attributes() 
+  * Parser: teach it to parse CSS and call $graph->set_attributes()
   * Edge: output name in as_txt()
   * Layout: use strict, fix _trace_straight_path()
   * t/layout.t: add tests for _trace_straight_path()
@@ -1955,7 +1955,7 @@ Renamed to Graph::Easy:
   * Parser: document the different edge directions and styles
   * Parser: construct edges with the proper style
   * Parser: allow '..>' style
-  * Node: 
+  * Node:
     + document successorts()/predecessors(), as_txt(), as_html()
     + implement as_html($tag)
   * Graph:

@@ -41,14 +41,14 @@ can_ok ("Graph::Easy::Edge", qw/
   as_ascii
   as_txt
   /);
-  
+
 use Graph::Easy::Edge::Cell qw/EDGE_SHORT_E/;
 use Graph::Easy;
 
 #############################################################################
 
 # We need a graph to insert the edge into it, so that the edge gets the
-# default settings from it. 
+# default settings from it.
 # XXX TODO: should we change the above?
 
 my $graph = Graph::Easy->new();

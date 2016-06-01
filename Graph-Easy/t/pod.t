@@ -2,7 +2,7 @@
 
 use Test::More;
 use strict;
-   
+
 my $tests;
 
 BEGIN

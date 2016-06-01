@@ -2,5 +2,5 @@
     [ Ulm ] -> [ Lahn ] -> [ Bonn ]
     -> [ Trier ]
     [ Stein ] -> [ Wahns ]
-    -> [ Lind ] 
-    -> [ Burg ] -> [ Buch ] 
+    -> [ Lind ]
+    -> [ Burg ] -> [ Buch ]

@@ -55,7 +55,7 @@ $heap->add( [ 2, '', 3,0] ); is ($heap->elements(), 4, '4 elements');
 $heap->add( [ 2, '', 4,0] ); is ($heap->elements(), 5, '5 elements');
 $heap->add( [ 2, '', 5,0] ); is ($heap->elements(), 6, '6 elements');
 $heap->add( [ 3, '', 7,0] ); is ($heap->elements(), 7, '7 elements');
-# supposed to end at the end of the row of "2" 
+# supposed to end at the end of the row of "2"
 $heap->add( [ 2, '', 6,0] ); is ($heap->elements(), 8, '8 elements');
 
 # extract them again
@@ -84,7 +84,7 @@ for (my $i = 0; $i < 16; $i++)
   $heap->add( [ 3, '', $i+8+8,0] );
   }
 is ($heap->elements(), 31, '31 elements');
-# supposed to end at the end of the row of "2" 
+# supposed to end at the end of the row of "2"
 $heap->add( [ 2, '', 15,0] );
 
 is ($heap->elements(), 32, '32 elements');
