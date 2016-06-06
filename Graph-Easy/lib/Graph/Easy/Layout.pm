@@ -373,7 +373,7 @@ sub _find_chains
     $aa->[2] <=> $bb->[2] ||
     # nodes that have an origin come last
     $aa->[1] <=> $bb->[1] ||
-    # nodes with no predecessorts are to be prefered
+    # nodes with no predecessors are to be preferred
     $aa->[0] <=> $bb->[0] ||
     # last resort, alphabetically sorted
     $a cmp $b

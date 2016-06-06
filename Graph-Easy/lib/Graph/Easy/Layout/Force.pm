@@ -24,7 +24,7 @@ sub _layout_force
   # When things have settled, stop.
   my ($self) = @_;
 
-  # For each node, calculate the force actiing on it, seperated into two
+  # For each node, calculate the force acting on it, separated into two
   # components along the X and Y axis:
 
   # XXX TODO: replace with all contained nodes + groups

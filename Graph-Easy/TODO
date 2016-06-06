@@ -184,13 +184,13 @@ Layout:
 * allow user to specify max graph width (in cells) to avoid overly wide graphs
 * auto-grow nodes to be multicelled depending on the dimensions of their label
   ("main page" gets 2x1, while "a \nb \nc \nd \ne \n" gets 1x2 cells)
-  This currently causes problems and wierd layouts.
+  This currently causes problems and weird layouts.
 * Use the seed to generate randomized layouts
 
 Rendering/Layout:
 
 * allow "align: center, middle|top|bottom" for vertical alignment of labels.
-* add padding attributes (especially usefull for HTML/SVG output)
+* add padding attributes (especially useful for HTML/SVG output)
 * add "shape" for groups:
   + rect
   + compact (the default, what it is now)

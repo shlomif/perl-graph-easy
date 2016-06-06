@@ -146,7 +146,7 @@ sub add_node
   $n->{att}->{group} = $self->{name};
 
   # Register the nodes and the edge with our graph object
-  # and weaken the references. Be carefull to not needlessly
+  # and weaken the references. Be careful to not needlessly
   # override and weaken again an already existing reference, this
   # is an O(N) operation in most Perl versions, and thus very slow.
 
@@ -187,7 +187,7 @@ sub add_member
   $n->{att}->{group} = $self->{name};
 
   # Register the nodes and the edge with our graph object
-  # and weaken the references. Be carefull to not needlessly
+  # and weaken the references. Be careful to not needlessly
   # override and weaken again an already existing reference, this
   # is an O(N) operation in most Perl versions, and thus very slow.
 
@@ -276,7 +276,7 @@ sub add_nodes
     $n->{group} = $self;
 
     # Register the nodes and the edge with our graph object
-    # and weaken the references. Be carefull to not needlessly
+    # and weaken the references. Be careful to not needlessly
     # override and weaken again an already existing reference, this
     # is an O(N) operation in most Perl versions, and thus very slow.
 
@@ -383,7 +383,7 @@ sub add_group
   $group->{graph} = $self->{graph};
   $group->{group} = $self;
   {
-    no warnings; # dont warn on already weak references
+    no warnings; # don't warn on already weak references
     weaken($group->{graph});
     weaken($group->{group});
   }

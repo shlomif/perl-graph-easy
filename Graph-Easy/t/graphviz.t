@@ -85,7 +85,7 @@ like ($grviz, qr/label="My Label"/, 'graph label');
 like ($grviz, qr/labelloc=bottom/, 'now bottom');
 
 #############################################################################
-# with some nodes with atributes
+# with some nodes with attributes
 
 $bonn->set_attribute( 'shape' => 'rect' );
 

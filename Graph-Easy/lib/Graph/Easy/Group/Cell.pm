@@ -288,7 +288,7 @@ sub _correct_size
     if ($border ne 'none')
       {
       # class "gt", "gb", "gr" or "gr" will be compressed away
-      # (e.g. only edge cells will be existant)
+      # (e.g. only edge cells will be existent)
       if ($self->{has_label} || ($self->{cell_class} =~ /g[rltb] /))
 	{
 	$self->{w} = 2;

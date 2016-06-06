@@ -557,11 +557,11 @@ sub from_text
   my $o_cmt = qr#((\s*/\*.*?\*/\s*)*\s*|\s+)#;
 
   if ((ref($self)||$self) eq 'Graph::Easy::Parser' &&
-    # contains "digraph GRAPH {" or something similiar
+    # contains "digraph GRAPH {" or something similar
      ( $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)(strict)?$o_cmt(di)?graph$o_cmt("[^"]*"|[\w_]+)$o_cmt\{/im ||
-    # contains "digraph {" or something similiar
+    # contains "digraph {" or something similar
       $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)(strict)?${o_cmt}digraph$o_cmt\{/im ||
-    # contains "strict graph {" or something similiar
+    # contains "strict graph {" or something similar
       $txt =~ /^(\s*|\s*\/\*.*?\*\/\s*)strict${o_cmt}(di)?graph$o_cmt\{/im))
     {
     require Graph::Easy::Parser::Graphviz;
@@ -684,7 +684,7 @@ sub from_text
       }
 
 #debug    if ($handled == 0) { $counts->{'-1'}++; }
-    # couldn't handle that fragement, so accumulate it and try again
+    # couldn't handle that fragment, so accumulate it and try again
     $backbuffer = $line;
 
     # stop at the very last line
@@ -1464,7 +1464,7 @@ Nodes are rendered (or "quoted", if you wish) with enclosing square brackets:
 	[ Single node ]
 	[ Node A ] --> [ Node B ]
 
-Anonymous nodes do not have a name and cannot be refered to again:
+Anonymous nodes do not have a name and cannot be referred to again:
 
 	[ ] -> [ Bonn ] -> [ ]
 
@@ -1507,7 +1507,7 @@ present. Thus:
 	.-.-.->		# valid dot-dash
 	.-.->		# invalid!
 
-In additon to the styles, the following two directions are possible:
+In addition to the styles, the following two directions are possible:
 
 	 --		edge without arrow heads
 	 -->		arrow at target node (end point)
@@ -1568,7 +1568,7 @@ Round brackets are used to group nodes together:
 		[ Bonn ] -> [ Berlin ]
 	)
 
-Anonymous groups do not have a name and cannot be refered to again:
+Anonymous groups do not have a name and cannot be referred to again:
 
 	( [ Bonn ] ) -> [ Berlin ]
 

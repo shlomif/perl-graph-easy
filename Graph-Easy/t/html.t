@@ -41,7 +41,7 @@ like ($html, qr/Bonn/, 'contains Bonn');
 like ($html, qr/Berlin/, 'contains Berlin');
 
 #############################################################################
-# with some nodes with atributes
+# with some nodes with attributes
 
 $bonn->set_attribute( 'autotitle' => 'name' );
 

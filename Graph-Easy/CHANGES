@@ -5,6 +5,9 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Apply a patch from Debian to fix some spelling errors.
     - https://rt.cpan.org/Ticket/Display.html?id=115105
     - Thanks to Salvatore Bonaccorso and the Debian Perl Group.
+  * Fix more spelling errors - some reported by codespell, but also others.
+    - https://github.com/lucasdemarchi/codespell
+    - Thanks!
 
 2014-04-12 v0.75 Shlomi Fish 2938 tests
   * Remove "./Build" from the distribution (CPANTS error).
@@ -317,7 +320,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Parser/Graphviz:
     + allow style="setlinewidth(0.1)" (fractions) in attributes
     + translate unknown or unsupported attributes into "x-dot-foo" style
-  * the following methods in Groups/Edges are only usefull during the layout
+  * the following methods in Groups/Edges are only useful during the layout
     phase and are now internal and thus were renamed with an underscore
     in front of them:
     + add_cell, del_cell, clear_cells, cells
@@ -456,7 +459,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 2007-01-28 v0.52 Tels 2305 tests
   * format INSTALL in POD and add notes about Windows
   * Group::Cell: cache attributes to avoid overly many attribute() calls
-  * attribute(): do not call class() unless neccessary
+  * attribute(): do not call class() unless necessary
   * Layouter:
     + cache the boundaries of the cells array for A*, avoid excessive
       recalculaion of the used area (make big layouts about 30% faster)
@@ -473,7 +476,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * bin/graph-easy: add --parse option
   * Parser:
     + fix bug #24133: empty groups were wrongly put on the group stack,
-      thus aquiring some of the following nodes (Thanx to Paul Biggar!)
+      thus acquiring some of the following nodes (Thanks to Paul Biggar!)
     + allow class selector ".foo { ... }" - set attributes on all objects
       (edges/nodes/groups) of subclass "foo"
     + allow lists of class selectors like ".foo, node.bar, group { ... }"
@@ -650,7 +653,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + fix rendering of anon nodes (setlinewidth(0) doesn't work, so use
       style=filled and a color that equals the node background)
     + don't output spurious "flow" for nodes
-    + the code to supress edge labels on helper edges was broken
+    + the code to suppress edge labels on helper edges was broken
 
 2006-09-03 v0.47 Tels 2013 tests
   * Edge: add end_at(), the opposite of start_at()
@@ -754,10 +757,10 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Node: further fixes flow(): properly cache the return value, reduce C&P
 
 2006-07-23 v0.45 Tels 1811 tests
-  * we dont need inc/Module/AutoInstall.pm (this dist has no dependencies)
+  * we don't need inc/Module/AutoInstall.pm (this dist has no dependencies)
   * require at least Perl 5.8.1 for proper Unicode support
   * add a Build.PL file
-  * fix bug with shared edges and joints (Thanx Florian Lindner!)
+  * fix bug with shared edges and joints (Thanks, Florian Lindner!)
   * fix reparing of edge joints that are next to a node inside a group
   * add attribute 'root' for graphs
   * Layouter: if given root node, start there
@@ -784,9 +787,9 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
       horizontal instead
     + an edge sharing an end point with another was generated incorrectly if
       (one of) the other edge(s) was running alongside the starting node (e.g.
-      where we could immidiately create a joint and be done)
+      where we could immediately create a joint and be done)
     + likewise for edges splitting up, if a shared edge runs alongside a node,
-      then a joint will be created there immidiately
+      then a joint will be created there immediately
     + fix bidirectional edges with a joint as start piece
     + Don't warn on edges with no cells (on joints, under debug) about being
       unable to find path
@@ -813,7 +816,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 2006-03-19 v0.43 Tels 1755 tests
   * add attributes:
     + text-wrap: 'auto': auto wrap label, 'none' is the default
-    + id: unique identifier for each object (usefull for animation later on)
+    + id: unique identifier for each object (useful for animation later on)
     + font: comma-separated list of font family names/generic names
     + format: 'none' (no special processing, default) or 'pod' (enables inline
       text formatting ala B<bold>, I<italic> etc)
@@ -854,7 +857,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + added a post-layout optimizer
     + compact edges by combining VER or HOR edge cells into one cell
       (fixes overly long edge labels stretching the layout)
-    + add a method to grow multiple column/row sizes to accomodate
+    + add a method to grow multiple column/row sizes to accommodate
       a nec. multi-column cell (node/edge), this creates more compact
       layouts with multi-cell objects in them.
     + repairing edges after splicing in groups did not account for joints,
@@ -966,7 +969,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
       node itself would create wrongly a stray node
     + simplify group code ($graph->add_group() does everything nec. already)
     + store labels for autosplit nodes not in the label attribute, but
-      seperately. This fixes the problem that you couldn't put a node
+      separately. This fixes the problem that you couldn't put a node
       (resulting from an autosplit) into a class and set a label on the
       class - the node would always show the part name as label. In addition
       that fixes the long-standing bug that as_txt() would output stray labels
@@ -1013,12 +1016,12 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
     + group cells need '&nbsp;' for IE to show the border - I hate IE bugs :-(
   * error() is now fatal by calling _croak() - no longer do errors in
     attributes go undetected and cause havoc later on. You can use
-    $object->no_fatal_errors() (on any object) to supress this.
+    $object->no_fatal_errors() (on any object) to suppress this.
 
 2006-01-08 v0.39 Tels 1603 tests
   * Graph: fix merge_nodes() to delete node B from group if part of one
   * fix Group:
-    + del_edge(): delete edge on id, not non-existant name
+    + del_edge(): delete edge on id, not non-existent name
     + del_node() & del_member(): drop all edges mentioning the node
     + optimize edges() and nodes() in scalar context
   * Graph: improve handling of "|" in attributes (especially labels)
@@ -1455,7 +1458,7 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
 		   different fill color)
   * as_graphviz(): support anon nodes properly (rendered invisible)
   * as_graphviz(): correctly handle link, linkbase and autolink attributes
-  * as_graphviz(): use graph ID to construct graph name (usefull for imagemaps)
+  * as_graphviz(): use graph ID to construct graph name (useful for imagemaps)
   * as_html(): reimplement output for edges with 4x4 table cells, including
                correct start/end points, label colors. Finally works in all
 	       major browsers and looks better than ever :)
@@ -1676,7 +1679,7 @@ Added:
   * Easy: add_node() returns newly added node and copes with ("name")
 
 2005-06-25 v0.20 Tels 589 tests - Fix, fix, fix, fix the bugs...
-  * put SVG code into a seperate package, see there for CHANGES
+  * put SVG code into a separate package, see there for CHANGES
   * add some details to POD
   * border-style "dotdashed" renamed to "dot-dash"
   * added border and edge-styles: "dot-dot-dash", "wave"
@@ -1702,7 +1705,7 @@ Added:
   * Graph/Easy.pm: add seed(), randomize(), as_ascii_html()
   * Graph/Easy.pm: rem stray debug print in add_edge()
   * fix POD about limitations, multi-edges are possible since v0.18
-  * Parser: allow GLOB and similiar things as file to from_file()
+  * Parser: allow GLOB and similar things as file to from_file()
   * Easy: add/del of clusters/groups invalidates the current layout
   * as_ascii(): fix output of nodes with "border: none;"
   * as_ascii(): implement border "dashed;", "dotdashed" and "bold"
@@ -1859,7 +1862,7 @@ Renamed to Graph::Easy:
   * include t/fun/ - fun with graph-examples
   * added Graph::Simple::Path and refactored Edge code - an edge now only
     knows as_txt(); The other two, as_html() and as_ascii() are handled by
-    Path.pm (for each element of the edge seperately)
+    Path.pm (for each element of the edge separately)
   * more syntax examples
 
 2005-01-24 v0.10 Tels 248 tests - Color, color, color, color the pretty graph...

@@ -1145,8 +1145,8 @@ sub _astar
 
     # The cost to reach the starting node is obviously 0. That means that there is
     # a tie between going down/up if both possibilities are equal likely. We insert
-    # a small bias here that makes the prefered order east/south/west/north. Instead
-    # the algorithmn exploring both way and terminating arbitrarily on the one that
+    # a small bias here that makes the preferred order east/south/west/north. Instead
+    # the algorithm exploring both way and terminating arbitrarily on the one that
     # first hits the target, it will explore only one.
     $open_by_pos->{"$sx,$sy"} = $o;
 
@@ -1200,7 +1200,7 @@ sub _astar
           }
         last STEP;
         }
-      } # end test for stop postion(s)
+      } # end test for stop position(s)
 
     $self->_croak("On of '$x,$y' is not defined")
       unless defined $x && defined $y;

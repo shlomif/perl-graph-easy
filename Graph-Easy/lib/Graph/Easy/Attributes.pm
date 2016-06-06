@@ -2966,7 +2966,7 @@ EOF
 
     rank => [
      "The rank of the node, used by the layouter to find the order and placement of nodes. " .
-     "Set to C<auto> (the default), C<same> (usefull for node lists) or a positive number. " .
+     "Set to C<auto> (the default), C<same> (useful for node lists) or a positive number. " .
      "See the section about ranks for reference and more examples.",
        qr/^(auto|same|\d{1,6})\z/,
        'auto',
@@ -3033,7 +3033,7 @@ EOF
      ],
 
     gid => [
-	"A unique ID for the graph. Usefull if you want to include two graphs into one HTML page.",
+	"A unique ID for the graph. Useful if you want to include two graphs into one HTML page.",
 	qr/^\d+\z/,
 	'',
 	'123',
@@ -3379,7 +3379,7 @@ sub default_attribute
   # Hyphens must be separated by letters. Custom attributes do not have a default.
   return '' if $name =~ $qr_custom_attribute;
 
-  # prevent ->{special}->{node} from springing into existance
+  # prevent ->{special}->{node} from springing into existence
   my $s = $attributes->{special}; $s = $s->{$class} if exists $s->{$class};
 
   my $entry =	$s->{$name} ||
@@ -3417,7 +3417,7 @@ sub raw_attribute
   my $class = $self->{class} || 'graph';
   my $base_class = $class; $base_class =~ s/\..*//;
 
-  # prevent ->{special}->{node} from springing into existance
+  # prevent ->{special}->{node} from springing into existence
   my $s = $attributes->{special}; $s = $s->{$class} if exists $s->{$class};
 
   my $entry =	$s->{$name} ||
@@ -3571,7 +3571,7 @@ sub _attribute_entry
 
   my $base_class = $class; $base_class =~ s/\.(.*)//;
 
-  # prevent ->{special}->{node} from springing into existance
+  # prevent ->{special}->{node} from springing into existence
   my $s = $attributes->{special}; $s = $s->{$class} if exists $s->{$class};
   my $entry =	$s->{$name} ||
 		$attributes->{all}->{$name} ||
@@ -3628,7 +3628,7 @@ sub attribute
     # below look up the attribute or fall back to the default '':
     }
 
-  # prevent ->{special}->{node} from springing into existance
+  # prevent ->{special}->{node} from springing into existence
   my $s = $attributes->{special}; $s = $s->{$class} if exists $s->{$class};
   my $entry =	$s->{$name} ||
 		$attributes->{all}->{$name} ||
@@ -3837,7 +3837,7 @@ sub validate_attribute
   # Remap alias names without "-" to their hyphenated version:
   $name = $att_aliases->{$name} if exists $att_aliases->{$name};
 
-  # prevent ->{special}->{node} from springing into existance
+  # prevent ->{special}->{node} from springing into existence
   my $s = $attributes->{special}; $s = $s->{$class} if exists $s->{$class};
 
   my $entry = $s->{$name} ||
@@ -3929,7 +3929,7 @@ sub _remap_attributes
   #     color => 'red'
   #   }
   # }
-  # and remap it according to the given remap hash (similiar structured).
+  # and remap it according to the given remap hash (similar structured).
   # Also encode/quote the value. Suppresses default attributes.
   my ($self, $object, $att, $remap, $noquote, $encode, $color_remap ) = @_;
 
@@ -4069,7 +4069,7 @@ sub raw_attributes
 
     next unless $val eq 'inherit';
 
-    # prevent ->{special}->{node} from springing into existance
+    # prevent ->{special}->{node} from springing into existence
     my $s = $attributes->{special}; $s = $s->{$class} if exists $s->{$class};
     my $entry =	$s->{$name} ||
 		$attributes->{all}->{$name} ||

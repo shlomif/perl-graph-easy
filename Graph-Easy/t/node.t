@@ -635,7 +635,7 @@ for my $e (@expect)
   }
 
 #############################################################################
-# Deleting a node should work if the node is a child node (fail untill v0.49)
+# Deleting a node should work if the node is a child node (fail until v0.49)
 
 $graph = Graph::Easy->new();
 

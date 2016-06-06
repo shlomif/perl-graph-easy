@@ -447,7 +447,7 @@ sub _do_place
   # Tries to place the node at position ($x,$y) by checking that
   # $cells->{"$x,$y"} is still free. If the node belongs to a cluster,
   # checks all nodes of the cluster (and when all of them can be
-  # placed simultanously, does so).
+  # placed simultaneously, does so).
   # Returns true if the operation succeeded, otherwise false.
   my ($self,$x,$y,$parent) = @_;
 
@@ -842,7 +842,7 @@ sub as_html
     $name = $self->label();
     $name =~ s/\s/\+/g;				# space
     $name =~ s/'/%27/g;				# replace quotation marks
-    $name =~ s/[\x0d\x0a]//g;			# remove 0x0d0x0a and similiar
+    $name =~ s/[\x0d\x0a]//g;			# remove 0x0d0x0a and similar
     my $t = $title; $t = $name if $t eq '';
     $name = "<img src='$name' alt='$t' title='$t' border='0' />";
     }
@@ -1436,7 +1436,7 @@ sub title
       if ($autotitle eq 'label')
         {
         $title = $self->{name};				# fallback to name
-        # defined to avoid overriding "name" with the non-existant label attribute
+        # defined to avoid overriding "name" with the non-existent label attribute
 	# do not use label() here, but the "raw" label of the edge:
         my $label = $self->label(); $title = $label if defined $label;
         }

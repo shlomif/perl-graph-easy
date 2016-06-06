@@ -1947,7 +1947,7 @@ sub _parser_cleanup
 	{
         $compass = $1;
 	}
-      # "Bonn:w" is port "w", and only "west" when that port doesnt exist
+      # "Bonn:w" is port "w", and only "west" when that port doesn't exist
 
       # look it up in the cache first
       my $node = $node_cache->{"$base:$port"};
@@ -1955,7 +1955,7 @@ sub _parser_cleanup
       my $p = undef;
       if (!defined $node)
 	{
-	# go thru all nodes and for see if we find one with the right port name
+	# go through all nodes and for see if we find one with the right port name
 	for my $na (@nodes)
 	  {
 	  next unless exists $na->{autosplit_portname} && exists $na->{autosplit_basename};

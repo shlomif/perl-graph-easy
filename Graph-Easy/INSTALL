@@ -7,7 +7,7 @@ I<Note:> This package was formerly known as Graph::Simple.
 
 =head1 INSTALLATION
 
-=head2 Linux, Unix, and similiar systems:
+=head2 Linux, Unix, and similar systems:
 
 To install this module type the following:
 
@@ -19,17 +19,7 @@ where x.xx is the current revision. Then change into the directory:
 
 	chdir Graph-Easy-x.xx/
 
-Verify the package:
-
-	cpansign --verify
-
-If the package fails to verify, do NOT run Makefile.pl nor install it and
-notify me immidiately.
-
-B<< YOUR SYSTEM MIGHT GET COMPROMISED! >>
-
-When the package verified okay, then proceed with creating the make file
-and running the testsuite:
+Proceed with creating the makefile and running the test suite:
 
         perl Makefile.PL
         make test

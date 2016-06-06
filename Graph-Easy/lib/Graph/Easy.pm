@@ -93,7 +93,7 @@ sub DESTROY
   {
   my $self = shift;
 
-  # Be carefull to not delete ->{graph}, these will be cleaned out by
+  # Be careful to not delete ->{graph}, these will be cleaned out by
   # Perl automatically in O(1) time, manual delete is O(N) instead.
 
   delete $self->{chains};
@@ -388,7 +388,7 @@ sub link
   if ($link eq '' && $autolink ne '')
     {
     $link = $self->{name} if $autolink eq 'name';
-    # defined to avoid overriding "name" with the non-existant label attribute
+    # defined to avoid overriding "name" with the non-existent label attribute
     $link = $self->{att}->{label} if $autolink eq 'label' && defined $self->{att}->{label};
     $link = $self->{name} if $autolink eq 'label' && !defined $self->{att}->{label};
     }
@@ -1361,7 +1361,7 @@ sub as_html
   my $max_x = undef;
   my $min_x = undef;
 
-  # find all x and y occurances to sort them by row/columns
+  # find all x and y occurrences to sort them by row/columns
   for my $k (sort keys %$cells)
     {
     my ($x,$y) = split/,/, $k;
@@ -1454,7 +1454,7 @@ sub as_html
 #        next if $row->[$i] =~ /span /;		# non-empty?
 #        next if $row->[$i] =~ /^(\s|\n)*\z/;	# empty?
 
-	# Combining these cells shows wierd artefacts when using the Firefox
+	# Combining these cells shows weird artifacts when using the Firefox
 	# WebDeveloper toolbar and outlining table cells, but it does not
 	# seem to harm rendering in browsers:
         #next if $row->[$i] =~ /class="[^"]+ eb"/;	# is class=".. eb"
@@ -1462,7 +1462,7 @@ sub as_html
 	# contains wo succ. cell?
         next if $row->[$i] =~ /(row|col)span.*\1span/m;
 
-        # count all sucessive equal ones
+        # count all successive equal ones
         my $j = $i + 1;
 
         $j++ while ($j < @$row && $row->[$j] eq $row->[$i]); # { $j++; }
@@ -1827,7 +1827,7 @@ sub add_edge
     }
 
   # Register the nodes and the edge with our graph object
-  # and weaken the references. Be carefull to not needlessly
+  # and weaken the references. Be careful to not needlessly
   # override and weaken again an already existing reference, this
   # is an O(N) operation in most Perl versions, and thus very slow.
 
@@ -1896,7 +1896,7 @@ sub add_node
   $no->{$n} = $x;
 
   # Register the nodes and the edge with our graph object
-  # and weaken the references. Be carefull to not needlessly
+  # and weaken the references. Be careful to not needlessly
   # override and weaken again an already existing reference, this
   # is an O(N) operation in most Perl versions, and thus very slow.
 
@@ -1938,7 +1938,7 @@ sub add_nodes
     $no->{$n} = $xx;
 
     # Register the nodes and the edge with our graph object
-    # and weaken the references. Be carefull to not needlessly
+    # and weaken the references. Be careful to not needlessly
     # override and weaken again an already existing reference, this
     # is an O(N) operation in most Perl versions, and thus very slow.
 
@@ -2162,7 +2162,7 @@ sub add_group
   # register group with ourself and weaken the reference
   $group->{graph} = $self;
   {
-    no warnings; # dont warn on already weak references
+    no warnings; # don't warn on already weak references
     weaken($group->{graph});
   }
   $self->{score} = undef;			# invalidate last layout

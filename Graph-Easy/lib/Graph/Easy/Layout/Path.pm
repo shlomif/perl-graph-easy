@@ -223,7 +223,7 @@ sub _allowed_places
 
 sub _allow
   {
-  # return a list of places, depending on the start/end atribute:
+  # return a list of places, depending on the start/end attribute:
   # "south" - any place south
   # "south,0" - first place south
   # "south,-1" - last place south
@@ -302,7 +302,7 @@ use Graph::Easy::Edge::Cell qw/
 sub _clear_tries
   {
   # Take a list of potential positions for a node, and then remove the
-  # ones that are immidiately near any other node.
+  # ones that are immediately near any other node.
   # Returns a list of "good" positions. Afterwards $node->{x} is undef.
   my ($self, $node, $cells, $tries) = @_;
 
@@ -643,8 +643,8 @@ sub _find_node_place
 	  @tries = ( $pre[1]->{x} + int($dx / 2), $pre[1]->{y} );
           }
         }
-      # XXX TODO BUG: shouldnt we also try this if we have more than 2 placed
-      # predecessors?
+      # XXX TODO BUG: shouldn't we also try this if we have more than 2
+      # placed predecessors?
 
       # In addition, we can also try to place the node around the
       # different nodes:

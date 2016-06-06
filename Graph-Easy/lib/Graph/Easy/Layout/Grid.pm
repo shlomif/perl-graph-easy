@@ -1,5 +1,5 @@
 #############################################################################
-# Grid-management and layout preperation.
+# Grid-management and layout preparation.
 #
 # (c) by Tels 2004-2006.
 #############################################################################
@@ -29,7 +29,7 @@ sub _balance_sizes
 
   return if $need < 1;
 
-  # if there is only one element, return it immidiately
+  # if there is only one element, return it immediately
   if (@$sizes == 1)
     {
     $sizes->[0] = $need if $sizes->[0] < $need;
@@ -73,7 +73,7 @@ sub _prepare_layout
   # sizes and placement of the different cells (edges, nodes etc).
   my ($self,$format) = @_;
 
-  # Find out for each row and colum how big they are:
+  # Find out for each row and column how big they are:
   #   +--------+-----+------+
   #   | Berlin | --> | Bonn |
   #   +--------+-----+------+
@@ -83,8 +83,8 @@ sub _prepare_layout
   # 1,0 => 7,  3,  10, 0
   # 2,0 => 8,  3,  16, 0
 
-  # Technically, we also need to "compress" away non-existant columns/rows.
-  # We achive that by simply rendering them with size 0, so they become
+  # Technically, we also need to "compress" away non-existent columns/rows.
+  # We achieve that by simply rendering them with size 0, so they become
   # practically invisible.
 
   my $cells = $self->{cells};
@@ -98,7 +98,7 @@ sub _prepare_layout
   # objects covering multiple cells. The single-cell objects can be solved
   # first:
 
-  # find all x and y occurances to sort them by row/columns
+  # find all x and y occurrences to sort them by row/columns
   for my $cell (ord_values $cells)
     {
     my ($x,$y) = ($cell->{x}, $cell->{y});
