@@ -1967,7 +1967,7 @@ Renamed to Graph::Easy:
   * Parser: construct edges with the proper style
   * Parser: allow '..>' style
   * Node:
-    + document successorts()/predecessors(), as_txt(), as_html()
+    + document successors()/predecessors(), as_txt(), as_html()
     + implement as_html($tag)
   * Graph:
     + _trace_path() can also trace short, straight paths upwards
