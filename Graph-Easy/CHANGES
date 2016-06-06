@@ -1,5 +1,11 @@
 Revision history for Graph::Easy (formerly known as Graph::Simple):
 
+2016-06-06 v0.76 Shlomi Fish 2939 tests
+  * Remove trailing whitespace.
+  * Apply a patch from Debian to fix some spelling errors.
+    - https://rt.cpan.org/Ticket/Display.html?id=115105
+    - Thanks to Salvatore Bonaccorso and the Debian Perl Group.
+
 2014-04-12 v0.75 Shlomi Fish 2938 tests
   * Remove "./Build" from the distribution (CPANTS error).
   * Got rid of an implicit dependency on IO::All for the tests (CPANTS error).

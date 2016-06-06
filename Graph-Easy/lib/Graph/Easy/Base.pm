@@ -179,7 +179,7 @@ sub catch_errors
 
 sub warnings
   {
-  # return all warnings that occured after catch_messages(1)
+  # return all warnings that occurred after catch_messages(1)
   my $self = shift;
 
   @{$self->{_warnings}};
@@ -187,7 +187,7 @@ sub warnings
 
 sub errors
   {
-  # return all errors that occured after catch_messages(1)
+  # return all errors that occurred after catch_messages(1)
   my $self = shift;
 
   @{$self->{_errors}};
@@ -338,7 +338,7 @@ Create a new object, and call C<_init()> on it.
 
 	$last_error = $object->error();
 
-	$object->error($error);			# set new messags
+	$object->error($error);			# set new messages
 	$object->error('');			# clear the error
 
 Returns the last error message, or '' for no error.
@@ -430,14 +430,14 @@ L<errors()> and L<warnings()>.
 
 	my @errors = $object->errors();
 
-Return all error messages that occured after L<catch_messages()> was
+Return all error messages that occurred after L<catch_messages()> was
 called.
 
 =head2 warnings()
 
 	my @warnings = $object->warnings();
 
-Return all warning messages that occured after L<catch_messages()>
+Return all warning messages that occurred after L<catch_messages()>
 or L<catch_errors()> was called.
 
 =head2 self()

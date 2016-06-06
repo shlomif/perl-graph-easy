@@ -2474,7 +2474,7 @@ Graph::Easy - Convert or render graphs (as ASCII, HTML, SVG or via Graphviz)
 C<Graph::Easy> lets you generate graphs consisting of various shaped
 nodes connected by edges (with optional labels).
 
-It can read and write graphs in a varity of formats, as well as render
+It can read and write graphs in a variety of formats, as well as render
 them via its own grid-based layouter.
 
 Since the layouter works on a grid (manhattan layout), the output is
@@ -2742,7 +2742,7 @@ C<Graph::Easy> supports the following methods:
 
 Creates a new, empty C<Graph::Easy> object.
 
-Takes optinal a hash reference with a list of options. The following are
+Takes optional a hash reference with a list of options. The following are
 valid options:
 
 	debug			if true, enables debug output

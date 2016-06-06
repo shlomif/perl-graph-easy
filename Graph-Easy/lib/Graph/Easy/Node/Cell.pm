@@ -116,7 +116,7 @@ You should not need to use this class directly.
 
 	$last_error = $cell->error();
 
-	$cvt->error($error);			# set new messags
+	$cvt->error($error);			# set new messages
 	$cvt->error('');			# clear error
 
 Returns the last error message, or '' for no error.

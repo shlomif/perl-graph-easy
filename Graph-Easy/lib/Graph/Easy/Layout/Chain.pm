@@ -542,7 +542,7 @@ nodes from C<$where> onwards, instead of all of them.
 
 	$last_error = $node->error();
 
-	$node->error($error);			# set new messags
+	$node->error($error);			# set new messages
 	$node->error('');			# clear error
 
 Returns the last error message, or '' for no error.

@@ -1360,7 +1360,7 @@ There should be no need to use this package directly.
 
 	$last_error = $edge->error();
 
-	$cvt->error($error);			# set new messags
+	$cvt->error($error);			# set new messages
 	$cvt->error('');			# clear error
 
 Returns the last error message, or '' for no error.

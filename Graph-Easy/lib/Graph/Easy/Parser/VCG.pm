@@ -1042,7 +1042,7 @@ in various formats.
 
 =head2 Output
 
-The output will be a L<Graph::Easy|Graph::Easy> object (unless overrriden
+The output will be a L<Graph::Easy|Graph::Easy> object (unless overridden
 with C<use_class()>), see the documentation for Graph::Easy what you can do
 with it.
 
@@ -1120,7 +1120,7 @@ with L<error()> when using the first calling style.
 
 	my $error = $parser->error();
 
-Returns the last error, or the empty string if no error occured.
+Returns the last error, or the empty string if no error occurred.
 
 =head2 parse_error()
 

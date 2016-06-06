@@ -549,7 +549,7 @@ During the layout phase, each edge also contains a list of path-elements
 
 	$last_error = $edge->error();
 
-	$cvt->error($error);			# set new messags
+	$cvt->error($error);			# set new messages
 	$cvt->error('');			# clear error
 
 Returns the last error message, or '' for no error.

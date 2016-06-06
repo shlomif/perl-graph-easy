@@ -351,7 +351,7 @@ There should be no need to use this package directly.
 
 	$last_error = $group->error();
 
-	$group->error($error);			# set new messags
+	$group->error($error);			# set new messages
 	$group->error('');			# clear error
 
 Returns the last error message, or '' for no error.
