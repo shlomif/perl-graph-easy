@@ -5,7 +5,7 @@
 
 package Graph::Easy::Parser::VCG;
 
-$VERSION = '0.75';
+$VERSION = '0.76';
 use Graph::Easy::Parser::Graphviz;
 @ISA = qw/Graph::Easy::Parser::Graphviz/;
 

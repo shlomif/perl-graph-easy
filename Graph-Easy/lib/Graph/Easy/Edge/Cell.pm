@@ -14,7 +14,7 @@ require Exporter;
 use vars qw/$VERSION @EXPORT_OK @ISA/;
 @ISA = qw/Exporter Graph::Easy::Edge/;
 
-$VERSION = '0.75';
+$VERSION = '0.76';
 
 use Scalar::Util qw/weaken/;
 
@@ -1314,7 +1314,7 @@ our @ISA = qw/Graph::Easy::Node::Cell/;
 
 #use vars qw/$VERSION/;
 
-our $VERSION = '0.75';
+our $VERSION = '0.76';
 
 use constant isa_cell => 1;
 

@@ -7,7 +7,7 @@
 package Graph::Easy::Layout::Chain;
 
 use Graph::Easy::Base;
-$VERSION = '0.75';
+$VERSION = '0.76';
 @ISA = qw/Graph::Easy::Base/;
 
 use strict;

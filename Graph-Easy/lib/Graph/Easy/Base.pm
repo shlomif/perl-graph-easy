@@ -5,7 +5,7 @@
 
 package Graph::Easy::Base;
 
-$VERSION = '0.75';
+$VERSION = '0.76';
 
 use strict;
 use warnings;

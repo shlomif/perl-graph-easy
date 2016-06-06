@@ -6,7 +6,7 @@
 
 package Graph::Easy::Node;
 
-$VERSION = '0.75';
+$VERSION = '0.76';
 
 use Graph::Easy::Base;
 use Graph::Easy::Attributes;

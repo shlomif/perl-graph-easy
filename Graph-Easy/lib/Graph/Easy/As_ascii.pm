@@ -6,7 +6,7 @@
 
 package Graph::Easy::As_ascii;
 
-$VERSION = '0.75';
+$VERSION = '0.76';
 
 use utf8;
 

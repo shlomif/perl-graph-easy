@@ -13,7 +13,7 @@ use warnings;
 use vars qw(@ISA $VERSION);
 
 @ISA = qw/Graph::Easy::Node/;
-$VERSION = '0.75';
+$VERSION = '0.76';
 
 #############################################################################
 
