@@ -828,7 +828,7 @@ sub _build_match_stack
       } );
 
   # simple remove the graph start, but remember that we did this
-  $self->_register_handler( qr/^\s*(strict)?$qr_ocmt(di)?graph$qr_ocmt\{/i,
+  $self->_register_handler( qr/^\s*(strict)?$qr_ocmt((?:di)?)graph$qr_ocmt\{/i,
     sub
       {
       my $self = shift;

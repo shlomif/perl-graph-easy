@@ -8,6 +8,8 @@ Revision history for Graph::Easy (formerly known as Graph::Simple):
   * Fix more spelling errors - some reported by codespell, but also others.
     - https://github.com/lucasdemarchi/codespell
     - Thanks!
+  * Fix an undef warning in the tests with recent perls.
+    - Uninitialized $2.
 
 2014-04-12 v0.75 Shlomi Fish 2938 tests
   * Remove "./Build" from the distribution (CPANTS error).
