@@ -3325,7 +3325,7 @@ string is in utf-8.
 
 =head2 as_boxart()
 
-	print $graph->as_box();
+	print $graph->as_boxart();
 
 Return the graph layout as box drawing using Unicode characters (in utf-8,
 as always).
