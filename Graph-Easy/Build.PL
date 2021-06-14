@@ -37,7 +37,7 @@ my $build = Test::Run::Builder->new(
     {
         resources =>
         {
-            repository => "https://bitbucket.org/shlomif/perl-graph-easy",
+            repository => "https://github.com/shlomif/perl-graph-easy",
         },
         keywords =>
         [
